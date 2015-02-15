@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Party.create!(name: 'הליכוד')
+Party.create!(name: 'העבודה')
+Party.create!(name: 'קדימה')
+Party.create!(name: 'יש עתיד')
+Party.create!(name: 'הבית היהודי')
+Party.create!(name: 'מר״צ')
