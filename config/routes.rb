@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :votes
+
   root 'home#index'
 
   resources :parties
