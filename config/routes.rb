@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :votes
 
   root 'home#index'
 
@@ -7,6 +6,8 @@ scope '/api' do
   resources :parties
 
   resources :users
+
+  resources :votes
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
