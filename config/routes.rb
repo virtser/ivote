@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 
 scope '/api' do
   resources :parties
-
   resources :users
-
   resources :votes
+
+  scope '/connect' do
+    post '/' => 'connect#create'
+  end
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
