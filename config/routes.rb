@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :relations
+
   root 'home#index'
 
 scope '/api' do
   resources :parties
   resources :users
   resources :votes
+
+  scope '/votes' do
+    get '/results/:user_id' => 'votes#results'
+  end
 
   scope '/connect' do
     post '/' => 'connect#create'
