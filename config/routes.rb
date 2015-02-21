@@ -7,6 +7,10 @@ scope '/api' do
   resources :users
   resources :votes
 
+  scope '/votes' do
+    get '/results/:user_id' => 'votes#results'
+  end
+
   scope '/connect' do
     post '/' => 'connect#create'
   end
