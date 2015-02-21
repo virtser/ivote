@@ -37,3 +37,21 @@
 2015-02-21 18:22:29.199 iVote[23029:867175] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/464F86F7-A737-460B-97F6-6E9A2B73A650/iVote.app/www/index.html#/sign-in
 2015-02-21 18:48:21.483 iVote[23029:867175] Resetting plugins due to page load.
 2015-02-21 18:48:23.618 iVote[23029:867175] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
+2015-02-21 19:59:14.612 iVote[26149:895206] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-21 19:59:14.613 iVote[26149:895206] Multi-tasking -> Device: YES, App: YES
+2015-02-21 19:59:14.614 iVote[26149:895206] Unlimited access to network resources
+2015-02-21 19:59:14.768 iVote[26149:895206] [CDVTimer][keyboard] 0.061035ms
+2015-02-21 19:59:14.768 iVote[26149:895206] [CDVTimer][TotalPluginStartup] 0.229001ms
+2015-02-21 19:59:14.861 iVote[26149:895206] Resetting plugins due to page load.
+2015-02-21 19:59:21.479 iVote[26149:895206] Finished load of: https://ivoteorgil.herokuapp.com/client/index.html#/sign-in
+2015-02-21 19:59:32.093 iVote[26149:895206] Resetting plugins due to page load.
+2015-02-21 19:59:34.455 iVote[26149:895206] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fivoteorgil.herokuapp.com%252Fclient%252Foauthcallback.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fivoteorgil.herokuapp.com%2Fclient%2Foauthcallback.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
+2015-02-21 19:59:55.271 iVote[26149:895206] Resetting plugins due to page load.
+2015-02-21 19:59:58.710 iVote[26149:895206] Finished load of: https://m.facebook.com/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fivoteorgil.herokuapp.com%252Fclient%252Foauthcallback.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&refid=9&_rdr
+2015-02-21 20:00:00.305 iVote[26149:895206] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
+2015-02-21 20:00:06.483 iVote[26149:895206] Resetting plugins due to page load.
+2015-02-21 20:00:06.981 iVote[26149:895206] Finished load of: https://m.facebook.com/login/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fivoteorgil.herokuapp.com%252Fclient%252Foauthcallback.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin
+2015-02-21 20:00:08.274 iVote[26149:895206] Resetting plugins due to page load.
+2015-02-21 20:00:11.220 iVote[26149:895206] Finished load of: https://ivoteorgil.herokuapp.com/client/oauthcallback.html?#access_token=CAAWIGgFrI0gBACRXFZAlcAaokM058WblXbmAnCbPHjpHbPgJCU1ESBlH1ABVSAZBZB9XlogfFF13iZCEM9izZANIQMfn7GYDZB1ZCLJrOn6FxZCWAtxteHCaNIIefT0zVBxp2ZAVYFFYow0J0OToA72Ytz4ZCPKV1dKcZCkf7xaDvThTEvCDnXfEJ7JHb2kkCZAupjFQA85wdwQlXImGXb2fDsdBSCSr8ZAIGsXwZD&expires_in=5177898
+2015-02-21 20:00:45.643 iVote[26149:895206] Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.
+2015-02-21 20:01:19.767 iVote[26149:895206] Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.
