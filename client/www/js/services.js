@@ -11,27 +11,27 @@ angular.module('starter.services', ['ngResource'])
   var parties = [{
     id: 0,
     name: 'המחנה הציוני',
-    ident: 'אמת'
+    code: 'אמת'
   }, {
     id: 1,
     name: 'הליכוד',
-    ident: 'מחל'
+    code: 'מחל'
   }, {
     id: 2,
     name: 'מרצ',
-    ident: 'מרצ'
+    code: 'מרצ'
   }, {
     id: 3,
     name: 'הבית היהודי',
-    ident: 'טב'
+    code: 'טב'
   }, {
     id: 4,
     name: 'יש עתיד',
-    ident: 'פה'
+    code: 'פה'
   }, {
     id: 5,
     name: 'הרשימה המשותפת',
-    ident: 'ודעם'
+    code: 'ודעם'
   }
   ];
 
