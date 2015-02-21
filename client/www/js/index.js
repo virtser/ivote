@@ -46,8 +46,8 @@ app.run(function($ionicPlatform) {
       url: '/chats',
       views: {
         'tabs-chats': {
-          templateUrl: 'templates/tabs-chats.html',
-          controller: 'ChatsCtrl'
+          templateUrl: 'templates/results-friends.html',
+          controller: 'ResultsFriendsCtrl'
         }
       }
     })
