@@ -126,9 +126,9 @@ angular.module('starter.controllers', ['ngStorage'])
   $scope.confirmVote = function() {
         console.log("user id = "+uid);
         console.log("party id = "+$scope.pid);
-        var vote_data = { 'vote' : {
-                'user_id' : uid,
-                'party_id' : $scope.pid
+        var vote_data = { vote : {
+                user_id : uid,
+                party_id : $scope.pid
                 }
             };
         $http({
