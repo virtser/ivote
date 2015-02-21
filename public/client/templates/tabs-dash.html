@@ -1,0 +1,41 @@
+<ion-view view-title="Dashboard">
+    <ion-content class="text-center">
+        <!--<ion-list>-->
+          <!--<ion-item class="item-remove-animate" ng-repeat="party in parties" type="item-text-wrap" href="#/tab/vote/{{chat.id}}">-->
+            <!--<img ng-src="{{chat.face}}">-->
+            <!--<h1>{{party.name}}</h1>-->
+            <!--<h5>{{chat.ident}}</h5>-->
+          <!--</ion-item>-->
+        <!--</ion-list>-->
+
+        <div ng-repeat="party in parties">
+            <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0">
+              <!--<div class="col-note" ng-repeat="i in [0,1,2,3]">-->
+              <div class="col-note" href="#/tab/chats/{{chat.id}}">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+0].ident }}</h1>
+                  <h5>{{ parties[$index+0].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+              <div class="col-note">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+1].id }}</h1>
+                  <h5>{{ parties[$index+1].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+              <div class="col-note">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+2].id }}</h1>
+                  <h5>{{ parties[$index+2].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+              <div class="col-note">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+3].id }}</h1>
+                  <h5>{{ parties[$index+3].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

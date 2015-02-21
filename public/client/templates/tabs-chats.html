@@ -1,0 +1,15 @@
+<ion-view view-title="תוצאות">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
+        <img ng-src="{{result.face}}">
+        <div class="result-party">{{result.name}}</div>
+        <div class="result-bar" style="width:{{result.result}}%">
+        <DIV class="result-number">{{result.result}}</DIV>
+        </div>
+        <span>{{result.friends}} חברים</span>
+      </ion-item>
+    </ion-list>
+    sdfsdfsdfd
+  </ion-content>
+</ion-view>
