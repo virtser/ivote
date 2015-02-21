@@ -12,10 +12,16 @@ class VotesController < ApplicationController
     @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
     logger.info "My friends ids: " + @friends.to_yaml
 
-    @friends_of_friends = Relation.where(user_id: @friends).pluck(:friend_user_id)
-    logger.info "My friends of friends ids: " + @friends.to_yaml
+    if @friends.length > 0
+      @friends_of_friends = Relation.where(user_id: @friends).pluck(:friend_user_id)
+      logger.info "My friends of friends ids: " + @friends.to_yaml
 
-    @friends.push(@friends_of_friends) # add friends of friends
+      if @friends_of_friends.length > 0
+        @friends.push(@friends_of_friends) # add friends of friends
+      end
+    end
+
+    @friends.push(@myuser_id) # add myself
 
     if @friends.length > 0
       @results = Vote.select('count(id) as number_of_votes, party_id').where(user_id: @friends).group(:party_id)
