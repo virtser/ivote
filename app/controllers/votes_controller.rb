@@ -1,6 +1,19 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
+
+  # GET /votes/1
+  # GET /votes/1.json
+  def results
+    logger.info "My user_id: " + params[:user_id]
+
+    #TODO: Return voting results of my friends aggregated by parties.
+    #@results = Vote.find
+
+    render json: @results, status: :ok
+  end
+
+
   # GET /votes
   # GET /votes.json
   def index

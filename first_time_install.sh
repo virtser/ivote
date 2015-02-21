@@ -1,3 +1,6 @@
+# Install PostgreSQL
+# http://postgresapp.com/
+
 # Install server
 gem install rails --version=4.1.6
 

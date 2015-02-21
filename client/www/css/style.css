@@ -52,3 +52,6 @@ color: hsl(0, 100%, 100%);
 padding: 5px;
 }
 
+.result-tabs{
+  text-align: center;
+}

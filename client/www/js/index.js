@@ -57,7 +57,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-
+    .state('tabs.result-me', {
+      url: '/results/me',
+      views: {
+        'tabs-chats': {
+          templateUrl: 'templates/results-me.html',
+          controller: 'ResultsMeCtrl'
+        }
+      }
+    })
+    .state('tabs.result-friends', {
+      url: '/results/friends',
+      views: {
+        'tabs-chats': {
+          templateUrl: 'templates/results-friends.html',
+          controller: 'ResultsFriendsCtrl'
+        }
+      }
+    })
+    .state('tabs.result-area', {
+      url: '/results/area',
+      views: {
+        'tabs-chats': {
+          templateUrl: 'templates/results-area.html',
+          controller: 'ResultsAreaCtrl'
+        }
+      }
+    })
    $urlRouterProvider.otherwise("/sign-in");
 
 })

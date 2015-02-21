@@ -117,7 +117,7 @@ angular.module('starter.services', ['ngResource'])
   }, {
     id: 2,
     name: 'מרצ',
-    result: 15,
+    result: 50,
     friends: 3
   }, {
     id: 3,
@@ -127,7 +127,7 @@ angular.module('starter.services', ['ngResource'])
   }, {
     id: 4,
     name: 'יש עתיד',
-    result: 25,
+    result: 0,
     friends: 3
   }, {
     id: 5,

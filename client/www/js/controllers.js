@@ -84,6 +84,20 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+.controller('ResultsMeCtrl', function($scope,LOCALParties, Parties) {
+  $scope.parties = Parties.query();
+  console.log('ResultsMeCtrl');
+})
+.controller('ResultsFriendsCtrl', function($scope,Results) {
+  console.log('ResultsFriendsCtrl');
+  $scope.results = Results.all();
+})
+.controller('ResultsAreaCtrl', function($scope,Results) {
+ console.log('ResultsAreaCtrl');
+ $scope.results = Results.all();
+})
+
+
 .controller('FriendsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();
 })
