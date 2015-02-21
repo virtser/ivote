@@ -11,27 +11,27 @@ angular.module('starter.services', ['ngResource'])
   var parties = [{
     id: 0,
     name: 'המחנה הציוני',
-    ident: 'אמת'
+    code: 'אמת'
   }, {
     id: 1,
     name: 'הליכוד',
-    ident: 'מחל'
+    code: 'מחל'
   }, {
     id: 2,
     name: 'מרצ',
-    ident: 'מרצ'
+    code: 'מרצ'
   }, {
     id: 3,
     name: 'הבית היהודי',
-    ident: 'טב'
+    code: 'טב'
   }, {
     id: 4,
     name: 'יש עתיד',
-    ident: 'פה'
+    code: 'פה'
   }, {
     id: 5,
     name: 'הרשימה המשותפת',
-    ident: 'ודעם'
+    code: 'ודעם'
   }
   ];
 
@@ -100,7 +100,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 
-.factory('Results', function() {
+.factory('LocalResults', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -147,4 +147,8 @@ angular.module('starter.services', ['ngResource'])
       return results[resultsId];
     }
   }
-  });
+  })
+
+.factory('Results', function ($resource) {
+    return $resource('/api/votes/results/1.json');
+})
