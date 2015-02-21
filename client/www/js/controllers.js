@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SignInCtrl', function($scope, $rootScope, $state, $http) {
+.controller('SignInCtrl', ['$scope', '$state', '$http', function($scope, $state, $http) {
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -37,17 +37,13 @@ angular.module('starter.controllers', [])
                         data: 'token='+response.authResponse.token
                     })
                     .success(function(data, status, headers, config) {
-                        console.log(data);
-                        $rootScope.user_data = data;
-                        console.log('call to our server works');
+                        uid = data.id;
                         $state.go('tabs.dash');
                     })
                     .error(function(data, status, headers, config) {
-                        console.log(data);
                         console.log('call to our server fails');
                         $state.go('signin');
                     });
-                    $state.go('tabs.dash');
                 } else {
                     alert('Facebook login failed');
                     $state.go('tabs.home');
@@ -61,17 +57,18 @@ angular.module('starter.controllers', [])
     $state.go('tabs.home');
   };
 
-})
+}])
 
 .controller('HomeTabCtrl', function($scope) {
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', function($scope, $rootScope, LOCALParties, Parties) {
+.controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', function($scope, LOCALParties, Parties) {
     $scope.parties = Parties.query();
-    $scope.user_name = $rootScope.user_data.first_name;
+    $scope.user_id = uid;
+    console.log("user id = "+uid);
 //    $scope.parties = LOCALParties.query();
-})
+}])
 
 .controller('ChatsCtrl', function($scope, LocalResults) {
   $scope.results = LocalResults.all();
@@ -110,17 +107,55 @@ angular.module('starter.controllers', [])
  $scope.results = LocalResults.all();
 })
 
-
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
-
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http) {
+  $ionicModal.fromTemplateUrl('my-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function(pid) {
+    console.log("pid = " + pid);
+    // $scope.parties = Parties.query();
+    $scope.pid = pid;
+    $scope.modal.show();
   };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  $scope.confirmVote = function() {
+        console.log("user id = "+uid);
+        console.log("party id = "+$scope.pid);
+        var vote_data = { 'vote' : {
+                'user_id' : uid,
+                'party_id' : $scope.pid
+                }
+            };
+        $http({
+            method: 'POST',
+            url: '/api/vote',
+            data: vote_data
+        })
+        .success(function(data, status, headers, config) {
+            console.log("vote success: " + data);
+            $scope.modal.hide();
+        })
+        .error(function(data, status, headers, config) {
+            console.log('vote fails');
+            $scope.modal.hide();
+        });
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 });
+
