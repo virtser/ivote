@@ -1,6 +1,10 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngResource'])
 
-.factory('Parties', function() {
+.factory('Parties', function ($resource) {
+    return $resource('/api/parties.json');
+})
+
+.factory('LOCALParties', function($resource) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -32,8 +36,8 @@ angular.module('starter.services', [])
   ];
 
   return {
-    all: function() {
-      return parties;
+    query: function() {
+        return parties;
     },
     remove: function(p) {
       parties.splice(parties.indexOf(p), 1);

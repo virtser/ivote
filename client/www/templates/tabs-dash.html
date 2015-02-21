@@ -8,107 +8,34 @@
           <!--</ion-item>-->
         <!--</ion-list>-->
 
-        <div class="row-note row-center responsive-sm">
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>אמת</h1>
-              <h5>המחנה הציוני</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>מחל</h1>
-              <h5>הליכוד</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>מרצ</h1>
-              <h5>מרצ</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>טב</h1>
-              <h5>הבית היהודי</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-        <!--</div>-->
-        <!--<div class="row-note row-center responsive-sm">-->
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>ודעם</h1>
-              <h5>הרשימה המשותפת</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>פה</h1>
-              <h5>יש עתיד</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>כ</h1>
-              <h5>כולנו</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>שס</h1>
-              <h5>ש"ס</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-        </div>
-        <div class="row-note row-center">
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>ג</h1>
-              <h5>יהדות התורה</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>ל</h1>
-              <h5>ישראל ביתנו</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>קץ</h1>
-              <h5>יחד</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
-          <div class="col-note">
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <h1>קנ</h1>
-              <h5>עלה ירוק</h5>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-          </div>
+        <div ng-repeat="party in parties">
+            <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0">
+              <!--<div class="col-note" ng-repeat="i in [0,1,2,3]">-->
+              <div class="col-note" href="#/tab/chats/{{chat.id}}">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+0].ident }}</h1>
+                  <h5>{{ parties[$index+0].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+              <div class="col-note">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+1].id }}</h1>
+                  <h5>{{ parties[$index+1].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+              <div class="col-note">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+2].id }}</h1>
+                  <h5>{{ parties[$index+2].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+              <div class="col-note">
+                  <p>&nbsp;</p><p>&nbsp;</p>
+                  <h1>{{ parties[$index+3].id }}</h1>
+                  <h5>{{ parties[$index+3].name }}</h5>
+                  <p>&nbsp;</p><p>&nbsp;</p>
+              </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>

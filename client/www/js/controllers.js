@@ -64,7 +64,9 @@ angular.module('starter.controllers', [])
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', function($scope, Parties) {
+.controller('DashCtrl', function($scope, LOCALParties, Parties) {
+    $scope.parties = Parties.query();
+//    $scope.parties = LOCALParties.query();
 })
 
 .controller('ChatsCtrl', function($scope, Results) {
