@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngStorage'])
 
-.controller('SignInCtrl', ['$scope', '$state', '$http', function($scope, $state, $http) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage) {
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
                         data: 'token='+response.authResponse.token
                     })
                     .success(function(data, status, headers, config) {
-                        uid = data.id;
+                        $sessionStorage.uid = data.id;
                         $state.go('tabs.dash');
                     })
                     .error(function(data, status, headers, config) {
@@ -57,16 +57,16 @@ angular.module('starter.controllers', [])
     $state.go('tabs.home');
   };
 
-}])
+})
 
 .controller('HomeTabCtrl', function($scope) {
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', function($scope, LOCALParties, Parties) {
+.controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
-    $scope.user_id = uid;
-    console.log("user id = "+uid);
+    $scope.user_id = $sessionStorage.uid;
+    console.log("user id = "+$sessionStorage.uid);
 //    $scope.parties = LOCALParties.query();
 }])
 
@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
  $scope.results = LocalResults.all();
 })
 
-.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http) {
+.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http, Parties) {
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
   });
   $scope.openModal = function(pid) {
     console.log("pid = " + pid);
-    // $scope.parties = Parties.query();
+    $scope.parties = Parties.query();
     $scope.pid = pid;
     $scope.modal.show();
   };
@@ -130,14 +130,14 @@ angular.module('starter.controllers', [])
   $scope.confirmVote = function() {
         console.log("user id = "+uid);
         console.log("party id = "+$scope.pid);
-        var vote_data = { 'vote' : {
-                'user_id' : uid,
-                'party_id' : $scope.pid
+        var vote_data = { vote : {
+                user_id : uid,
+                party_id : $scope.pid
                 }
             };
         $http({
             method: 'POST',
-            url: '/api/vote',
+            url: '/api/votes.json',
             data: vote_data
         })
         .success(function(data, status, headers, config) {
