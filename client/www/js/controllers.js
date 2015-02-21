@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SignInCtrl', function($scope, $state) {
+.controller('SignInCtrl', function($scope, $state, $http) {
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
                     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
                     $http({
                         method: 'POST',
-                        url: 'http://localhost:3000/api/connect',
+                        url: '/api/connect',
                         data: 'token='+response.authResponse.token
                     })
                     .success(function(data, status, headers, config) {
@@ -64,7 +64,8 @@ angular.module('starter.controllers', [])
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, Parties) {
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
