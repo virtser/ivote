@@ -66,6 +66,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('tab.result-me', {
+      url: '/results/me',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/results-me.html',
+          controller: 'ResultsMeCtrl'
+        }
+      }
+    })
+    .state('tab.result-friends', {
+      url: '/results/me',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/results-me.html',
+          controller: 'ResultsMeCtrl'
+        }
+      }
+    })
+    .state('tab.result-me', {
+      url: '/results/me',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/results-me.html',
+          controller: 'ResultsMeCtrl'
+        }
+      }
+    })
 
   .state('tab.friends', {
       url: '/friends',

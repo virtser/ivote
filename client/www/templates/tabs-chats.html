@@ -1,15 +1,24 @@
 <ion-view view-title="תוצאות">
   <ion-content>
+  <div class="result-tabs">
+    <a class="button icon icon-right ion-chevron-right" href="#/tab/results/me">אני</a>
+    <a class="button icon icon-right ion-chevron-right" href="#/tab/results/friends">חברים</a>
+    <a class="button icon icon-right ion-chevron-right" href="#/tab/results/area">סביבה</a>
+  </div>  
+    <ion-nav-buttons side="primary">
+      <button class="button" ng-click="doSomething()">
+        I'm a button on the primary of the navbar!
+      </button>
+    </ion-nav-buttons>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
         <img ng-src="{{result.face}}">
         <div class="result-party">{{result.name}}</div>
-        <div class="result-bar" style="width:{{result.result}}%">
+        <div class="result-bar" style="width:{{result.result/120*75+5}}%">
         <DIV class="result-number">{{result.result}}</DIV>
         </div>
         <span>{{result.friends}} חברים</span>
       </ion-item>
     </ion-list>
-    sdfsdfsdfd
   </ion-content>
 </ion-view>
