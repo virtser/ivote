@@ -38,9 +38,20 @@ angular.module('starter.controllers', ['ngStorage'])
                     })
                     .success(function(data, status, headers, config) {
                         $sessionStorage.uid = data.id;
-                        $state.go('tabs.dash');
+                        console.log("calling: "+'/api/votes/user/'+data.id+'.json');
+                        $http.get('/api/votes/user/'+data.id+'.json').
+                          success(function(data, status, headers, config) {
+                            $sessionStorage.my_vote = data[0].party_id;
+                            console.log("i last voted for: "+$sessionStorage.my_vote);
+                            $state.go('tabs.dash');
+                          }).
+                          error(function(data, status, headers, config) {
+                            $sessionStorage.my_vote = 0;
+                            $state.go('tabs.dash');
+                          });
                     })
                     .error(function(data, status, headers, config) {
+                        $sessionStorage.uid = 0;
                         console.log('call to our server fails');
                         $state.go('signin');
                     });
@@ -66,6 +77,7 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
+    $scope.my_vote = $sessionStorage.my_vote;
     console.log("user id = "+$sessionStorage.uid);
 //    $scope.parties = LOCALParties.query();
 }])
