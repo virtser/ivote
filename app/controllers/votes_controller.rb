@@ -23,9 +23,14 @@ class VotesController < ApplicationController
     else
       render json: { message: "Error occured!"}, status: :unprocessable_entity
     end
-
   end
 
+  def user
+    @myuser_id = params[:user_id]
+    @my_vote = Vote.where(user_id: @myuser_id)
+    render json: @my_vote, status: :ok
+
+  end
 
   # GET /votes
   # GET /votes.json

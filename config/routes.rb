@@ -10,6 +10,7 @@ scope '/api' do
 
   scope '/votes' do
     get '/results/:user_id' => 'votes#results'
+    get '/user/:user_id'    => 'votes#user'
   end
 
   scope '/connect' do
