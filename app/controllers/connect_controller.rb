@@ -30,11 +30,15 @@ class ConnectController < ApplicationController
 
           # Save user friends 
           @fb_user.friends.each do |u|
-            @friend_user_id = User.find_by(fbuser_id: u.id)
+            @friend = User.find_by(fbuser_id: u.id)
 
-            unless @friend_user_id.nil?
-              @relation = Relation.new(user_id: @user.id, friend_user_id: @friend_user_id)
+            unless @friend.nil?
+              @relation = Relation.new(user_id: @user.id, friend_user_id: @friend.id)
               @relation.save
+
+              @opposite_relation = Relation.new(user_id: @friend.id, friend_user_id: @user.id)
+              @opposite_relation.save
+
               logger.info 'SAVING RELATIONS!'
             end 
 
