@@ -23,6 +23,9 @@ angular.module('starter.controllers', ['ngStorage'])
   }
 
     $scope.fbLogin = function() {
+        $sessionStorage.my_vote_id = 0;
+        $sessionStorage.my_vote_party = 0;
+        $sessionStorage.uid = 0;
         openFB.login(
             function(response) {
                 if (response.status === 'connected') {
@@ -30,28 +33,30 @@ angular.module('starter.controllers', ['ngStorage'])
                     var msgdata = {
                             'token' : response.authResponse.token
                         };
-                    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
                     $http({
                         method: 'POST',
                         url: '/api/connect',
+                        headers: {
+                           'Content-Type': "application/x-www-form-urlencoded"
+                        },
                         data: 'token='+response.authResponse.token
                     })
                     .success(function(data, status, headers, config) {
                         $sessionStorage.uid = data.id;
-                        console.log("calling: "+'/api/votes/user/'+data.id+'.json');
                         $http.get('/api/votes/user/'+data.id+'.json').
                           success(function(data, status, headers, config) {
-                            $sessionStorage.my_vote = data[0].party_id;
-                            console.log("i last voted for: "+$sessionStorage.my_vote);
+                            if (data.length > 0) {
+                                $sessionStorage.my_vote_id = data[0].id;
+                                $sessionStorage.my_vote_party = data[0].party_id;
+                            }
+                            console.log("i last voted for: "+$sessionStorage.my_vote_id);
                             $state.go('tabs.dash');
                           }).
                           error(function(data, status, headers, config) {
-                            $sessionStorage.my_vote = 0;
                             $state.go('tabs.dash');
                           });
                     })
                     .error(function(data, status, headers, config) {
-                        $sessionStorage.uid = 0;
                         console.log('call to our server fails');
                         $state.go('signin');
                     });
@@ -77,7 +82,8 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
-    $scope.my_vote = $sessionStorage.my_vote;
+    $scope.my_vote_id = $sessionStorage.my_vote_id;
+    $scope.my_vote_party = $sessionStorage.my_vote_party;
     console.log("user id = "+$sessionStorage.uid);
 //    $scope.parties = LOCALParties.query();
 }])
@@ -141,20 +147,33 @@ angular.module('starter.controllers', ['ngStorage'])
     $scope.modal.hide();
   };
   $scope.confirmVote = function() {
+        console.log("party = "+$scope.parties[$scope.pid].id);
+        if ($sessionStorage.my_vote_id > 0) {
+            meth = 'PUT';
+            url = '/api/votes/'+$sessionStorage.my_vote_id+'.json'
+        }
+        else {
+            meth = 'POST';
+            url = '/api/votes.json';
+        }
         console.log("user id = " + $sessionStorage.uid);
-        console.log("party id = "+$scope.pid);
+        console.log("party id = "+ $scope.parties[$scope.pid].id);
         var vote_data = { vote : {
                 user_id : $sessionStorage.uid,
-                party_id : $scope.pid
+                party_id : $scope.parties[$scope.pid].id
                 }
             };
         $http({
-            method: 'POST',
-            url: '/api/votes.json',
+            method: meth,
+            url: url,
+            headers: {
+               'Content-Type': "application/json"
+            },
             data: vote_data
         })
         .success(function(data, status, headers, config) {
             console.log("vote success: " + data);
+            $sessionStorage.my_party_id = $scope.parties[$scope.pid].id;
             $scope.modal.hide();
         })
         .error(function(data, status, headers, config) {
