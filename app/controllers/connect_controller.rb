@@ -12,9 +12,12 @@ class ConnectController < ApplicationController
       # Check if user not registered yet
       if @user.nil?
 
+FbGraph2.debug!
+
         # Get more data on user from Facebook
-        fb_user = FbGraph::User.me(params[:token])
-        logger.info "FB User:" + fb_user.to_yaml
+        fb_user = FbGraph2::User.me(params[:token]).fetch
+        logger.info "FB User: " + fb_user.to_yaml
+        logger.info "Friends: " + fb_user.friends.to_yaml
 
         # Register user
          @user = User.new(token: params[:token], first_name: fb_user.first_name, last_name: fb_user.last_name, gender: fb_user.gender, email: fb_user.email)
