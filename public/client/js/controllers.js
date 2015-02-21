@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SignInCtrl', function($scope, $state, $http) {
+.controller('SignInCtrl', function($scope, $rootScope, $state, $http) {
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -38,11 +38,14 @@ angular.module('starter.controllers', [])
                     })
                     .success(function(data, status, headers, config) {
                         console.log(data);
+                        $rootScope.user_data = data;
                         console.log('call to our server works');
+                        $state.go('tabs.dash');
                     })
                     .error(function(data, status, headers, config) {
                         console.log(data);
                         console.log('call to our server fails');
+                        $state.go('signin');
                     });
                     $state.go('tabs.dash');
                 } else {
@@ -64,8 +67,9 @@ angular.module('starter.controllers', [])
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', function($scope, LOCALParties, Parties) {
+.controller('DashCtrl', function($scope, $rootScope, LOCALParties, Parties) {
     $scope.parties = Parties.query();
+    $scope.user_name = $rootScope.user_data.first_name;
 //    $scope.parties = LOCALParties.query();
 })
 
@@ -79,6 +83,20 @@ angular.module('starter.controllers', [])
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
+
+.controller('ResultsMeCtrl', function($scope,LOCALParties, Parties) {
+  $scope.parties = Parties.query();
+  console.log('ResultsMeCtrl');
+})
+.controller('ResultsFriendsCtrl', function($scope,Results) {
+  console.log('ResultsFriendsCtrl');
+  $scope.results = Results.all();
+})
+.controller('ResultsAreaCtrl', function($scope,Results) {
+ console.log('ResultsAreaCtrl');
+ $scope.results = Results.all();
+})
+
 
 .controller('FriendsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();

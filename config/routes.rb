@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :relations
-
-  root 'home#index'
+root 'home#index'
 
 scope '/api' do
+  resources :relations
   resources :parties
   resources :users
   resources :votes
