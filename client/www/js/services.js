@@ -100,7 +100,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 
-.factory('Results', function() {
+.factory('LocalResults', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -147,4 +147,8 @@ angular.module('starter.services', ['ngResource'])
       return results[resultsId];
     }
   }
-  });
+  })
+
+.factory('Results', function ($resource) {
+    return $resource('/api/votes/results/1.json');
+})
