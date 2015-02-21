@@ -8,17 +8,19 @@
           <!--</ion-item>-->
         <!--</ion-list>-->
 
-        <h1>Hello {{ user_name }} !</h1>
+        <h1>Hello {{ user_id }} !</h1>
         <div ng-repeat="party in parties">
             <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0">
               <!--<div class="col-note" ng-repeat="i in [0,1,2,3]">-->
               <div class="col-note" data-ng-repeat="n in [0,1,2,3]">
-              <a class="col-note" href="#/tab/party/{{parties[$index+0].id}}">
+              <!--<a class="col-note" href="#/tab/party/{{parties[$index+0].id}}">-->
+                  <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$index+n }})">
                       <p>&nbsp;</p><p>&nbsp;</p>
-                      <h1>{{ parties[$parent.$index+n].id }}</h1>
-                      <h5>{{ parties[$parent.$index+n].name }}</h5>
+                      <h1>{{ parties[$parent.$parent.$index+n].code }}</h1>
+                      <h5>{{ parties[$parent.$parent.$index+n].name }}</h5>
                       <p>&nbsp;</p><p>&nbsp;</p>
-                  </a>
+                  </div>
+                  <!--</a>-->
               </div>
             </div>
         </div>
