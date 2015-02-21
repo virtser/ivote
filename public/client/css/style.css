@@ -21,7 +21,7 @@
   -ms-flex: 1;
   flex: 1;
   background-color: #eeeeee;
-  background-image: url("/img/note-bg.png");
+  background-image: url("../img/note-bg.png");
   background-position: center;
   background-size: 148px 190px;
   background-repeat: no-repeat;

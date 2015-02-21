@@ -4,17 +4,6 @@
     <a class="button icon" href="#/tabs/results/me">אני</a>
     <a class="button icon" href="#/tabs/results/friends">חברים</a>
     <a class="button icon button-dark" >סביבה</a>
-  </div>  
-  
-  <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
-        <img ng-src="{{result.face}}">
-        <div class="result-party">{{result.name}}</div>
-        <div class="result-bar" style="width:{{result.result/120*75+5}}%">
-        <div class="result-number">{{result.result}}</div>
-        </div>
-        <span>{{result.friends}} חברים</span>
-      </ion-item>
-    </ion-list>
+  </div>
   </ion-content>
 </ion-view>
