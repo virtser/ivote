@@ -5,15 +5,16 @@
     <a class="button icon button-dark" >חברים</a>
     <a class="button icon" href="#/tabs/results/area">סביבה</a>
   </div>  
-  </ion-content>
+  
   <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
         <img ng-src="{{result.face}}">
         <div class="result-party">{{result.name}}</div>
-        <div class="result-bar" style="width:{{result.result/120*75+5}}%">
-        <div class="result-number">{{result.result}}</div>
+        <div class="result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
+        <div class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</div>
         </div>
-        <span>{{result.friends}} חברים</span>
+        <span>{{result.number_of_votes}} חברים</span>
       </ion-item>
     </ion-list>
+  </ion-content>
 </ion-view>

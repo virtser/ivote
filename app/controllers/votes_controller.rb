@@ -10,10 +10,20 @@ class VotesController < ApplicationController
 
     #TODO: Return voting results of my friends aggregated by parties.
     @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
-    @friends.push(@myuser_id) # add myself to voters list
-    @results = Vote.select('count(id) as number_of_votes, party_id').where(user_id: @friends).group(:party_id)
+    logger.info "My friends ids: " + @friends.to_yaml
 
-    render json: @results, status: :ok
+    @friends_of_friends = Relation.where(user_id: @friends).pluck(:friend_user_id)
+    logger.info "My friends of friends ids: " + @friends.to_yaml
+
+    @friends.push(@friends_of_friends) # add friends of friends
+
+    if @friends.length > 0
+      @results = Vote.select('count(id) as number_of_votes, party_id').where(user_id: @friends).group(:party_id)
+      render json: @results, status: :ok
+    else
+      render json: { message: "Error occured!"}, status: :unprocessable_entity
+    end
+
   end
 
 
