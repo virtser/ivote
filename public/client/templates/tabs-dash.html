@@ -1,24 +1,14 @@
 <ion-view view-title="Dashboard">
     <ion-content class="text-center">
-        <!--<ion-list>-->
-          <!--<ion-item class="item-remove-animate" ng-repeat="party in parties" type="item-text-wrap" href="#/tab/vote/{{chat.id}}">-->
-            <!--<img ng-src="{{chat.face}}">-->
-            <!--<h1>{{party.name}}</h1>-->
-            <!--<h5>{{chat.ident}}</h5>-->
-          <!--</ion-item>-->
-        <!--</ion-list>-->
 
-        <h1>Hello {{ user_id }} Last Vote = {{ my_vote }}!</h1>
+        <h1>Hello {{ user_id }} Last Vote = {{ my_vote_party }}!</h1>
+
         <div ng-repeat="party in parties">
             <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0">
-              <!--<div class="col-note" ng-repeat="i in [0,1,2,3]">-->
               <div class="col-note" data-ng-repeat="n in [0,1,2,3]">
-              <!--<a class="col-note" href="#/tab/party/{{parties[$index+0].id}}">-->
                   <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$index+n }})">
-                      <p>&nbsp;</p><p>&nbsp;</p>
                       <h1>{{ parties[$parent.$parent.$index+n].code }}</h1>
                       <h5>{{ parties[$parent.$parent.$index+n].name }}</h5>
-                      <p>&nbsp;</p><p>&nbsp;</p>
                   </div>
                   <!--</a>-->
               </div>
