@@ -1,0 +1,37 @@
+2015-02-21 18:16:48.575 iVote[22593:863634] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Data/Application/2A54D1E6-5B5B-4B62-83AB-D2324398FF9A/Library/Cookies/Cookies.binarycookies
+2015-02-21 18:16:48.784 iVote[22593:863634] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-21 18:16:48.784 iVote[22593:863634] Multi-tasking -> Device: YES, App: YES
+2015-02-21 18:16:48.795 iVote[22593:863634] Unlimited access to network resources
+2015-02-21 18:16:49.150 iVote[22593:863634] [CDVTimer][keyboard] 0.055015ms
+2015-02-21 18:16:49.150 iVote[22593:863634] [CDVTimer][TotalPluginStartup] 0.195980ms
+2015-02-21 18:16:49.805 iVote[22593:863634] Resetting plugins due to page load.
+2015-02-21 18:16:50.110 iVote[22593:863634] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/990422E1-DB91-4112-A41A-77688A9693A3/iVote.app/www/index.html#/sign-in
+2015-02-21 18:17:11.288 iVote[22593:863634] Resetting plugins due to page load.
+2015-02-21 18:17:13.363 iVote[22593:863634] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
+2015-02-21 18:18:01.348 iVote[22593:863634] Resetting plugins due to page load.
+2015-02-21 18:18:03.516 iVote[22593:863634] Finished load of: https://m.facebook.com/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&refid=9&_rdr
+2015-02-21 18:18:04.967 iVote[22593:863634] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
+2015-02-21 18:18:13.141 iVote[22593:863634] Resetting plugins due to page load.
+2015-02-21 18:18:14.188 iVote[22593:863634] Finished load of: https://m.facebook.com/login/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin
+2015-02-21 18:18:16.623 iVote[22593:863634] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
+2015-02-21 18:18:24.365 iVote[22593:863634] Resetting plugins due to page load.
+2015-02-21 18:18:25.016 iVote[22593:863634] Finished load of: https://m.facebook.com/login/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin
+2015-02-21 18:18:26.669 iVote[22593:863634] Resetting plugins due to page load.
+2015-02-21 18:18:29.245 iVote[22593:863634] Finished load of: https://www.facebook.com/connect/login_success.html#access_token=CAAWIGgFrI0gBAE6pRFv4tyFZCy1Y9FQnEAgy65ftQ5fUyTKRSh4iMVc6lcehcXyCztTtJgUfuTsoZAkpT7WAJZCBpFJM1RILebUIYsqYmQWaK7VZA6FJTSuT2Vg0nv2Kyds65OsOGXJl6xOLrblEpWYcxewuEi36ERwRY32su4KZAOzBJ0U5YhQ47YSD7layOPKuoBMXlIeWX2ljH9MFtVvc2q0G6EEsZD&expires_in=5184000
+2015-02-21 18:19:32.150 iVote[22814:865501] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Data/Application/05918E2B-E1E4-405C-B504-F772EB34CBE2/Library/Cookies/Cookies.binarycookies
+2015-02-21 18:19:32.234 iVote[22814:865501] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-21 18:19:32.235 iVote[22814:865501] Multi-tasking -> Device: YES, App: YES
+2015-02-21 18:19:32.236 iVote[22814:865501] Unlimited access to network resources
+2015-02-21 18:19:32.390 iVote[22814:865501] [CDVTimer][keyboard] 0.050008ms
+2015-02-21 18:19:32.390 iVote[22814:865501] [CDVTimer][TotalPluginStartup] 0.183046ms
+2015-02-21 18:19:32.919 iVote[22814:865501] Resetting plugins due to page load.
+2015-02-21 18:19:33.100 iVote[22814:865501] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/B6D10FC4-B9BE-4229-B62F-A1F03FEF5EE4/iVote.app/www/index.html#/sign-in
+2015-02-21 18:19:45.523 iVote[22814:865501] Resetting plugins due to page load.
+2015-02-21 18:19:47.519 iVote[22814:865501] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
+2015-02-21 18:22:28.832 iVote[23029:867175] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-21 18:22:28.832 iVote[23029:867175] Multi-tasking -> Device: YES, App: YES
+2015-02-21 18:22:28.833 iVote[23029:867175] Unlimited access to network resources
+2015-02-21 18:22:28.977 iVote[23029:867175] [CDVTimer][keyboard] 0.045002ms
+2015-02-21 18:22:28.977 iVote[23029:867175] [CDVTimer][TotalPluginStartup] 0.185013ms
+2015-02-21 18:22:29.023 iVote[23029:867175] Resetting plugins due to page load.
+2015-02-21 18:22:29.199 iVote[23029:867175] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/464F86F7-A737-460B-97F6-6E9A2B73A650/iVote.app/www/index.html#/sign-in

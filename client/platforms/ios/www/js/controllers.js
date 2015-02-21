@@ -38,20 +38,9 @@ angular.module('starter.controllers', ['ngStorage'])
                     })
                     .success(function(data, status, headers, config) {
                         $sessionStorage.uid = data.id;
-                        console.log("calling: "+'/api/votes/user/'+data.id+'.json');
-                        $http.get('/api/votes/user/'+data.id+'.json').
-                          success(function(data, status, headers, config) {
-                            $sessionStorage.my_vote = data[0].party_id;
-                            console.log("i last voted for: "+$sessionStorage.my_vote);
-                            $state.go('tabs.dash');
-                          }).
-                          error(function(data, status, headers, config) {
-                            $sessionStorage.my_vote = 0;
-                            $state.go('tabs.dash');
-                          });
+                        $state.go('tabs.dash');
                     })
                     .error(function(data, status, headers, config) {
-                        $sessionStorage.uid = 0;
                         console.log('call to our server fails');
                         $state.go('signin');
                     });
@@ -77,7 +66,6 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
-    $scope.my_vote = $sessionStorage.my_vote;
     console.log("user id = "+$sessionStorage.uid);
 //    $scope.parties = LOCALParties.query();
 }])
@@ -100,16 +88,11 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
   console.log('ResultsFriendsCtrl');
   $scope.parties = Parties.query(function(){
-    console.log($scope.parties);
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
-        angular.forEach($scope.parties, function(party, index) {
-          if (value.party_id == party.id)
-            value.name = party.name;
-        })
-        
+        value.name = $scope.parties[value.party_id].name;
         console.log(value);
       });
       $scope.results.total_number_of_votes = total_number_of_votes;
