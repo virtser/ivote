@@ -1,15 +1,19 @@
 <ion-view view-title="תוצאות">
   <ion-content>
+  <div class="result-tabs">
+    <a class="button icon icon-right ion-chevron-right" href="#/tabs/results/me">אני</a>
+    <a class="button icon icon-right ion-chevron-right" href="#/tabs/results/friends">חברים</a>
+    <a class="button icon icon-right ion-chevron-right" href="#/tabs/results/area">סביבה</a>
+  </div>  
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
         <img ng-src="{{result.face}}">
         <div class="result-party">{{result.name}}</div>
-        <div class="result-bar" style="width:{{result.result}}%">
-        <DIV class="result-number">{{result.result}}</DIV>
+        <div class="result-bar" style="width:{{result.result/120*75+5}}%">
+        <div class="result-number">{{result.result}}</div>
         </div>
         <span>{{result.friends}} חברים</span>
       </ion-item>
     </ion-list>
-    sdfsdfsdfd
   </ion-content>
 </ion-view>

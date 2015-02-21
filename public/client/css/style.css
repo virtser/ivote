@@ -29,6 +29,10 @@
   padding: 5px;
   width: 100%; }
 
+a.col-note {
+    text-decoration: none;
+}
+
 .result-bar{
   display: inline-block;
   background-color: #1383C3;
@@ -46,4 +50,8 @@ float: left;
 font-weight: bold;
 color: hsl(0, 100%, 100%);
 padding: 5px;
+}
+
+.result-tabs{
+  text-align: center;
 }

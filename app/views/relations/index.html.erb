@@ -12,8 +12,8 @@
   <tbody>
     <% @relations.each do |relation| %>
       <tr>
-        <td><%= relation.fbuser_id %></td>
-        <td><%= relation.friend_fbuser_id %></td>
+        <td><%= relation.user_id %></td>
+        <td><%= relation.friend_user_id %></td>
         <td><%= link_to 'Show', relation %></td>
         <td><%= link_to 'Edit', edit_relation_path(relation) %></td>
         <td><%= link_to 'Destroy', relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

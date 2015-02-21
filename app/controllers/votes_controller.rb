@@ -6,9 +6,12 @@ class VotesController < ApplicationController
   # GET /votes/1.json
   def results
     logger.info "My user_id: " + params[:user_id]
+    @myuser_id = params[:user_id]
 
     #TODO: Return voting results of my friends aggregated by parties.
-    #@results = Vote.find
+    @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
+    @friends.push(@myuser_id) # add myself to voters list
+    @results = Vote.select('count(id) as number_of_votes, party_id').where(user_id: @friends).group(:party_id)
 
     render json: @results, status: :ok
   end
@@ -82,6 +85,6 @@ class VotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
-      params.require(:vote).permit(:email, :party_id)
+      params.require(:vote).permit(:user_id, :party_id)
     end
 end
