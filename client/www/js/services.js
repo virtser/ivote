@@ -93,4 +93,54 @@ angular.module('starter.services', [])
       return friends[friendId];
     }
   }
-});
+})
+
+
+.factory('Results', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var results = [{
+    id: 0,
+    name: 'המחנה הציוני',
+    result: 5,
+    friends: 3
+  }, {
+    id: 1,
+    name: 'הליכוד',
+    result: 15,
+    friends: 3
+  }, {
+    id: 2,
+    name: 'מרצ',
+    result: 15,
+    friends: 3
+  }, {
+    id: 3,
+    name: 'הבית היהודי',
+    result: 35,
+    friends: 3
+  }, {
+    id: 4,
+    name: 'יש עתיד',
+    result: 25,
+    friends: 3
+  }, {
+    id: 5,
+    name: 'הרשימה המשותפת',
+    result: 75,
+    friends: 3
+  }
+  ];
+
+
+  return {
+    all: function() {
+      return results;
+    },
+    get: function(resultsId) {
+      // Simple index lookup
+      return results[resultsId];
+    }
+  }
+  });
