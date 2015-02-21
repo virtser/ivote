@@ -88,6 +88,7 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
   console.log('ResultsFriendsCtrl');
   $scope.parties = Parties.query(function(){
+    console.log($scope.parties);
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
       angular.forEach($scope.results, function(value, key) {
