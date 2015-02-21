@@ -5,19 +5,5 @@
     <a class="button icon" href="#/tabs/results/friends">חברים</a>
     <a class="button icon" href="#/tabs/results/area">סביבה</a>
   </div>  
-
-  <div ng-repeat="party in parties">
-            <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0">
-              <!--<div class="col-note" ng-repeat="i in [0,1,2,3]">-->
-              <div class="col-note" data-ng-repeat="n in [0,1,2,3]">
-              <a class="col-note" href="#/tab/party/{{parties[$index+0].id}}">
-                      <p>&nbsp;</p><p>&nbsp;</p>
-                      <h1>{{ parties[$parent.$index+n].code }}</h1>
-                      <h5>{{ parties[$parent.$index+n].name }}</h5>
-                      <p>&nbsp;</p><p>&nbsp;</p>
-                  </a>
-              </div>
-            </div>
-        </div>
   </ion-content>
 </ion-view>
