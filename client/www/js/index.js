@@ -17,7 +17,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  openFB.init({appId: '788436027893381'});
+  // ttvote: openFB.init({appId: '788436027893381'});
+  openFB.init({appId: '1557020157879112'});
 
   $stateProvider
     .state('signin', {
