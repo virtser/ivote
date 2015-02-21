@@ -107,7 +107,7 @@ angular.module('starter.controllers', ['ngStorage'])
  $scope.results = LocalResults.all();
 })
 
-.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http, Parties) {
+.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http, $sessionStorage, Parties) {
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -124,10 +124,10 @@ angular.module('starter.controllers', ['ngStorage'])
     $scope.modal.hide();
   };
   $scope.confirmVote = function() {
-        console.log("user id = "+uid);
+        console.log("user id = " + $sessionStorage.uid);
         console.log("party id = "+$scope.pid);
         var vote_data = { vote : {
-                user_id : uid,
+                user_id : $sessionStorage.uid,
                 party_id : $scope.pid
                 }
             };
