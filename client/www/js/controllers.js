@@ -94,7 +94,7 @@ angular.module('starter.controllers', [])
  $scope.results = Results.all();
 })
 
-.controller('ConfirmVoteCtrl', function($scope, $ionicModal) {
+.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http) {
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -109,6 +109,28 @@ angular.module('starter.controllers', [])
   };
   $scope.closeModal = function() {
     $scope.modal.hide();
+  };
+  $scope.confirmVote = function() {
+        console.log("user id = "+uid);
+        console.log("party id = "+$scope.pid);
+        var vote_data = { 'vote' : {
+                'user_id' : uid,
+                'party_id' : $scope.pid
+                }
+            };
+        $http({
+            method: 'POST',
+            url: '/api/vote',
+            data: vote_data
+        })
+        .success(function(data, status, headers, config) {
+            console.log("vote success: " + data);
+            $scope.modal.hide();
+        })
+        .error(function(data, status, headers, config) {
+            console.log('vote fails');
+            $scope.modal.hide();
+        });
   };
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {

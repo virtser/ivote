@@ -108,12 +108,28 @@
           <h1 class="title">Confirm Vote</h1>
         </ion-header-bar>
         <ion-content>
+            <div class="row-note row-center responsive-sm">
+            </div>
+            <div class="row-note row-center responsive-sm">
               <div class="col-note">
                   <p>&nbsp;</p><p>&nbsp;</p>
-                  <h1>{{ parties[$parent.$parent.$index+n].code }}</h1>
-                  <h5>{{ parties[$parent.$parent.$index+n].name }}</h5>
+                  <h1>{{ parties[pid].code }}</h1>
+                  <h5>{{ parties[pid].name }}</h5>
                   <p>&nbsp;</p><p>&nbsp;</p>
               </div>
+            </div>
+            <div class="row-note row-center responsive-sm">
+              <div class="col-50">
+                    <button class="button button-block button-balanced" ng-click="confirmVote()">
+                    אישור
+                    </button>
+              </div>
+              <div class="col-50">
+                    <button class="button button-block button-dark" ng-click="closeModal()">
+                    ביטול
+                    </button>
+              </div>
+            </div>
         </ion-content>
       </ion-modal-view>
     </script>
