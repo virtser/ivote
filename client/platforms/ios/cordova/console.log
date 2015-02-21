@@ -35,3 +35,5 @@
 2015-02-21 18:22:28.977 iVote[23029:867175] [CDVTimer][TotalPluginStartup] 0.185013ms
 2015-02-21 18:22:29.023 iVote[23029:867175] Resetting plugins due to page load.
 2015-02-21 18:22:29.199 iVote[23029:867175] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/464F86F7-A737-460B-97F6-6E9A2B73A650/iVote.app/www/index.html#/sign-in
+2015-02-21 18:48:21.483 iVote[23029:867175] Resetting plugins due to page load.
+2015-02-21 18:48:23.618 iVote[23029:867175] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
