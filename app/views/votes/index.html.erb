@@ -12,7 +12,7 @@
   <tbody>
     <% @votes.each do |vote| %>
       <tr>
-        <td><%= vote.email %></td>
+        <td><%= vote.user_id %></td>
         <td><%= vote.party_id %></td>
         <td><%= link_to 'Show', vote %></td>
         <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
