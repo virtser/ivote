@@ -70,8 +70,8 @@ angular.module('starter.controllers', ['ngStorage'])
 //    $scope.parties = LOCALParties.query();
 }])
 
-.controller('ChatsCtrl', function($scope, Results) {
-  $scope.results = Results.all();
+.controller('ChatsCtrl', function($scope, LocalResults) {
+  $scope.results = LocalResults.all();
   // $scope.remove = function(chat) {
   //   Chats.remove(chat);
   // }
@@ -85,13 +85,26 @@ angular.module('starter.controllers', ['ngStorage'])
   $scope.parties = Parties.query();
   console.log('ResultsMeCtrl');
 })
-.controller('ResultsFriendsCtrl', function($scope,Results) {
+.controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
   console.log('ResultsFriendsCtrl');
-  $scope.results = Results.all();
+  $scope.parties = Parties.query(function(){
+    $scope.results = Results.query(function(){
+      var total_number_of_votes = 0;
+      angular.forEach($scope.results, function(value, key) {
+        total_number_of_votes += value.number_of_votes;
+        value.name = $scope.parties[value.party_id].name;
+        console.log(value);
+      });
+      $scope.results.total_number_of_votes = total_number_of_votes;
+    });
+    
+  });
+  
+  
 })
-.controller('ResultsAreaCtrl', function($scope,Results) {
+.controller('ResultsAreaCtrl', function($scope,LocalResults) {
  console.log('ResultsAreaCtrl');
- $scope.results = Results.all();
+ $scope.results = LocalResults.all();
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http, Parties) {

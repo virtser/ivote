@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150221122236) do
   create_table "relations", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",        limit: 8
-    t.integer  "friend_user_id", limit: 8
+    t.integer  "user_id"
+    t.integer  "friend_user_id"
   end
 
   create_table "users", force: true do |t|
