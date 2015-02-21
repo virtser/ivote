@@ -6,6 +6,11 @@ class VotesController < ApplicationController
   # GET /votes/1.json
   def results
     logger.info "My user_id: " + params[:user_id]
+
+    #TODO: Return voting results of my friends aggregated by parties.
+    #@results = Vote.find
+
+    render json: @results, status: :ok
   end
 
 

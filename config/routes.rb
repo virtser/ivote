@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :relations
+
   root 'home#index'
 
 scope '/api' do
