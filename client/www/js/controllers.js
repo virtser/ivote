@@ -84,8 +84,12 @@ angular.module('starter.controllers', ['ngStorage'])
     $scope.user_id = $sessionStorage.uid;
     $scope.my_vote_id = $sessionStorage.my_vote_id;
     $scope.my_vote_party = $sessionStorage.my_vote_party;
-    console.log("user id = "+$sessionStorage.uid);
-//    $scope.parties = LOCALParties.query();
+    $scope.$on('vote:updated', function(event,data) {
+        console.log("vote updated");
+        $scope.my_vote_id = $sessionStorage.my_vote_id;
+        $scope.my_vote_party = $sessionStorage.my_vote_party;
+        console.log("vote updated after apply");
+    });
 }])
 
 .controller('ChatsCtrl', function($scope, LocalResults) {
@@ -130,7 +134,7 @@ angular.module('starter.controllers', ['ngStorage'])
  $scope.results = LocalResults.all();
 })
 
-.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http, $sessionStorage, Parties) {
+.controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -173,7 +177,8 @@ angular.module('starter.controllers', ['ngStorage'])
         })
         .success(function(data, status, headers, config) {
             console.log("vote success: " + data);
-            $sessionStorage.my_party_id = $scope.parties[$scope.pid].id;
+            $sessionStorage.my_vote_party = $scope.parties[$scope.pid].id;
+            $rootScope.$broadcast('vote:updated',data);
             $scope.modal.hide();
         })
         .error(function(data, status, headers, config) {

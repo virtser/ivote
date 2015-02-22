@@ -23,6 +23,9 @@ angular.module('starter.controllers', ['ngStorage'])
   }
 
     $scope.fbLogin = function() {
+        $sessionStorage.my_vote_id = 0;
+        $sessionStorage.my_vote_party = 0;
+        $sessionStorage.uid = 0;
         openFB.login(
             function(response) {
                 if (response.status === 'connected') {
@@ -30,15 +33,28 @@ angular.module('starter.controllers', ['ngStorage'])
                     var msgdata = {
                             'token' : response.authResponse.token
                         };
-                    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
                     $http({
                         method: 'POST',
                         url: '/api/connect',
+                        headers: {
+                           'Content-Type': "application/x-www-form-urlencoded"
+                        },
                         data: 'token='+response.authResponse.token
                     })
                     .success(function(data, status, headers, config) {
                         $sessionStorage.uid = data.id;
-                        $state.go('tabs.dash');
+                        $http.get('/api/votes/user/'+data.id+'.json').
+                          success(function(data, status, headers, config) {
+                            if (data.length > 0) {
+                                $sessionStorage.my_vote_id = data[0].id;
+                                $sessionStorage.my_vote_party = data[0].party_id;
+                            }
+                            console.log("i last voted for: "+$sessionStorage.my_vote_id);
+                            $state.go('tabs.dash');
+                          }).
+                          error(function(data, status, headers, config) {
+                            $state.go('tabs.dash');
+                          });
                     })
                     .error(function(data, status, headers, config) {
                         console.log('call to our server fails');
@@ -66,8 +82,14 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
-    console.log("user id = "+$sessionStorage.uid);
-//    $scope.parties = LOCALParties.query();
+    $scope.my_vote_id = $sessionStorage.my_vote_id;
+    $scope.my_vote_party = $sessionStorage.my_vote_party;
+    $scope.$on('vote:updated', function(event,data) {
+        console.log("vote updated");
+        $scope.my_vote_id = $sessionStorage.my_vote_id;
+        $scope.my_vote_party = $sessionStorage.my_vote_party;
+        console.log("vote updated after apply");
+    });
 }])
 
 .controller('ChatsCtrl', function($scope, LocalResults) {
@@ -88,11 +110,16 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
   console.log('ResultsFriendsCtrl');
   $scope.parties = Parties.query(function(){
+    console.log($scope.parties);
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
-        value.name = $scope.parties[value.party_id].name;
+        angular.forEach($scope.parties, function(party, index) {
+          if (value.party_id == party.id)
+            value.name = party.name;
+        })
+        
         console.log(value);
       });
       $scope.results.total_number_of_votes = total_number_of_votes;
@@ -107,7 +134,7 @@ angular.module('starter.controllers', ['ngStorage'])
  $scope.results = LocalResults.all();
 })
 
-.controller('ConfirmVoteCtrl', function($scope, $ionicModal, $http, $sessionStorage, Parties) {
+.controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -124,20 +151,34 @@ angular.module('starter.controllers', ['ngStorage'])
     $scope.modal.hide();
   };
   $scope.confirmVote = function() {
+        console.log("party = "+$scope.parties[$scope.pid].id);
+        if ($sessionStorage.my_vote_id > 0) {
+            meth = 'PUT';
+            url = '/api/votes/'+$sessionStorage.my_vote_id+'.json'
+        }
+        else {
+            meth = 'POST';
+            url = '/api/votes.json';
+        }
         console.log("user id = " + $sessionStorage.uid);
-        console.log("party id = "+$scope.pid);
+        console.log("party id = "+ $scope.parties[$scope.pid].id);
         var vote_data = { vote : {
                 user_id : $sessionStorage.uid,
-                party_id : $scope.pid
+                party_id : $scope.parties[$scope.pid].id
                 }
             };
         $http({
-            method: 'POST',
-            url: '/api/votes.json',
+            method: meth,
+            url: url,
+            headers: {
+               'Content-Type': "application/json"
+            },
             data: vote_data
         })
         .success(function(data, status, headers, config) {
             console.log("vote success: " + data);
+            $sessionStorage.my_party_id = $scope.parties[$scope.pid].id;
+            $rootScope.$broadcast('vote:updated',data);
             $scope.modal.hide();
         })
         .error(function(data, status, headers, config) {
