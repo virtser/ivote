@@ -17,17 +17,17 @@ def post
 
 	  # Instantiate Stream user feed object
 	  @user_feed = @stream_client.feed('user', @user_id)
+	  
 
 	  # Add the activity to the Stream feed
   	  activity_data = {:actor => @user_id, :verb => 'post', :object => 1, :post => @text}
 	  activity_response = @user_feed.add_activity(activity_data)      
       
       render json: activity_response, status: :ok
-
     else
       logger.error  "ERROR!"
       render json: { message: "You provided an invalid user_id!" } , status: :forbidden 
     end
-  end
+end
 
 end
