@@ -177,7 +177,7 @@ angular.module('starter.controllers', ['ngStorage'])
         })
         .success(function(data, status, headers, config) {
             console.log("vote success: " + data);
-            $sessionStorage.my_party_id = $scope.parties[$scope.pid].id;
+            $sessionStorage.my_vote_party = $scope.parties[$scope.pid].id;
             $rootScope.$broadcast('vote:updated',data);
             $scope.modal.hide();
         })

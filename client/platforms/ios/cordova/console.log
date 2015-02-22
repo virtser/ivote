@@ -1,57 +1,163 @@
-2015-02-21 18:16:48.575 iVote[22593:863634] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Data/Application/2A54D1E6-5B5B-4B62-83AB-D2324398FF9A/Library/Cookies/Cookies.binarycookies
-2015-02-21 18:16:48.784 iVote[22593:863634] Apache Cordova native platform version 3.7.0 is starting.
-2015-02-21 18:16:48.784 iVote[22593:863634] Multi-tasking -> Device: YES, App: YES
-2015-02-21 18:16:48.795 iVote[22593:863634] Unlimited access to network resources
-2015-02-21 18:16:49.150 iVote[22593:863634] [CDVTimer][keyboard] 0.055015ms
-2015-02-21 18:16:49.150 iVote[22593:863634] [CDVTimer][TotalPluginStartup] 0.195980ms
-2015-02-21 18:16:49.805 iVote[22593:863634] Resetting plugins due to page load.
-2015-02-21 18:16:50.110 iVote[22593:863634] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/990422E1-DB91-4112-A41A-77688A9693A3/iVote.app/www/index.html#/sign-in
-2015-02-21 18:17:11.288 iVote[22593:863634] Resetting plugins due to page load.
-2015-02-21 18:17:13.363 iVote[22593:863634] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
-2015-02-21 18:18:01.348 iVote[22593:863634] Resetting plugins due to page load.
-2015-02-21 18:18:03.516 iVote[22593:863634] Finished load of: https://m.facebook.com/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&refid=9&_rdr
-2015-02-21 18:18:04.967 iVote[22593:863634] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
-2015-02-21 18:18:13.141 iVote[22593:863634] Resetting plugins due to page load.
-2015-02-21 18:18:14.188 iVote[22593:863634] Finished load of: https://m.facebook.com/login/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin
-2015-02-21 18:18:16.623 iVote[22593:863634] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
-2015-02-21 18:18:24.365 iVote[22593:863634] Resetting plugins due to page load.
-2015-02-21 18:18:25.016 iVote[22593:863634] Finished load of: https://m.facebook.com/login/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin
-2015-02-21 18:18:26.669 iVote[22593:863634] Resetting plugins due to page load.
-2015-02-21 18:18:29.245 iVote[22593:863634] Finished load of: https://www.facebook.com/connect/login_success.html#access_token=CAAWIGgFrI0gBAE6pRFv4tyFZCy1Y9FQnEAgy65ftQ5fUyTKRSh4iMVc6lcehcXyCztTtJgUfuTsoZAkpT7WAJZCBpFJM1RILebUIYsqYmQWaK7VZA6FJTSuT2Vg0nv2Kyds65OsOGXJl6xOLrblEpWYcxewuEi36ERwRY32su4KZAOzBJ0U5YhQ47YSD7layOPKuoBMXlIeWX2ljH9MFtVvc2q0G6EEsZD&expires_in=5184000
-2015-02-21 18:19:32.150 iVote[22814:865501] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Data/Application/05918E2B-E1E4-405C-B504-F772EB34CBE2/Library/Cookies/Cookies.binarycookies
-2015-02-21 18:19:32.234 iVote[22814:865501] Apache Cordova native platform version 3.7.0 is starting.
-2015-02-21 18:19:32.235 iVote[22814:865501] Multi-tasking -> Device: YES, App: YES
-2015-02-21 18:19:32.236 iVote[22814:865501] Unlimited access to network resources
-2015-02-21 18:19:32.390 iVote[22814:865501] [CDVTimer][keyboard] 0.050008ms
-2015-02-21 18:19:32.390 iVote[22814:865501] [CDVTimer][TotalPluginStartup] 0.183046ms
-2015-02-21 18:19:32.919 iVote[22814:865501] Resetting plugins due to page load.
-2015-02-21 18:19:33.100 iVote[22814:865501] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/B6D10FC4-B9BE-4229-B62F-A1F03FEF5EE4/iVote.app/www/index.html#/sign-in
-2015-02-21 18:19:45.523 iVote[22814:865501] Resetting plugins due to page load.
-2015-02-21 18:19:47.519 iVote[22814:865501] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
-2015-02-21 18:22:28.832 iVote[23029:867175] Apache Cordova native platform version 3.7.0 is starting.
-2015-02-21 18:22:28.832 iVote[23029:867175] Multi-tasking -> Device: YES, App: YES
-2015-02-21 18:22:28.833 iVote[23029:867175] Unlimited access to network resources
-2015-02-21 18:22:28.977 iVote[23029:867175] [CDVTimer][keyboard] 0.045002ms
-2015-02-21 18:22:28.977 iVote[23029:867175] [CDVTimer][TotalPluginStartup] 0.185013ms
-2015-02-21 18:22:29.023 iVote[23029:867175] Resetting plugins due to page load.
-2015-02-21 18:22:29.199 iVote[23029:867175] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/464F86F7-A737-460B-97F6-6E9A2B73A650/iVote.app/www/index.html#/sign-in
-2015-02-21 18:48:21.483 iVote[23029:867175] Resetting plugins due to page load.
-2015-02-21 18:48:23.618 iVote[23029:867175] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fwww.facebook.com%252Fconnect%252Flogin_success.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fwww.facebook.com%2Fconnect%2Flogin_success.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
-2015-02-21 19:59:14.612 iVote[26149:895206] Apache Cordova native platform version 3.7.0 is starting.
-2015-02-21 19:59:14.613 iVote[26149:895206] Multi-tasking -> Device: YES, App: YES
-2015-02-21 19:59:14.614 iVote[26149:895206] Unlimited access to network resources
-2015-02-21 19:59:14.768 iVote[26149:895206] [CDVTimer][keyboard] 0.061035ms
-2015-02-21 19:59:14.768 iVote[26149:895206] [CDVTimer][TotalPluginStartup] 0.229001ms
-2015-02-21 19:59:14.861 iVote[26149:895206] Resetting plugins due to page load.
-2015-02-21 19:59:21.479 iVote[26149:895206] Finished load of: https://ivoteorgil.herokuapp.com/client/index.html#/sign-in
-2015-02-21 19:59:32.093 iVote[26149:895206] Resetting plugins due to page load.
-2015-02-21 19:59:34.455 iVote[26149:895206] Finished load of: https://m.facebook.com/login.php?skip_api_login=1&api_key=1557020157879112&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fivoteorgil.herokuapp.com%252Fclient%252Foauthcallback.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&cancel_uri=https%3A%2F%2Fivoteorgil.herokuapp.com%2Fclient%2Foauthcallback.html%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&_rdr
-2015-02-21 19:59:55.271 iVote[26149:895206] Resetting plugins due to page load.
-2015-02-21 19:59:58.710 iVote[26149:895206] Finished load of: https://m.facebook.com/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fivoteorgil.herokuapp.com%252Fclient%252Foauthcallback.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin&refid=9&_rdr
-2015-02-21 20:00:00.305 iVote[26149:895206] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
-2015-02-21 20:00:06.483 iVote[26149:895206] Resetting plugins due to page load.
-2015-02-21 20:00:06.981 iVote[26149:895206] Finished load of: https://m.facebook.com/login/checkpoint/?next=https%3A%2F%2Fm.facebook.com%2Fv2.2%2Fdialog%2Foauth%3Fredirect_uri%3Dhttps%253A%252F%252Fivoteorgil.herokuapp.com%252Fclient%252Foauthcallback.html%26scope%3Dpublic_profile%252C%2Buser_friends%26response_type%3Dtoken%26client_id%3D1557020157879112%26ret%3Dlogin
-2015-02-21 20:00:08.274 iVote[26149:895206] Resetting plugins due to page load.
-2015-02-21 20:00:11.220 iVote[26149:895206] Finished load of: https://ivoteorgil.herokuapp.com/client/oauthcallback.html?#access_token=CAAWIGgFrI0gBACRXFZAlcAaokM058WblXbmAnCbPHjpHbPgJCU1ESBlH1ABVSAZBZB9XlogfFF13iZCEM9izZANIQMfn7GYDZB1ZCLJrOn6FxZCWAtxteHCaNIIefT0zVBxp2ZAVYFFYow0J0OToA72Ytz4ZCPKV1dKcZCkf7xaDvThTEvCDnXfEJ7JHb2kkCZAupjFQA85wdwQlXImGXb2fDsdBSCSr8ZAIGsXwZD&expires_in=5177898
-2015-02-21 20:00:45.643 iVote[26149:895206] Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.
-2015-02-21 20:01:19.767 iVote[26149:895206] Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.
+2015-02-22 21:31:28.948 iVote[34406:1086536] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:31:28.949 iVote[34406:1086536] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:31:28.950 iVote[34406:1086536] Unlimited access to network resources
+2015-02-22 21:31:29.098 iVote[34406:1086536] [CDVTimer][keyboard] 0.045002ms
+2015-02-22 21:31:29.098 iVote[34406:1086536] [CDVTimer][TotalPluginStartup] 0.193000ms
+2015-02-22 21:31:29.179 iVote[34406:1086536] Resetting plugins due to page load.
+2015-02-22 21:31:29.339 iVote[34406:1086536] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/9EE6789F-D939-41AC-9506-DB2B66EA9B92/iVote.app/www/index.html#/sign-in
+2015-02-22 21:31:30.776 iVote[34406:1086536] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:31:30.785 iVote[34406:1086536] THREAD WARNING: ['InAppBrowser'] took '175.812988' ms. Plugin should use a background thread.
+2015-02-22 21:31:31.716 iVote[34406:1086536] Got Token: CAAWIGgFrI0gBAOEpP5uxYIJj7We4zn4B8RVhmzDaJmOF5S2IDJQWqCMmyKS0Av1rHTWYuVtOZBi34shdZAPZBVJa71S4ZA2sHARuZCK7JIwWdFrXe4FKF6Mej0dOUHLiDUPzzgdZBujZBJCerqTri6TKnx9We9yzxt19vnXMI8DDZC0Ii3eu7uamEUZCIZBaQoumxme3LFwqezHKdviLVONeELh8IZAUuY29OgZD
+2015-02-22 21:31:31.929 iVote[34406:1086536] call to our server fails
+2015-02-22 21:31:31.931 iVote[34406:1086536] exit and remove listeners
+2015-02-22 21:31:31.931 iVote[34406:1086536] Error in Success callbackId: InAppBrowser407887769 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:31:41.028 iVote[34406:1086536] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:31:41.031 iVote[34406:1086536] THREAD WARNING: ['InAppBrowser'] took '122.447998' ms. Plugin should use a background thread.
+2015-02-22 21:31:41.355 iVote[34406:1086536] Got Token: CAAWIGgFrI0gBAN2BKMrTSHwImNUtVmYPbjeaosutF8rx9ap2l4Pz777C8rUxoKdbKTBkxtcVfR6z7K5GxpnPgDq2A47DHSkZCbzqkWmeUPU7k1ZAVxPrIZAmCaOFxOZCI9xYxZBYAT0EtupwTz76OlhLYVZAbgIZBQE54f3cz21blnOkebuvw6PJEDz2ZCervHkj0x655pUZB1cj9VVwNuNdNbV0CjnkktusZD
+2015-02-22 21:31:41.358 iVote[34406:1086536] call to our server fails
+2015-02-22 21:31:41.508 iVote[34406:1086536] exit and remove listeners
+2015-02-22 21:31:41.509 iVote[34406:1086536] Error in Success callbackId: InAppBrowser407887770 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:32:00.532 iVote[34406:1086536] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:32:00.535 iVote[34406:1086536] THREAD WARNING: ['InAppBrowser'] took '110.132080' ms. Plugin should use a background thread.
+2015-02-22 21:32:00.900 iVote[34406:1086536] Got Token: CAAWIGgFrI0gBAC2uKAArkPQvaZC6dVat9gRYG245g3ngPUtSVTpX2jZCqybVp1BBb9LgXWlxAjz8jx3cTYZAp5Y4MEDZA71mcq0nTSY0vci3Utrv4QmZBKJllOLUHrJe8phk0mRF6scMp2Ix3vXcN0WcqvSZAwF30p3L8ycZC5iPQwb0FthFSViUC3NTcZA3xWxOQ2JZBCQwgDjAtgbNdta8IbQUuGdJrptMZD
+2015-02-22 21:32:00.903 iVote[34406:1086536] call to our server fails
+2015-02-22 21:32:01.047 iVote[34406:1086536] exit and remove listeners
+2015-02-22 21:32:01.047 iVote[34406:1086536] Error in Success callbackId: InAppBrowser407887771 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:32:16.031 iVote[34406:1086536] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:32:16.034 iVote[34406:1086536] THREAD WARNING: ['InAppBrowser'] took '122.041748' ms. Plugin should use a background thread.
+2015-02-22 21:32:16.381 iVote[34406:1086536] Got Token: CAAWIGgFrI0gBAGDd2r8wFoe56JnwOjBAvhUe8725RPZAZALjobUHQsynr2ZAHTdpTQcCgOSjP2CkpTBZBQnEIAMGdpOQZCD8VXxK9sTkIEdWoHeEDLdKzHGW0pBeu6J7Us1XjDYoRnQiZBr9ERmPXz5wdVJLXHXzwlknbTd5vfeplsMyw3YCqXZCkZATUJQwZAZAB6ZATd69dknZC8yjZBqd0LwvtudCGiqcDIEMZD
+2015-02-22 21:32:16.384 iVote[34406:1086536] call to our server fails
+2015-02-22 21:32:16.533 iVote[34406:1086536] exit and remove listeners
+2015-02-22 21:32:16.533 iVote[34406:1086536] Error in Success callbackId: InAppBrowser407887772 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:32:30.341 iVote[34406:1086536] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:32:30.344 iVote[34406:1086536] THREAD WARNING: ['InAppBrowser'] took '125.492188' ms. Plugin should use a background thread.
+2015-02-22 21:32:30.723 iVote[34406:1086536] Got Token: CAAWIGgFrI0gBAIVa4fHLmKacVKZCb3UkSNmQnF6qFYFziVwzy6xYpLsMd94QTxaDzr5DoB2S2ocJGZB4gR9xjpWUlO0yOI4C4HYCuIquZBMew5f2OSgZCwLKE9ai0klfPZCOvegpdc09elAMTZC9lhFcgZBMrE4ZBSnVlqAuWawOuza54Uux1lbknoWCvNoulz9uZCytdXtZCOGPF9WYeRnM2Vprr1JdgAqZAEZD
+2015-02-22 21:32:30.725 iVote[34406:1086536] call to our server fails
+2015-02-22 21:32:30.820 iVote[34406:1086536] exit and remove listeners
+2015-02-22 21:32:30.820 iVote[34406:1086536] Error in Success callbackId: InAppBrowser407887773 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:37:33.718 iVote[34753:1091187] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:37:33.718 iVote[34753:1091187] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:37:33.719 iVote[34753:1091187] Unlimited access to network resources
+2015-02-22 21:37:33.866 iVote[34753:1091187] [CDVTimer][keyboard] 0.047028ms
+2015-02-22 21:37:33.866 iVote[34753:1091187] [CDVTimer][TotalPluginStartup] 0.193000ms
+2015-02-22 21:37:33.909 iVote[34753:1091187] Resetting plugins due to page load.
+2015-02-22 21:37:34.065 iVote[34753:1091187] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/E275F6C2-B223-445B-86ED-EA4A16495141/iVote.app/www/index.html#/sign-in
+2015-02-22 21:37:40.667 iVote[34753:1091187] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:37:40.673 iVote[34753:1091187] THREAD WARNING: ['InAppBrowser'] took '137.042969' ms. Plugin should use a background thread.
+2015-02-22 21:37:43.390 iVote[34753:1091187] Got Token: CAAWIGgFrI0gBAFuZA6Sc7js8Aj2TmRyxlN48ZAwM3WyZCKqap0GrioKAeCD7FVt1rfe14BRq8gLbyiG0SVgI1zpjKQgFxt2buJulgZBiQO4oq5WthmW9EbZB3oRTJRBX9wVew2nAyUzfCJAZAHGddoIyx6277NhAH7IB8PQTn2X76BO9CJCM9DZAYb30aTqHDim1ZCSvoEL92SjpvrbZCptHVhZA9XH2WTZAWwZD
+2015-02-22 21:37:43.912 iVote[34753:1091187] call to our server fails
+2015-02-22 21:37:43.915 iVote[34753:1091187] exit and remove listeners
+2015-02-22 21:37:43.915 iVote[34753:1091187] Error in Success callbackId: InAppBrowser674732863 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:42:48.692 iVote[35038:1094508] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:42:48.692 iVote[35038:1094508] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:42:48.694 iVote[35038:1094508] Unlimited access to network resources
+2015-02-22 21:42:48.844 iVote[35038:1094508] [CDVTimer][keyboard] 0.047982ms
+2015-02-22 21:42:48.844 iVote[35038:1094508] [CDVTimer][TotalPluginStartup] 0.191987ms
+2015-02-22 21:42:48.887 iVote[35038:1094508] Resetting plugins due to page load.
+2015-02-22 21:42:49.040 iVote[35038:1094508] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/63AA7973-187B-4BA3-9227-D599C88174C3/iVote.app/www/index.html#/sign-in
+2015-02-22 21:42:53.139 iVote[35038:1094508] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:42:53.146 iVote[35038:1094508] THREAD WARNING: ['InAppBrowser'] took '145.993164' ms. Plugin should use a background thread.
+2015-02-22 21:42:54.076 iVote[35038:1094508] Got Token: CAAWIGgFrI0gBAC1cK8qrdNp3XfI4BdiB3fWS372HZBgwmSiOBYP7FBLXHnsbKOExUYZBEZCRjZCWyTZAPMVsliTmQhYgx9iZCZAZB7vPZBM74rlklHLSJFuJCQ44gRo1b8GlRKAOQXPiRYH6AYYayZAleG9GcXKFUrDOZBTzElm8QjkmZCXWWfG9iZBy6ZBFUGEFz4SMoOWehw9EiVuHsZBJalDH3VEL783BCTYIUMZD
+2015-02-22 21:42:54.898 iVote[35038:1094508] call to our server fails
+2015-02-22 21:42:54.900 iVote[35038:1094508] exit and remove listeners
+2015-02-22 21:42:54.900 iVote[35038:1094508] Error in Success callbackId: InAppBrowser1676281177 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:44:32.966 iVote[35250:1095722] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:44:32.967 iVote[35250:1095722] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:44:32.968 iVote[35250:1095722] Unlimited access to network resources
+2015-02-22 21:44:33.113 iVote[35250:1095722] [CDVTimer][keyboard] 0.045002ms
+2015-02-22 21:44:33.113 iVote[35250:1095722] [CDVTimer][TotalPluginStartup] 0.182986ms
+2015-02-22 21:44:33.158 iVote[35250:1095722] Resetting plugins due to page load.
+2015-02-22 21:44:35.666 iVote[35250:1095722] Finished load of: https://ivoteorgil.herokuapp.com/client/#/sign-in
+2015-02-22 21:44:39.215 iVote[35250:1095722] Resetting plugins due to page load.
+2015-02-22 21:44:41.762 iVote[35250:1095722] Finished load of: https://ivoteorgil.herokuapp.com/client/oauthcallback.html?#access_token=CAAWIGgFrI0gBAADiydLgLzwzQriep1R1bFp6glJIVNuPve54Gw2Pl0WW7Cj7nrMRTKZAEqFEUuni5A2jZBNqKhmaM1eomtwt3TEMuNm0D3sgMFyY8xCUKtQnYMr7nK7xSgRF6Pu0PGKPu33EOfpQ5HhiVYnCxS7xU2wZCiMcHZBS29DvlArg0zqkTXbuR6B9GPZCtuli6CQY3064zZBvIHz2UciiADP2YZD&expires_in=5180838
+2015-02-22 21:46:47.121 iVote[35453:1097138] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:46:47.122 iVote[35453:1097138] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:46:47.123 iVote[35453:1097138] Unlimited access to network resources
+2015-02-22 21:46:47.270 iVote[35453:1097138] [CDVTimer][keyboard] 0.045955ms
+2015-02-22 21:46:47.270 iVote[35453:1097138] [CDVTimer][TotalPluginStartup] 0.191987ms
+2015-02-22 21:46:47.315 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:46:48.643 iVote[35453:1097138] Finished load of: https://ivoteorgil.herokuapp.com/client/#/sign-in
+2015-02-22 21:47:46.610 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:47:46.719 iVote[35453:1097138] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:47:48.701 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:47:48.705 iVote[35453:1097138] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:47:50.625 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:47:50.630 iVote[35453:1097138] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:47:51.382 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:47:51.386 iVote[35453:1097138] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:47:52.335 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:47:52.338 iVote[35453:1097138] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:47:53.113 iVote[35453:1097138] Resetting plugins due to page load.
+2015-02-22 21:47:53.118 iVote[35453:1097138] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:48:02.913 iVote[35653:1098103] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:48:02.914 iVote[35653:1098103] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:48:02.915 iVote[35653:1098103] Unlimited access to network resources
+2015-02-22 21:48:03.061 iVote[35653:1098103] [CDVTimer][keyboard] 0.047028ms
+2015-02-22 21:48:03.061 iVote[35653:1098103] [CDVTimer][TotalPluginStartup] 0.227988ms
+2015-02-22 21:48:03.107 iVote[35653:1098103] Resetting plugins due to page load.
+2015-02-22 21:48:03.321 iVote[35653:1098103] Finished load of: https://ivoteorgil.herokuapp.com/client/#/sign-in
+2015-02-22 21:48:26.658 iVote[35653:1098103] Resetting plugins due to page load.
+2015-02-22 21:48:26.830 iVote[35653:1098103] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:48:29.542 iVote[35653:1098103] Resetting plugins due to page load.
+2015-02-22 21:48:29.547 iVote[35653:1098103] Failed to load webpage with error: The network connection was lost.
+2015-02-22 21:48:53.158 iVote[35896:1099622] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:48:53.158 iVote[35896:1099622] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:48:53.160 iVote[35896:1099622] Unlimited access to network resources
+2015-02-22 21:48:53.323 iVote[35896:1099622] [CDVTimer][keyboard] 0.045002ms
+2015-02-22 21:48:53.323 iVote[35896:1099622] [CDVTimer][TotalPluginStartup] 0.200987ms
+2015-02-22 21:48:53.374 iVote[35896:1099622] Resetting plugins due to page load.
+2015-02-22 21:48:54.237 iVote[35896:1099622] Finished load of: https://ivoteorgil.herokuapp.com/client/#/sign-in
+2015-02-22 21:49:17.157 iVote[35896:1099622] Resetting plugins due to page load.
+2015-02-22 21:49:20.483 iVote[35896:1099622] Finished load of: https://ivoteorgil.herokuapp.com/client/oauthcallback.html?#access_token=CAAWIGgFrI0gBAGe77sqeWvBLF7iCkGMWMZACRNVnJSUZBdwFmxN7LslqBZBZAd43WrCCtzZAXyZBLyllJKbidZBQb1RH7m6WZBmlunxQejm5HwAK0ORlsHdh1ovDeWHhYNX67QZBzOBFCvmhGyb7NQoiH7OssUgN76VGw8VB6l8So70rUaTyXawH8UIcc1uBgSp9GT4EWRwn2V118fFeFkAHoxD43fRMM9J0ZD&expires_in=5180560
+2015-02-22 21:51:04.426 iVote[36149:1101671] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Data/Application/7413721F-B940-4DB3-8B3B-EB8EC13BFB96/Library/Cookies/Cookies.binarycookies
+2015-02-22 21:51:04.496 iVote[36149:1101671] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:51:04.496 iVote[36149:1101671] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:51:04.497 iVote[36149:1101671] Unlimited access to network resources
+2015-02-22 21:51:04.654 iVote[36149:1101671] [CDVTimer][keyboard] 0.047982ms
+2015-02-22 21:51:04.654 iVote[36149:1101671] [CDVTimer][TotalPluginStartup] 0.176013ms
+2015-02-22 21:51:05.163 iVote[36149:1101671] Resetting plugins due to page load.
+2015-02-22 21:51:05.314 iVote[36149:1101671] Finished load of: file:///Users/iroth/Library/Developer/CoreSimulator/Devices/A3ABB98F-C6CB-4514-A585-895321201026/data/Containers/Bundle/Application/952D2507-0715-49B2-A0BA-A7E5F27E5717/iVote.app/www/index.html#/sign-in
+2015-02-22 21:51:21.481 iVote[36149:1101671] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:51:21.486 iVote[36149:1101671] THREAD WARNING: ['InAppBrowser'] took '136.151123' ms. Plugin should use a background thread.
+2015-02-22 21:51:21.612 iVote[36149:1101671] webView:didFailLoadWithError - -1005: The network connection was lost.
+2015-02-22 21:51:57.313 iVote[36149:1101671] exit and remove listeners
+2015-02-22 21:51:57.313 iVote[36149:1101671] Error in Success callbackId: InAppBrowser955274330 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:51:57.430 iVote[36149:1101671] Setting the WebView's frame to {{0, 0}, {375, 623}}
+2015-02-22 21:51:57.432 iVote[36149:1101671] THREAD WARNING: ['InAppBrowser'] took '119.046875' ms. Plugin should use a background thread.
+2015-02-22 21:51:57.447 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.448 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.450 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.451 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.452 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.453 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.457 iVote[36149:1101671] Tried to show IAB while already shown
+2015-02-22 21:51:57.478 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:51:57.487 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:51:57.496 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:51:57.505 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:51:57.515 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:51:57.523 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:51:57.532 iVote[36149:1101671] webView:didFailLoadWithError - -999: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2015-02-22 21:52:54.454 iVote[36149:1101671] Can't find keyplane that supports type 5 for keyboard iPhone-PortraitChoco-PhonePad; using 2470951658_PortraitChoco_iPhone-Complex-Pad_Default
+2015-02-22 21:53:16.420 iVote[36149:1101671] Got Token: CAAWIGgFrI0gBAOaXmfMbrOEvQFtIapMqSbU1hsaZCAZA43UZCuguyDG5fUC0FqRq0MAUe4aaa2R7ySd4hyG7WJKsadFy6RCP93PjxVJ3O4GSCf8rqK5ZB0PStx3sy9JrgIi6NZAZCE81Mv0EyWvFUfZBbKYFZBF5V7XU9RNBY0bDGIS6sbIctrZBWEA8Y8Gft2BPbeO5RF39DpzOFGp6ivLsbCF83weZCZCtZBkZD
+2015-02-22 21:53:16.873 iVote[36149:1101671] exit and remove listeners
+2015-02-22 21:53:16.873 iVote[36149:1101671] Error in Success callbackId: InAppBrowser955274338 : ReferenceError: Can't find variable: deferredLogin
+2015-02-22 21:53:16.876 iVote[36149:1101671] call to our server fails
+2015-02-22 21:55:33.327 iVote[36373:1104331] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:55:33.327 iVote[36373:1104331] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:55:33.328 iVote[36373:1104331] Unlimited access to network resources
+2015-02-22 21:55:33.473 iVote[36373:1104331] [CDVTimer][keyboard] 0.046015ms
+2015-02-22 21:55:33.473 iVote[36373:1104331] [CDVTimer][TotalPluginStartup] 0.177979ms
+2015-02-22 21:55:33.521 iVote[36373:1104331] Resetting plugins due to page load.
+2015-02-22 21:55:35.998 iVote[36373:1104331] Finished load of: https://ivoteorgil.herokuapp.com/client/#/sign-in
+2015-02-22 21:55:58.488 iVote[36373:1104331] Resetting plugins due to page load.
+2015-02-22 21:55:59.900 iVote[36373:1104331] Finished load of: https://ivoteorgil.herokuapp.com/client/oauthcallback.html?#access_token=CAAWIGgFrI0gBAKCbjVrOQ0EFPu0MNCVgZCFApBlrQS13zk18ZB5N9ZCdVKVFEnj7Jrhu7G0duP5OxfHMFqwhUZAfNK7s8UBYTJ3Nua7UGhleGplpWOIN3DN6wzXOqui9u4FS5QMclerZBiVb42ZCle9GWLCktLzRcCZAWkKjxAD7FG2kupCfdsuZAeNYZCmqID7e0woor1goaT28D5PEc2aJZAEUAMplZCY98MZD&expires_in=5180160
+2015-02-22 21:58:36.665 iVote[36588:1106228] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-22 21:58:36.666 iVote[36588:1106228] Multi-tasking -> Device: YES, App: YES
+2015-02-22 21:58:36.667 iVote[36588:1106228] Unlimited access to network resources
+2015-02-22 21:58:36.812 iVote[36588:1106228] [CDVTimer][keyboard] 0.051022ms
+2015-02-22 21:58:36.812 iVote[36588:1106228] [CDVTimer][TotalPluginStartup] 0.199020ms
+2015-02-22 21:58:36.856 iVote[36588:1106228] Resetting plugins due to page load.
+2015-02-22 21:58:37.601 iVote[36588:1106228] Finished load of: https://ivoteorgil.herokuapp.com/client/#/sign-in
+2015-02-22 21:58:39.464 iVote[36588:1106228] Resetting plugins due to page load.
+2015-02-22 21:58:40.892 iVote[36588:1106228] Finished load of: https://ivoteorgil.herokuapp.com/client/oauthcallback.html?#access_token=CAAWIGgFrI0gBAJCIKMmIelpCAvYXUbB2ZAHErY086TLN1W8LNAwsc7lwvzQ10GWM6pZAYlacCZCduvxZB0NQnlZANRrXc8GhIc1ycgAB8COkLyHzvns7d7fe7xJH4pOr5Dikt4DK0Yr6xNSGMZAEk17XNxl34ZCrE1lMgPgvkDPwz0SrGfD521UFzZCxrgUUPZC8tYxeWZAmp93BmK8DXwWeaEvdFUF9RMFPMZD&expires_in=5179999

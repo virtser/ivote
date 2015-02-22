@@ -28,14 +28,17 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
     <name>iVote</name>
     <description>
         Go Vote! March 17 2015 Israeli Elections App.
     </description>
     <author email="ivoteorgil@gmail.com" href="http://ivote.org.il/">
-      ivote.org.il team
+        ivote.org.il team
     </author>
-    <content src="https://ivoteorgil.herokuapp.com/client/index.html" />
+    <content src="https://ivoteorgil.herokuapp.com/client/" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
