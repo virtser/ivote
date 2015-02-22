@@ -27,7 +27,7 @@ class ConnectController < ApplicationController
           logger.info  "REGISTER USER!"
 
           # Instantiate Stream user feed object
-          @user_feed = @stream_client.feed('user', @user.id)
+          @user_feed = @stream_client.feed('flat', @user.id)
 
           # Save user friends 
           @fb_user.friends.each do |u|
@@ -38,15 +38,15 @@ class ConnectController < ApplicationController
               @relation.save
 
               # Follow Stream of another feed
-              @user_feed.follow('flat', @friend.id)
+              @user_feed.follow('user', @friend.id)
 
               @opposite_relation = Relation.new(user_id: @friend.id, friend_user_id: @user.id)
               @opposite_relation.save
 
               # Instantiate Stream user feed object
-              @user_feed = @stream_client.feed('user', @friend.id)
+              @user_feed = @stream_client.feed('flat', @friend.id)
               # Follow Stream of another feed
-              @user_feed.follow('flat', @user.id)
+              @user_feed.follow('user', @user.id)
 
               logger.info 'SAVING RELATIONS!'
             end 
