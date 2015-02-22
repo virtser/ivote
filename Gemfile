@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Facebook connect
 gem 'fb_graph2'
 
+# Stream feed
+gem 'stream-ruby'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development, :test do
   gem 'spring'

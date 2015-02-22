@@ -1,3 +1,5 @@
+require 'stream'
+
 class ConnectController < ApplicationController
 
   # POST /connect
@@ -8,13 +10,9 @@ class ConnectController < ApplicationController
 
       # Get more data on user from Facebook
       @fb_user = FbGraph2::User.me(params[:token]).fetch
-      #logger.info "FB User: " + fb_user.to_yaml
-      # logger.info "Friends: " + fb_user.friends.to_yaml
 
-        # Save user friends 
-        # @fb_user.friends.each do |u|
-        #   logger.info 'Friend: ' + u.name
-        # end
+      # Initialize Syream client with your api key and secret
+      @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
 
       # Get user details
       @user = User.find_by(fbuser_id: @fb_user.id)
@@ -28,6 +26,9 @@ class ConnectController < ApplicationController
         if @user.save
           logger.info  "REGISTER USER!"
 
+          # Instantiate Stream user feed object
+          @user_feed = @stream_client.feed('user', @user.id)
+
           # Save user friends 
           @fb_user.friends.each do |u|
             @friend = User.find_by(fbuser_id: u.id)
@@ -36,8 +37,16 @@ class ConnectController < ApplicationController
               @relation = Relation.new(user_id: @user.id, friend_user_id: @friend.id)
               @relation.save
 
+              # Follow Stream of another feed
+              @user_feed.follow('flat', @friend.id)
+
               @opposite_relation = Relation.new(user_id: @friend.id, friend_user_id: @user.id)
               @opposite_relation.save
+
+              # Instantiate Stream user feed object
+              @user_feed = @stream_client.feed('user', @friend.id)
+              # Follow Stream of another feed
+              @user_feed.follow('flat', @user.id)
 
               logger.info 'SAVING RELATIONS!'
             end 
