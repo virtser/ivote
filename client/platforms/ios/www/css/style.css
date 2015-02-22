@@ -26,8 +26,9 @@
   background-size: 148px 190px;
   background-repeat: no-repeat;
   display: block;
-  padding: 5px;
-  width: 100%; }
+  padding: 25px;
+  width: 148px;
+  height: 190px; }
 
 a.col-note {
     text-decoration: none;
