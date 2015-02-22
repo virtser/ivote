@@ -33,9 +33,10 @@ angular.module('starter.controllers', ['ngStorage'])
                     var msgdata = {
                             'token' : response.authResponse.token
                         };
+                    console.log('serverPrefix = "+serverPrefix);
                     $http({
                         method: 'POST',
-                        url: '/api/connect',
+                        url: serverPrefix+'/api/connect',
                         headers: {
                            'Content-Type': "application/x-www-form-urlencoded"
                         },
@@ -43,7 +44,7 @@ angular.module('starter.controllers', ['ngStorage'])
                     })
                     .success(function(data, status, headers, config) {
                         $sessionStorage.uid = data.id;
-                        $http.get('/api/votes/user/'+data.id+'.json').
+                        $http.get(serverPrefix+'/api/votes/user/'+data.id+'.json').
                           success(function(data, status, headers, config) {
                             if (data.length > 0) {
                                 $sessionStorage.my_vote_id = data[0].id;
@@ -154,11 +155,11 @@ angular.module('starter.controllers', ['ngStorage'])
         console.log("party = "+$scope.parties[$scope.pid].id);
         if ($sessionStorage.my_vote_id > 0) {
             meth = 'PUT';
-            url = '/api/votes/'+$sessionStorage.my_vote_id+'.json'
+            url = serverPrefix+'/api/votes/'+$sessionStorage.my_vote_id+'.json'
         }
         else {
             meth = 'POST';
-            url = '/api/votes.json';
+            url = serverPrefix+'/api/votes.json';
         }
         console.log("user id = " + $sessionStorage.uid);
         console.log("party id = "+ $scope.parties[$scope.pid].id);

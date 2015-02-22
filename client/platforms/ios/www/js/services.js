@@ -1,7 +1,8 @@
 angular.module('starter.services', ['ngResource'])
 
 .factory('Parties', function ($resource) {
-    return $resource('/api/parties.json');
+    console.log('in services, server prefix is: "+serverPrefix);
+    return $resource(serverPrefix+'/api/parties.json');
 })
 
 .factory('LOCALParties', function($resource) {
@@ -150,5 +151,5 @@ angular.module('starter.services', ['ngResource'])
   })
 
 .factory('Results', function ($resource) {
-    return $resource('/api/votes/results/1.json');
+    return $resource(serverPrefix+'/api/votes/results/1.json');
 })

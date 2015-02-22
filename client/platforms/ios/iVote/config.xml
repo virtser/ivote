@@ -38,7 +38,7 @@
     <author email="ivoteorgil@gmail.com" href="http://ivote.org.il/">
         ivote.org.il team
     </author>
-    <content src="https://ivoteorgil.herokuapp.com/client/" />
+    <content src="index.html" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
