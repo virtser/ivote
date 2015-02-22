@@ -16,6 +16,11 @@ scope '/api' do
   scope '/connect' do
     post '/' => 'connect#create'
   end
+
+  scope '/stream' do
+    post '/post/:user_id' => 'stream#post'
+  end
+  
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
