@@ -1,4 +1,5 @@
 var uid = 0;
+var serverPrefix = "https://ivoteorgil.herokuapp.com/client";
 
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']);
 // angular.module('ionicApp', ['ionic'])
@@ -64,7 +65,7 @@ app.run(function($ionicPlatform) {
       views: {
         'tabs-chats': {
           templateUrl: 'templates/results-me.html',
-          controller: 'ResultsMeCtrl'
+          controller: 'DashCtrl'
         }
       }
     })
