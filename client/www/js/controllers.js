@@ -50,10 +50,10 @@ angular.module('starter.controllers', ['ngStorage'])
                                 $sessionStorage.my_vote_party = data[0].party_id;
                             }
                             console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                            $state.go('tabs.dash');
+                            $state.go('tabs.result-me');
                           }).
                           error(function(data, status, headers, config) {
-                            $state.go('tabs.dash');
+                            $state.go('tabs.result-me');
                           });
                     })
                     .error(function(data, status, headers, config) {
@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ngStorage'])
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
+.controller('ResultsMeCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
     $scope.my_vote_id = $sessionStorage.my_vote_id;
@@ -98,15 +98,17 @@ angular.module('starter.controllers', ['ngStorage'])
   //   Chats.remove(chat);
   // }
 })
+.controller('CampaignCtrl', function($scope, LocalResults) {
+  $scope.results = LocalResults.all();
+  // $scope.remove = function(chat) {
+  //   Chats.remove(chat);
+  // }
+})
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('ResultsMeCtrl', function($scope,LOCALParties, Parties) {
-  $scope.parties = Parties.query();
-  console.log('ResultsMeCtrl');
-})
 .controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
   console.log('ResultsFriendsCtrl');
   $scope.parties = Parties.query(function(){
@@ -198,5 +200,9 @@ angular.module('starter.controllers', ['ngStorage'])
   $scope.$on('modal.removed', function() {
     // Execute action
   });
-});
+})
+
+.controller('FeedCtrl', function($scope, $sessionStorage, FeedFlat) {
+  $scope.results = FeedFlat.query($sessionStorage.uid);
+})
 
