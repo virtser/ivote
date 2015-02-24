@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ngStorage'])
   console.log('HomeTabCtrl');
 })
 
-.controller('ResultsMeCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
+.controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
     $scope.my_vote_id = $sessionStorage.my_vote_id;
@@ -92,27 +92,12 @@ angular.module('starter.controllers', ['ngStorage'])
     });
 }])
 
-.controller('ChatsCtrl', function($scope, LocalResults) {
-  $scope.results = LocalResults.all();
-  // $scope.remove = function(chat) {
-  //   Chats.remove(chat);
-  // }
-})
-.controller('CampaignCtrl', function($scope, LocalResults) {
-  $scope.results = LocalResults.all();
-  // $scope.remove = function(chat) {
-  //   Chats.remove(chat);
-  // }
+.controller('CampaignCtrl', function($scope) {
+
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
-  console.log('ResultsFriendsCtrl');
+.controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
   $scope.parties = Parties.query(function(){
-    console.log($scope.parties);
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
       angular.forEach($scope.results, function(value, key) {
@@ -121,7 +106,6 @@ angular.module('starter.controllers', ['ngStorage'])
           if (value.party_id == party.id)
             value.name = party.name;
         })
-        
         console.log(value);
       });
       $scope.results.total_number_of_votes = total_number_of_votes;
@@ -130,10 +114,6 @@ angular.module('starter.controllers', ['ngStorage'])
   });
   
   
-})
-.controller('ResultsAreaCtrl', function($scope,LocalResults) {
- console.log('ResultsAreaCtrl');
- $scope.results = LocalResults.all();
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
