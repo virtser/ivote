@@ -26,7 +26,7 @@ app.run(function($ionicPlatform) {
   $stateProvider
     .state('signin', {
       url: "/sign-in",
-      templateUrl: "sign-in.html",
+      templateUrl: "templates/sign-in.html",
       controller: 'SignInCtrl'
     })
     .state('tabs', {
