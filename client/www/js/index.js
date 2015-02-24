@@ -70,15 +70,6 @@ app.run(function($ionicPlatform) {
         }
       }
     })
-    .state('tabs.result-area', {
-      url: '/results/area',
-      views: {
-        'tabs-chats': {
-          templateUrl: 'templates/results-area.html',
-          controller: 'ResultsAreaCtrl'
-        }
-      }
-    })
     .state('tabs.feed', {
         url: '/feed',
         views: {
