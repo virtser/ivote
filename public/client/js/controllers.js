@@ -50,10 +50,10 @@ angular.module('starter.controllers', ['ngStorage'])
                                 $sessionStorage.my_vote_party = data[0].party_id;
                             }
                             console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                            $state.go('tabs.dash');
+                            $state.go('tabs.result-me');
                           }).
                           error(function(data, status, headers, config) {
-                            $state.go('tabs.dash');
+                            $state.go('tabs.result-me');
                           });
                     })
                     .error(function(data, status, headers, config) {
@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ngStorage'])
   console.log('HomeTabCtrl');
 })
 
-.controller('DashCtrl', ['$scope', 'LOCALParties', 'Parties', '$sessionStorage', function($scope, LOCALParties, Parties, $sessionStorage) {
+.controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
     $scope.my_vote_id = $sessionStorage.my_vote_id;
@@ -92,25 +92,8 @@ angular.module('starter.controllers', ['ngStorage'])
     });
 }])
 
-.controller('ChatsCtrl', function($scope, LocalResults) {
-  $scope.results = LocalResults.all();
-  // $scope.remove = function(chat) {
-  //   Chats.remove(chat);
-  // }
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('ResultsMeCtrl', function($scope,LOCALParties, Parties) {
-  $scope.parties = Parties.query();
-  console.log('ResultsMeCtrl');
-})
-.controller('ResultsFriendsCtrl', function($scope,Results,LocalResults,Parties) {
-  console.log('ResultsFriendsCtrl');
+.controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
   $scope.parties = Parties.query(function(){
-    console.log($scope.parties);
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
       angular.forEach($scope.results, function(value, key) {
@@ -119,7 +102,6 @@ angular.module('starter.controllers', ['ngStorage'])
           if (value.party_id == party.id)
             value.name = party.name;
         })
-        
         console.log(value);
       });
       $scope.results.total_number_of_votes = total_number_of_votes;
@@ -128,10 +110,6 @@ angular.module('starter.controllers', ['ngStorage'])
   });
   
   
-})
-.controller('ResultsAreaCtrl', function($scope,LocalResults) {
- console.log('ResultsAreaCtrl');
- $scope.results = LocalResults.all();
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
@@ -198,5 +176,12 @@ angular.module('starter.controllers', ['ngStorage'])
   $scope.$on('modal.removed', function() {
     // Execute action
   });
-});
+})
 
+.controller('FeedFlatCtrl', function($scope, FeedFlat) {
+  $scope.feedData = FeedFlat.query();
+})
+
+.controller('FeedUserCtrl', function($scope, FeedUser) {
+  $scope.feedData = FeedUser.query();
+})
