@@ -19,8 +19,10 @@ scope '/api' do
 
   scope '/stream' do
     post '/post/:user_id' => 'stream#post'
+    get  '/user/:user_id' => 'stream#user'
+    get  '/flat/:user_id' => 'stream#flat'
   end
-  
+
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
