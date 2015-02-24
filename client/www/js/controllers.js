@@ -181,6 +181,7 @@ angular.module('starter.controllers', ['ngStorage'])
 .controller('FeedFlatCtrl', function($scope, FeedFlat) {
   $scope.feedData = FeedFlat.query();
 })
+
 .controller('FeedUserCtrl', function($scope, FeedUser) {
   $scope.feedData = FeedUser.query();
 })
