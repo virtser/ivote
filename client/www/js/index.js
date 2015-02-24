@@ -34,59 +34,43 @@ app.run(function($ionicPlatform) {
       abstract: true,
       templateUrl: "tabs.html"
     })
-  .state('tabs.dash', {
-    url: '/dash',
+  .state('tabs.campaign', {
+    url: '/campaign',
     views: {
-      'tabs-dash': {
-        templateUrl: 'templates/tabs-dash.html',
-        controller: 'DashCtrl'
+      'tabs-campaign': {
+        templateUrl: 'templates/tabs-campaign.html',
+        controller: 'CampaignCtrl'
       }
     }
   })
-  .state('tabs.chats', {
-      url: '/chats',
+  .state('tabs.results', {
+      url: '/results',
       views: {
-        'tabs-chats': {
+        'tabs-results': {
           templateUrl: 'templates/results-friends.html',
           controller: 'ResultsFriendsCtrl'
-        }
-      }
-    })
-    .state('tabs.navstack', {
-      url: "/navstack",
-      views: {
-        'about-tab': {
-          templateUrl: "nav-stack.html"
         }
       }
     })
     .state('tabs.result-me', {
       url: '/results/me',
       views: {
-        'tabs-chats': {
+        'tabs-results': {
           templateUrl: 'templates/results-me.html',
-          controller: 'DashCtrl'
+          controller: 'ResultsMeCtrl'
         }
       }
     })
     .state('tabs.result-friends', {
       url: '/results/friends',
       views: {
-        'tabs-chats': {
+        'tabs-results': {
           templateUrl: 'templates/results-friends.html',
           controller: 'ResultsFriendsCtrl'
         }
       }
     })
-    .state('tabs.result-area', {
-      url: '/results/area',
-      views: {
-        'tabs-chats': {
-          templateUrl: 'templates/results-area.html',
-          controller: 'ResultsAreaCtrl'
-        }
-      }
-    })
+    
    $urlRouterProvider.otherwise("/sign-in");
 
 })
