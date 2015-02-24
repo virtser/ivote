@@ -202,7 +202,6 @@ angular.module('starter.controllers', ['ngStorage'])
   });
 })
 
-.controller('FeedCtrl', function($scope, $sessionStorage, FeedFlat) {
-  $scope.results = FeedFlat.query($sessionStorage.uid);
+.controller('FeedCtrl', function($scope, FeedFlat) {
+  $scope.feedData = FeedFlat.query();
 })
-
