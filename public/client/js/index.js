@@ -26,7 +26,7 @@ app.run(function($ionicPlatform) {
   $stateProvider
     .state('signin', {
       url: "/sign-in",
-      templateUrl: "sign-in.html",
+      templateUrl: "templates/sign-in.html",
       controller: 'SignInCtrl'
     })
     .state('tabs', {
@@ -34,59 +34,52 @@ app.run(function($ionicPlatform) {
       abstract: true,
       templateUrl: "tabs.html"
     })
-  .state('tabs.dash', {
-    url: '/dash',
-    views: {
-      'tabs-dash': {
-        templateUrl: 'templates/tabs-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-  .state('tabs.chats', {
-      url: '/chats',
+    .state('tabs.results', {
+      url: '/results',
       views: {
-        'tabs-chats': {
+        'tabs-results': {
           templateUrl: 'templates/results-friends.html',
           controller: 'ResultsFriendsCtrl'
-        }
-      }
-    })
-    .state('tabs.navstack', {
-      url: "/navstack",
-      views: {
-        'about-tab': {
-          templateUrl: "nav-stack.html"
         }
       }
     })
     .state('tabs.result-me', {
       url: '/results/me',
       views: {
-        'tabs-chats': {
+        'tabs-results': {
           templateUrl: 'templates/results-me.html',
-          controller: 'DashCtrl'
+          controller: 'ResultsMeCtrl'
         }
       }
     })
     .state('tabs.result-friends', {
       url: '/results/friends',
       views: {
-        'tabs-chats': {
+        'tabs-results': {
           templateUrl: 'templates/results-friends.html',
           controller: 'ResultsFriendsCtrl'
         }
       }
     })
-    .state('tabs.result-area', {
-      url: '/results/area',
-      views: {
-        'tabs-chats': {
-          templateUrl: 'templates/results-area.html',
-          controller: 'ResultsAreaCtrl'
+    .state('tabs.feed-me', {
+        url: '/feed/me',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed-me.html',
+            controller: 'FeedUserCtrl'
+          }
         }
-      }
     })
+    .state('tabs.feed-friends', {
+        url: '/feed/friends',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed-friends.html',
+            controller: 'FeedFlatCtrl'
+          }
+        }
+    })
+
    $urlRouterProvider.otherwise("/sign-in");
 
 })
