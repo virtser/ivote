@@ -1,17 +1,29 @@
 <ion-view view-title="תוצאות - חברים">
   <ion-content>
+  <div class="results-title-box">
+    <div class="results-title">תוצאות</div>
+    <div class="results-subtitle">
+      לחץ על העמודות כדי,
+      <br>
+      להוסיף לקואליציה
+    </div>
+    <div class="clearfix"></div>
+  </div>
   <div class="result-tabs">
     <a class="button icon" href="#/tabs/results/me">אני</a>
     <a class="button icon button-dark" >חברים</a>
   </div>  
-  
+  <div class="results-friend-box">
+    <span class="friends-number">{{results.total_number_of_votes}}</span>
+    <span class="friends-voted">חברים הצביעו</span>
+  </div>
   <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
         <div class="result-party">{{result.name}}</div>
         <div class="result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
         <div class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</div>
         </div>
-        <span>{{result.number_of_votes}} חברים</span>
+        <a class="friends-link">{{result.number_of_votes}} חברים</a>
       </ion-item>
     </ion-list>
   </ion-content>
