@@ -198,5 +198,9 @@ angular.module('starter.controllers', ['ngStorage'])
   $scope.$on('modal.removed', function() {
     // Execute action
   });
-});
+})
+
+.controller('FeedCtrl', function($scope, $sessionStorage, FeedFlat) {
+  $scope.results = FeedFlat.query($sessionStorage.uid);
+})
 

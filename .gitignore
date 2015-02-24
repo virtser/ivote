@@ -18,3 +18,4 @@
 /log/*.log
 /tmp
 *.orig
+*.log

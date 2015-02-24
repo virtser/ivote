@@ -152,3 +152,13 @@ angular.module('starter.services', ['ngResource'])
 .factory('Results', function ($resource) {
     return $resource('/api/votes/results/1.json');
 })
+
+.factory('FeedFlat', function ($resource, $sessionStorage) {
+    console.log('My userID: ' + $sessionStorage.uid);
+    return $resource('/api/stream/flat/' + $sessionStorage.uid + '.json');
+})
+
+.factory('FeedUser', function ($resource, $sessionStorage) {
+    console.log('My userID: ' + $sessionStorage.uid);
+    return $resource('/api/stream/user/' + $sessionStorage.uid + '.json');
+})
