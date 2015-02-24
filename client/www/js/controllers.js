@@ -92,10 +92,6 @@ angular.module('starter.controllers', ['ngStorage'])
     });
 }])
 
-.controller('CampaignCtrl', function($scope) {
-
-})
-
 .controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
@@ -182,6 +178,9 @@ angular.module('starter.controllers', ['ngStorage'])
   });
 })
 
-.controller('FeedCtrl', function($scope, FeedFlat) {
+.controller('FeedFlatCtrl', function($scope, FeedFlat) {
   $scope.feedData = FeedFlat.query();
+})
+.controller('FeedUserCtrl', function($scope, FeedUser) {
+  $scope.feedData = FeedUser.query();
 })
