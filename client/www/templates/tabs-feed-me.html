@@ -1,10 +1,20 @@
 <ion-view view-title="קמפיינים">
     <ion-content>	  
 
-<div class="button-bar">
-  <a class="button">אני</a>
-  <a class="button" href="#/tabs/feed/friends">חברים</a>
-</div>    
+  <div class="results-title-box">
+    <div class="results-title">קמפיינים</div>
+    <div class="results-subtitle">
+      אילו הבחירות היו נערכות היום,
+      <br>
+      לאיזו מפלגה הייתה מצביע?
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+	<div class="result-tabs">
+	  <a class="button button-dark">אני</a>
+	  <a class="button" href="#/tabs/feed/friends">חברים</a>
+	</div>    
 
 		<div ng-repeat="item in feedData"> 
 		  <div class="item item-avatar">
