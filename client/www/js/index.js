@@ -34,16 +34,16 @@ app.run(function($ionicPlatform) {
       abstract: true,
       templateUrl: "tabs.html"
     })
-  .state('tabs.campaign', {
-    url: '/campaign',
-    views: {
-      'tabs-campaign': {
-        templateUrl: 'templates/tabs-campaign.html',
-        controller: 'CampaignCtrl'
+    .state('tabs.campaign', {
+      url: '/campaign',
+      views: {
+        'tabs-campaign': {
+          templateUrl: 'templates/tabs-campaign.html',
+          controller: 'CampaignCtrl'
+        }
       }
-    }
-  })
-  .state('tabs.results', {
+    })
+    .state('tabs.results', {
       url: '/results',
       views: {
         'tabs-results': {
@@ -70,7 +70,25 @@ app.run(function($ionicPlatform) {
         }
       }
     })
-    
+    .state('tabs.result-area', {
+      url: '/results/area',
+      views: {
+        'tabs-chats': {
+          templateUrl: 'templates/results-area.html',
+          controller: 'ResultsAreaCtrl'
+        }
+      }
+    })
+    .state('tabs.feed', {
+        url: '/feed',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed.html',
+            controller: 'FeedCtrl'
+          }
+        }
+    })
+
    $urlRouterProvider.otherwise("/sign-in");
 
 })
