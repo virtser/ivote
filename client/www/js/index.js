@@ -26,22 +26,13 @@ app.run(function($ionicPlatform) {
   $stateProvider
     .state('signin', {
       url: "/sign-in",
-      templateUrl: "sign-in.html",
+      templateUrl: "templates/sign-in.html",
       controller: 'SignInCtrl'
     })
     .state('tabs', {
       url: "/tabs",
       abstract: true,
       templateUrl: "tabs.html"
-    })
-    .state('tabs.campaign', {
-      url: '/campaign',
-      views: {
-        'tabs-campaign': {
-          templateUrl: 'templates/tabs-campaign.html',
-          controller: 'CampaignCtrl'
-        }
-      }
     })
     .state('tabs.results', {
       url: '/results',
@@ -70,12 +61,21 @@ app.run(function($ionicPlatform) {
         }
       }
     })
-    .state('tabs.feed', {
-        url: '/feed',
+    .state('tabs.feed-me', {
+        url: '/feed/me',
         views: {
           'tabs-feed': {
-            templateUrl: 'templates/tabs-feed.html',
-            controller: 'FeedCtrl'
+            templateUrl: 'templates/tabs-feed-me.html',
+            controller: 'FeedUserCtrl'
+          }
+        }
+    })
+    .state('tabs.feed-friends', {
+        url: '/feed/friends',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed-friends.html',
+            controller: 'FeedFlatCtrl'
           }
         }
     })

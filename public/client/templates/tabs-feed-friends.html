@@ -1,0 +1,55 @@
+<ion-view view-title="קמפיינים">
+    <ion-content>	  
+
+  <div class="results-title-box">
+    <div class="results-title">קמפיינים</div>
+    <div class="results-subtitle">
+      אילו הבחירות היו נערכות היום,
+      <br>
+      לאיזו מפלגה הייתה מצביע?
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+<div class="result-tabs">
+  <a class="button" href="#/tabs/feed/me">אני</a>
+  <a class="button button-dark">חברים</a>
+</div>    
+
+		<div ng-repeat="item in feedData"> 
+		  <div class="item item-avatar">
+		    <!-- <img src="mcfly.jpg"> -->
+		    <h2>מצביע הבית היהודי</h2>
+		    <p>חבר של חבר</p>
+		  </div>
+
+		  <div class="item item-body">
+		    <!-- <img class="full-image" src="delorean.jpg"> -->
+		    <p style="font-size:30px;text-align:center;">
+		      {{ item.post }}
+		    </p>
+		    <!-- <p>
+		      <a href="#" class="subdued">1 Like</a>
+		      <a href="#" class="subdued">5 Comments</a>
+		    </p> -->
+		  </div>
+
+		  <div class="item tabs tabs-secondary tabs-icon-left">
+		  <!--   <a class="tab-item" href="#">
+		      <i class="icon ion-thumbsup"></i>
+		      Like
+		    </a>
+		    <a class="tab-item" href="#">
+		      <i class="icon ion-chatbox"></i>
+		      Comment
+		    </a> -->
+		    <a class="tab-item" href="#">
+		      <i class="icon ion-share"></i>
+		      Share
+		    </a>
+		  </div>
+
+		</div>	    
+
+    </ion-content>
+</ion-view>

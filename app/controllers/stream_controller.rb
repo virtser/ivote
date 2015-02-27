@@ -42,7 +42,7 @@ def user
 
 		# Get User activities 
 	  result = @user_feed.get(:limit=>10)
-      render json: result, status: :ok
+      render json: result["results"], status: :ok
 end
 
 # GET /stream/flat/1
@@ -58,7 +58,8 @@ def flat
 
 	  # Get Flat activities 
 	  result = @user_feed.get(:limit=>10)
-      render json: result, status: :ok
+
+      render json: result["results"], status: :ok
 end
 
 end

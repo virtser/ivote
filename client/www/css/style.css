@@ -26,10 +26,23 @@
   background-size: 148px 190px;
   background-repeat: no-repeat;
   display: block;
-  padding: 25px;
   width: 148px;
   height: 190px; }
 
+.col-note-selected{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #eeeeee;
+  background-image: url("../img/note-bg-green.png");
+  background-position: center;
+  background-size: 148px 190px;
+  background-repeat: no-repeat;
+  display: block;
+}
 a.col-note {
     text-decoration: none;
 }
@@ -55,4 +68,54 @@ padding: 5px;
 
 .result-tabs{
   text-align: center;
+}
+
+.results-title {
+display: block;
+float: right;
+font-size: 80px;
+}
+
+.results-subtitle {
+display: block;
+float: right;
+font-size: 30px;
+}
+
+.results-title-box{
+  margin: 25px;
+}
+
+.results-friend-box {
+margin: 10px;
+padding: 20px;
+background-color: #EFF0F1;
+box-shadow: 0px 2px 3px hsl(0, 0%, 53%);
+}
+
+span.friends-number {
+font-size: 40px;
+}
+
+span.friends-voted {
+font-size: 20px;
+position: relative;
+top: -5px;
+}
+
+a.friends-link {
+position: relative;
+top: -8px;
+color: hsl(210, 100%, 50%);
+margin-right: 10px;
+text-decoration: underline;
+}
+
+body{
+  color:#888888;
+  background: #F2F2F2;
+}
+
+.pane, .view ,.item{
+  background: #F2F2F2;
 }
