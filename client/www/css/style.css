@@ -57,6 +57,20 @@ body {
   font-weight: 200;
 }
 
+.post {
+  background-color: rgb(102, 102, 255);
+  color: white;
+  margin: 10px 0px;  
+}
+.post .text {
+  font-size:20px;
+  padding: 10px;
+}
+
+.loader {
+  padding:50px;
+}
+
 .row-note {
   display: -webkit-box;
   display: -webkit-flex;
