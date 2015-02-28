@@ -37,21 +37,58 @@ angular.module('starter.services', ['ngResource'])
     var PW_APP_ID = "50DBB-3F2B6";
     var pushNotification;
 
-    function initPW(pushwooshAppId) {
-      pushwooshAppId = PW_APP_ID;
-      pushNotification = window.plugins.pushNotification;
+    function initPW_iOS(pushwooshAppId) {
+        pushwooshAppId = PW_APP_ID;
+        pushNotification = window.plugins.pushNotification;
 
-      // Initialize the plugin
-      pushNotification.onDeviceReady({ pw_appid: pushwooshAppId });
+        //set push notification callback before we initialize the plugin
+        document.addEventListener('push-notification', function(event) {
+                                //get the notification payload
+                                var notification = event.notification;
 
-      //reset badges on app start
-      pushNotification.setApplicationIconBadgeNumber(0);
+                                //display alert to the user for example
+                                alert(notification.aps.alert);
+
+                                //clear the app badge
+                                pushNotification.setApplicationIconBadgeNumber(0);
+                            });
+
+        // Initialize the plugin
+        pushNotification.onDeviceReady({ pw_appid: pushwooshAppId });
+
+        //reset badges on app start
+        pushNotification.setApplicationIconBadgeNumber(0);
+    }
+
+    function initPW_Android(pushwooshAppId) {
+        pushwooshAppId = PW_APP_ID;
+        pushNotification = window.plugins.pushNotification;
+
+        //set push notification callback before we initialize the plugin
+        document.addEventListener('push-notification', function(event) {
+            var title = event.notification.title;
+            var userData = event.notification.userdata;
+
+            if(typeof(userData) != "undefined") {
+                console.warn('user data: ' + JSON.stringify(userData));
+            }
+
+            alert(title);
+        });
+
+        // Initialize the plugin
+        pushNotification.onDeviceReady({ projectid:802918675498, pw_appid : pushwooshAppId });
+
+        //reset badges on app start
+        pushNotification.setApplicationIconBadgeNumber(0);
     }
 
     var pw = {
       init: function(pushwooshAppId) {
         if (window.ionic.Platform.isIOS()) {
-          initPW(pushwooshAppId);
+          initPW_iOS(pushwooshAppId);
+        } else if (window.ionic.Platform.isAndroid()) {
+          initPW_Android(pushwooshAppId);
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
         }
@@ -61,6 +98,7 @@ angular.module('starter.services', ['ngResource'])
         var deferred = $q.defer();
         if (window.ionic.Platform.isIOS()) {
           pushNotification.registerDevice(deferred.resolve, deferred.reject);
+        } else if (window.ionic.Platform.isAndroid()) {
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
           deferred.resolve(false);
@@ -78,4 +116,3 @@ angular.module('starter.services', ['ngResource'])
     return pw;
   });
 
-  

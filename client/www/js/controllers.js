@@ -49,11 +49,16 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
         PushWoosh.registerDevice()
         .then(function(result) {
             console.log("Pushwoosh result: " + result);
-            // do what you want with the response from
-            // pushwoosh after the registration is successful
-            //
-            // member.deviceToken = result.deviceToken;
-            // member.save;
+            if (window.ionic.Platform.isIOS()) {
+                var deviceToken = status['deviceToken'];
+                console.warn('iOS push device token: ' + deviceToken);
+            }
+            } else if (window.ionic.Platform.isAndroid()) {
+                var pushToken = status;
+                console.warn('Android push token: ' + pushToken);
+            } else {
+              console.warn('[ngPushWoosh] Unsupported platform');
+            }
         });
 
         $http({
