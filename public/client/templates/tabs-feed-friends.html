@@ -1,56 +1,33 @@
-<ion-view view-title="קמפיינים">
-    <ion-content>	  
+<ion-view view-title="קמפיינים"> 
+ <ion-nav-buttons side="primary">
+  <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
+ </ion-nav-buttons>
 
-  <div class="results-title-box">
-    <div class="results-title">קמפיינים</div>
-    <div class="results-subtitle">
-      אילו הבחירות היו נערכות היום,
-      <br>
-      לאיזו מפלגה הייתה מצביע?
+        <ion-content>	  
+  <div class="row header" ng-controller="IntegrityCtrl">
+    <div class="col title">קמפיינים</div>
+    <div class="col-50">
     </div>
-    <div class="clearfix"></div>
   </div>
-
 	<div class="result-tabs">
-	  <a class="button" href="#/tabs/feed/post">כתוב</a>
 	  <a class="button" href="#/tabs/feed/me">אני</a>
 	  <a class="button button-dark" href="#/tabs/feed/friends">חברים</a>
 	</div>    
-
-		<div ng-repeat="item in feedData"> 
-		  <div class="item item-avatar">
-		    <!-- <img src="mcfly.jpg"> -->
-		    <h2>מצביע {{ item.party }}</h2>
-		    <!-- <p>חבר של חבר</p> -->
-		  </div>
-
-		  <div class="item item-body">
-		    <!-- <img class="full-image" src="delorean.jpg"> -->
-		    <p style="font-size:30px;text-align:center;">
-		      {{ item.post }}
-		    </p>
-		    <!-- <p>
-		      <a href="#" class="subdued">1 Like</a>
-		      <a href="#" class="subdued">5 Comments</a>
-		    </p> -->
-		  </div>
-
-		  <!-- <div class="item tabs tabs-secondary tabs-icon-left"> -->
-		  <!--   <a class="tab-item" href="#">
-		      <i class="icon ion-thumbsup"></i>
-		      Like
-		    </a>
-		    <a class="tab-item" href="#">
-		      <i class="icon ion-chatbox"></i>
-		      Comment
-		    </a> -->
-		 <!--    <a class="tab-item" href="#">
-		      <i class="icon ion-share"></i>
-		      Share
-		    </a>
-		  </div>
- -->
-		</div>	    
-
+	<div class="row loader" ng-hide="feedData.length > 0">
+	  	<div class="col text-center"><i class="icon ion-loading-c"></i> טוען...</div>
+	</div>
+	<div class="post" ng-repeat="item in feedData"> 
+	  <div class="row">
+	    <div class="col">מצביע\ה {{ item.party }}</div>
+	    <div class="col text-left">חבר</div>
+	  </div>
+	  <div class="row">
+	    <div class="col">
+	    	<div class="textwrapper">
+	      		<div class="text">{{ item.post }}</div>
+	      	</div>
+	    </div>
+	  </div>
+	</div>
     </ion-content>
 </ion-view>

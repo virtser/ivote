@@ -1,36 +1,39 @@
 <ion-view view-title="תוצאות - אני">
   <ion-content class="text-center">
-  <div class="results-title-box">
-    <div class="results-title">תוצאות</div>
-    <div class="results-subtitle">
-      אילו הבחירות היו נערכות היום,
-      <br>
+  <div class="row header" ng-controller="IntegrityCtrl">
+    <div class="col title">תוצאות</div>
+    <div class="col-50">      אילו הבחירות היו נערכות היום,
       לאיזו מפלגה הייתה מצביע?
     </div>
-    <div class="clearfix"></div>
-  </div>
-  
+  </div>  
   <div class="result-tabs">
     <a class="button icon button-dark" >אני</a>
     <a class="button icon" href="#/tabs/results/friends">חברים</a>
   </div>
         <div ng-repeat="party in parties">
-            <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0" >
-              <div class="col-note" data-ng-repeat="n in [0,1,2,3]">
-                <div class="col-note-selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
+            <div class="row" ng-if="$index % 4 == 0" >
+              <div class="col-25" data-ng-repeat="n in [0,1,2,3]">
+                
+
+                <div class="party-block selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
-                        <p>&nbsp;</p><p>&nbsp;</p>
-                        <h1>{{ parties[$parent.$parent.$parent.$index+n].code }}</h1>
-                        <h5>{{ parties[$parent.$parent.$parent.$index+n].name }}</h5>
-                        <p>&nbsp;</p><p>&nbsp;</p>
+                        &nbsp;
+                        &nbsp;
+                        <div class="party-code">{{ parties[$parent.$parent.$parent.$index+n].code }}</div>
+                        <div class="party-name">{{ parties[$parent.$parent.$parent.$index+n].name }}</div>
+                        &nbsp;
+                        &nbsp;
                     </div>
                 </div>
-                <div ng-if="($parent.$parent.$index+n+1) != my_vote_party">
+              
+                <div class="party-block" ng-if="($parent.$parent.$index+n+1) != my_vote_party">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
-                        <p>&nbsp;</p><p>&nbsp;</p>
-                        <h1>{{ parties[$parent.$parent.$parent.$index+n].code }}</h1>
-                        <h5>{{ parties[$parent.$parent.$parent.$index+n].name }}</h5>
-                        <p>&nbsp;</p><p>&nbsp;</p>
+                        &nbsp;
+                        &nbsp;
+                        <div class="party-code">{{ parties[$parent.$parent.$parent.$index+n].code }}</div>
+                        <div class="party-name">{{ parties[$parent.$parent.$parent.$index+n].name }}</div>
+                        &nbsp;
+                        &nbsp;
                     </div>
                 </div>
               </div>

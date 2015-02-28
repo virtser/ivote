@@ -1,26 +1,43 @@
-<ion-view title="הזדהות" left-buttons="leftButtons" right-buttons="rightButtons">
-  <ion-content has-header="true">
-    <div class="text-center">
-        <div>
-            <h1>תעודת זהות</h1>
-        </div>
-        <div>
-            <h2>
-                <p>למה אנחנו מבקשים הזדהות ?</p>
-                <p>על מנת להבטיח את אמינות התוצאות.</p>
-            </h2>
-        </div>
-        <div>
-            <h2>
-                <p>ההצבעה הינה חשאית ומאובטחת.</p>
-                <p>לעולם לא נשתף את הצבעתך או כל מידע פרטי.</p>
-            </h2>
-        </div>
-    </div>
+<ion-view title="הזדהות" hide-nav-bar="true">
+  <ion-content>
+
+    <div class="signup-header">
+      <h1>iVote</h1>
+      <div>מצביעים. משפיעים. מנצחים.</div>
+    </div>  
+
+    <div class="row main">
+      <div class="col text-left emphasized">בחרו</div>
+      <div class="col-67 text-right">      במפלגה שעבורה אתם מתכוונים להצביע בבחירות הקרובות</div>
+    </div>  
+
+    <div class="row main">
+      <div class="col text-left emphasized">צפו</div>
+      <div class="col-67 text-right">      בתוצאות הבחירות המבוססות על מעגל החברים שלכם</div>
+    </div>  
+
+    <div class="row main">
+      <div class="col text-left emphasized">השפיעו</div>
+      <div class="col-67 text-right">      על מעגל החברים שלכם תוך שמירה על פרטיות מלאה</div>
+    </div>  
+
     <div class="text-center padding">
-      <button class="button icon icon-right ion-ios7-pulse-strong button-positive" ng-click="newLogin()">
-      התחבר עם פייסבוק
+      <button class="facebook-button" ng-click="newLogin()">
       </button>
     </div>
+
+    <div class="row">
+      <div class="col text-center bold">
+        למה עלי להתחבר באמצעות פייסבוק?
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+הזדהות באמצעות פייסבוק היא הכרחית על מנת להבטיח את אמינות ההצבעה וכדי להציג את תוצאות הבחירות של מעגל החברים שלך. 
+לעולם לא נשתף את הצבעתך ו/או כל מידע פרטי השייך לחשבונך האישי.
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
