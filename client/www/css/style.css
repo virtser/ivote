@@ -185,3 +185,26 @@ text-decoration: underline;
 .pane, .view ,.item{
   background: #F2F2F2;
 }
+
+.party-block {
+  border: 1px solid grey;
+  color: black;
+  margin: 4px;
+  height: 98px;
+  box-shadow: 1px 2px 0px #888888;
+}
+
+.selected {
+  background-color: #7dc314;
+  color: white;
+} 
+
+.party-code {
+  font-size: 34px;
+} 
+
+.party-name {
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 15px
+}

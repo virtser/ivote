@@ -15,30 +15,27 @@
               <div class="col-25" data-ng-repeat="n in [0,1,2,3]">
                 
 
-                <div class="" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
+                <div class="party-block selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
                         &nbsp;
                         &nbsp;
-                        <h1>{{ parties[$parent.$parent.$parent.$index+n].code }}</h1>
-                        <h5>{{ parties[$parent.$parent.$parent.$index+n].name }}</h5>
+                        <div class="party-code">{{ parties[$parent.$parent.$parent.$index+n].code }}</div>
+                        <div class="party-name">{{ parties[$parent.$parent.$parent.$index+n].name }}</div>
                         &nbsp;
                         &nbsp;
                     </div>
                 </div>
               
-                <div ng-if="($parent.$parent.$index+n+1) != my_vote_party">
+                <div class="party-block" ng-if="($parent.$parent.$index+n+1) != my_vote_party">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
                         &nbsp;
                         &nbsp;
-                        <h1>{{ parties[$parent.$parent.$parent.$index+n].code }}</h1>
-                        <h5>{{ parties[$parent.$parent.$parent.$index+n].name }}</h5>
+                        <div class="party-code">{{ parties[$parent.$parent.$parent.$index+n].code }}</div>
+                        <div class="party-name">{{ parties[$parent.$parent.$parent.$index+n].name }}</div>
                         &nbsp;
                         &nbsp;
-              
                     </div>
                 </div>
-
-
               </div>
             </div>
         </div>
