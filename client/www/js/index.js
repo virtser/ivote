@@ -79,6 +79,15 @@ app.run(function($ionicPlatform) {
           }
         }
     })
+    .state('tabs.feed-post', {
+        url: '/feed/post',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed-post.html',
+            controller: 'FeedPostCtrl'
+          }
+        }
+    })
 
    $urlRouterProvider.otherwise("/sign-in");
 

@@ -10,10 +10,12 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('FeedFlat', function ($resource, $sessionStorage) {
     return $resource('/api/stream/flat/' + $sessionStorage.uid + '.json');
-    // return $resource('/api/stream/flat/5.json');
 })
 
 .factory('FeedUser', function ($resource, $sessionStorage) {
     return $resource('/api/stream/user/' + $sessionStorage.uid + '.json');
-    // return $resource('/api/stream/user/9.json');
+})
+
+.factory('FeedPost', function ($resource, $sessionStorage) {
+    return $resource('/api/stream/post/' + $sessionStorage.uid + '.json');
 })
