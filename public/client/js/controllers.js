@@ -2,6 +2,9 @@ angular.module('starter.controllers', ['ngStorage'])
 
 .controller('SignInCtrl', function($scope, $state, $http, $sessionStorage) {
 
+    if ($sessionStorage.uid != null)
+        $state.go('tabs.result-me');
+
   $scope.logout = function () {
     openFB.revokePermissions(
         function() {
@@ -80,52 +83,6 @@ angular.module('starter.controllers', ['ngStorage'])
         }
         facebookConnectPlugin.login(['public_profile, user_friends'], fbLoginSuccess, fbLoginError);
     };
-
-    $scope.fbLogin = function() {
-        $sessionStorage.my_vote_id = 0;
-        $sessionStorage.my_vote_party = 0;
-        $sessionStorage.uid = 0;
-        openFB.login(
-            function(response) {
-                if (response.status === 'connected') {
-                    console.log('Got Token: ' + response.authResponse.token);
-                    var msgdata = {
-                            'token' : response.authResponse.token
-                        };
-                    $http({
-                        method: 'POST',
-                        url: '/api/connect',
-                        headers: {
-                           'Content-Type': "application/x-www-form-urlencoded"
-                        },
-                        data: 'token='+response.authResponse.token
-                    })
-                    .success(function(data, status, headers, config) {
-                        $sessionStorage.uid = data.id;
-                        $http.get('/api/votes/user/'+data.id+'.json').
-                          success(function(data, status, headers, config) {
-                            if (data.length > 0) {
-                                $sessionStorage.my_vote_id = data[0].id;
-                                $sessionStorage.my_vote_party = data[0].party_id;
-                            }
-                            console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                            $state.go('tabs.result-me');
-                          }).
-                          error(function(data, status, headers, config) {
-                            $state.go('tabs.result-me');
-                          });
-                    })
-                    .error(function(data, status, headers, config) {
-                        console.log('call to our server fails');
-                        $state.go('signin');
-                    });
-                } else {
-                    alert('Facebook login failed');
-                    $state.go('tabs.home');
-                }
-            },
-            {scope: 'public_profile, user_friends'});
-    }
 
   $scope.signIn = function() {
     console.log('Sign-In');

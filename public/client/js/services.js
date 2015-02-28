@@ -4,6 +4,14 @@ angular.module('starter.services', ['ngResource'])
     return $resource('/api/parties.json');
 })
 
+.factory('GetUserID', function ($resource, $sessionStorage) {
+    return $resource('/api/connect/user/' + $sessionStorage.fbuid + '.json');
+})
+
+.factory('UserVote', function ($resource, $sessionStorage) {
+    return $resource('/api/votes/' + $sessionStorage.uid + '.json');
+})
+
 .factory('Results', function ($resource) {
     return $resource('/api/votes/results/1.json');
 })
