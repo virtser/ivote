@@ -1,4 +1,8 @@
 <ion-view view-title="קמפיינים">
+ <ion-nav-buttons side="primary">
+  <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
+ </ion-nav-buttons>
+
     <ion-content>	  
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title">קמפיינים</div>
@@ -6,7 +10,6 @@
     </div>
   </div>
 	<div class="result-tabs">
-	  <a class="button" href="#/tabs/feed/post">כתוב</a>
 	  <a class="button button-dark" href="#/tabs/feed/me">אני</a>
 	  <a class="button" href="#/tabs/feed/friends">חברים</a>
 	</div>    
@@ -19,10 +22,12 @@
 	    <div class="col text-left">חבר</div>
 	  </div>
 	  <div class="row">
-	    <div class="col text">
-	      {{ item.post }}
+	    <div class="col">
+	    	<div class="textwrapper">
+	      		<div class="text">{{ item.post }}</div>
+	      	</div>
 	    </div>
 	  </div>
-	</div>	    
+	</div>
     </ion-content>
 </ion-view>

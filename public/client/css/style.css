@@ -60,15 +60,39 @@ body {
 .post {
   background-color: rgb(102, 102, 255);
   color: white;
-  margin: 10px 0px;  
+  margin: 10px 0px;
 }
+
+.post .textwrapper {
+  min-height: 180px;
+  display: table;
+  width: 100%;
+}
+
 .post .text {
   font-size:20px;
   padding: 10px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.post-text {
+  min-height:200px;
 }
 
 .loader {
   padding:50px;
+}
+
+.tab-title {
+  font-size: 16px;
+  padding-right: 10px;
+}
+
+.ion-compose:before {
+  font-size: 28px;
+}
 }
 
 .row-note {
