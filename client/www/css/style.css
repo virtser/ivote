@@ -24,6 +24,29 @@ body {
     margin: 0px;
 }
 
+.main {
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+.main .emphasized {
+  font-size:28px;font-weight:bold;
+}
+
+.row .bold {
+  font-weight: bold;
+}
+
+.facebook-button {
+  border: 0px;
+  background-image: url('../img/sigunp.png');
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-size: 280px 44px;   
+  width: 280px;
+  height: 44px; 
+}
+
 .row-note {
   display: -webkit-box;
   display: -webkit-flex;
