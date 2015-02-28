@@ -17,13 +17,14 @@
 	  <a class="button" href="#/tabs/feed/friends">חברים</a>
 	</div>    
 
+	<form ng-submit="postToFeed()" ng-controller="FeedPostCtrl">
 	  <div class="item item-body text-center">
 	    <p style="font-size:30px;">
 	      כתוב הודעה:
 	    </p>
 
 	    <p>
-	    	<textarea name="text" placeholder="תוכן ההודעה" style="min-height:50px;"></textarea>
+	    	<textarea name="text" ng-model="text" placeholder="תוכן ההודעה" style="min-height:50px;"></textarea>
 	    </p>
 
 	    <p>
@@ -32,6 +33,7 @@
 			</button>		    
 	    </p>
 	  </div>
+	</form>
 
     </ion-content>
 </ion-view>

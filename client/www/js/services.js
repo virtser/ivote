@@ -15,7 +15,3 @@ angular.module('starter.services', ['ngResource'])
 .factory('FeedUser', function ($resource, $sessionStorage) {
     return $resource('/api/stream/user/' + $sessionStorage.uid + '.json');
 })
-
-.factory('FeedPost', function ($resource, $sessionStorage) {
-    return $resource('/api/stream/post/' + $sessionStorage.uid + '.json');
-})

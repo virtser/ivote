@@ -172,7 +172,7 @@ angular.module('starter.controllers', ['ngStorage'])
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
-  $ionicModal.fromTemplateUrl('templates/confirm-vote-modal.html', {
+  $ionicModal.fromTemplateUrl('../templates/confirm-vote-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -245,6 +245,31 @@ angular.module('starter.controllers', ['ngStorage'])
   $scope.feedData = FeedUser.query();
 })
 
-.controller('FeedPostCtrl', function($scope, FeedPost) {
-  $scope.feedData = FeedPost.query();
+.controller('FeedPostCtrl', function($scope, $state, $http, $sessionStorage) {
+
+  $scope.postToFeed = function() {
+    console.log('Post to Feed of '+ $sessionStorage.uid +', text: ' + $scope.text);
+
+    var post_data = '{ "text" : "' + $scope.text + '" }';
+
+    meth = 'POST';
+    url = '/api/stream/post/'+ $sessionStorage.uid +'.json'
+
+    $http({
+        method: meth,
+        url: url,
+        headers: {
+           'Content-Type': "application/json"
+        },
+        data: post_data
+    })
+    .success(function(data, status, headers, config) {
+        console.log("post success: " + data);
+        $state.go('tabs.feed-friends');
+    })
+    .error(function(data, status, headers, config) {
+        console.log('post failed!');
+    })
+  }
+
 })
