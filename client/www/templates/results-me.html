@@ -15,24 +15,34 @@
     <a class="button icon" href="#/tabs/results/friends">חברים</a>
   </div>
         <div ng-repeat="party in parties">
-            <div class="row-note row-center responsive-sm" ng-if="$index % 4 == 0" >
-              <div class="col-note" data-ng-repeat="n in [0,1,2,3]">
-                <div class="col-note-selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
+            <div class="row" ng-if="$index % 4 == 0" >
+              <div class="col-25" data-ng-repeat="n in [0,1,2,3]">
+                
+
+                <div class="" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
-                        <p>&nbsp;</p><p>&nbsp;</p>
+                        &nbsp;
+                        &nbsp;
                         <h1>{{ parties[$parent.$parent.$parent.$index+n].code }}</h1>
                         <h5>{{ parties[$parent.$parent.$parent.$index+n].name }}</h5>
-                        <p>&nbsp;</p><p>&nbsp;</p>
+                        &nbsp;
+                        &nbsp;
                     </div>
                 </div>
+              
                 <div ng-if="($parent.$parent.$index+n+1) != my_vote_party">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
-                        <p>&nbsp;</p><p>&nbsp;</p>
+                        &nbsp;
+                        &nbsp;
                         <h1>{{ parties[$parent.$parent.$parent.$index+n].code }}</h1>
                         <h5>{{ parties[$parent.$parent.$parent.$index+n].name }}</h5>
-                        <p>&nbsp;</p><p>&nbsp;</p>
+                        &nbsp;
+                        &nbsp;
+              
                     </div>
                 </div>
+
+
               </div>
             </div>
         </div>
