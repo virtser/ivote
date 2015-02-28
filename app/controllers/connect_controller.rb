@@ -30,7 +30,7 @@ class ConnectController < ApplicationController
       if @user.nil?
 
         # Register user
-        @user = User.new(fbuser_id: @fb_user.id, first_name: @fb_user.first_name, last_name: @fb_user.last_name, email: @fb_user.email)
+        @user = User.new(fbuser_id: @fb_user.id, first_name: @fb_user.first_name, last_name: @fb_user.last_name, email: @fb_user.email, device_token: params[:device_token])
 
         if @user.save
           logger.info  "REGISTER USER!"
