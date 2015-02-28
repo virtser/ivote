@@ -10,7 +10,7 @@
     <a class="button icon button-dark" >אני</a>
     <a class="button icon" href="#/tabs/results/friends">חברים</a>
   </div>
-        <div ng-repeat="party in parties">
+        <div ng-repeat="party in parties | limitTo: 16">
             <div class="row" ng-if="$index % 4 == 0" >
               <div class="col-25" data-ng-repeat="n in [0,1,2,3]">
                 
