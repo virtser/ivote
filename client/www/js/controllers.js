@@ -1,8 +1,8 @@
-angular.module('starter.controllers', ['ngStorage'])
+angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, ApiEndpoint) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint) {
 
-    if ($sessionStorage.uid != null)
+    if ($cookies.fbsr_1557020157879112 != null)
         $state.go('tabs.result-me');
 
   $scope.logout = function () {
