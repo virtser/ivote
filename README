@@ -1,18 +1,16 @@
 
 To setup build for native, do these steps:
 
-$ ionic plugin add org.apache.cordova.console
-$ ionic plugin add org.apache.cordova.device
-$ ionic plugin add org.apache.cordova.dialogs
-$ ionic plugin add org.apache.cordova.file
-$ ionic plugin add org.apache.cordova.media
-$ ionic plugin add https://github.com/phonegap-build/PushPlugin
+first remove the facebook connect plugin to prevent errors when adding platforms:
+
+$ ionic plugin remove com.phonegap.plugins.facebookconnect
+
+Now add pltforms
 
 $ ionic platform add android
 $ ionic platform add ios
 
-Both will give errors on facebookConnectPlugin missing APP_ID and APP_NAME, ignore)
-
+Add the facebook connect plugin back
 $ cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote"
 
 Now you should be able to build:
@@ -20,3 +18,7 @@ Now you should be able to build:
 $ ionic build ios
 $ ionic build android
 
+
+Note: why is the facebook plugin part of the repo in the first place if we remove and add?
+The reason is for web facebook login we want it in, but when moving to mobile, if its in and you do a platform add,
+you will get an error as APP_ID and APP_NAME are not set, this error prevents all plugins from being added.

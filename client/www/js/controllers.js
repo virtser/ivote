@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngStorage'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, ApiEndpoint) {
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -39,17 +39,19 @@ angular.module('starter.controllers', ['ngStorage'])
         console.log(response);
 
         console.log('Got Token: ' + response.authResponse.accessToken);
+        console.log("Api Endpoint = " + ApiEndpoint);
         $http({
             method: 'POST',
-            url: '/api/connect',
+            url: ApiEndpoint + '/connect',
             headers: {
                'Content-Type': "application/x-www-form-urlencoded"
             },
-            data: 'token='+response.authResponse.accessToken
+            data: 'token='+response.authResponse.accessToken,
+            timeout: 30000
         })
         .success(function(data, status, headers, config) {
             $sessionStorage.uid = data.id;
-            $http.get('/api/votes/user/'+data.id+'.json').
+            $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
               success(function(data, status, headers, config) {
                 if (data.length > 0) {
                     $sessionStorage.my_vote_id = data[0].id;
@@ -63,7 +65,7 @@ angular.module('starter.controllers', ['ngStorage'])
               });
         })
         .error(function(data, status, headers, config) {
-            console.log('call to our server fails');
+            console.log('call to our server fails. stat=' + status);
             $state.go('signin');
         });
 
@@ -94,7 +96,7 @@ angular.module('starter.controllers', ['ngStorage'])
                         };
                     $http({
                         method: 'POST',
-                        url: '/api/connect',
+                        url: ApiEndpoint + '/connect',
                         headers: {
                            'Content-Type': "application/x-www-form-urlencoded"
                         },
@@ -102,7 +104,7 @@ angular.module('starter.controllers', ['ngStorage'])
                     })
                     .success(function(data, status, headers, config) {
                         $sessionStorage.uid = data.id;
-                        $http.get('/api/votes/user/'+data.id+'.json').
+                        $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
                           success(function(data, status, headers, config) {
                             if (data.length > 0) {
                                 $sessionStorage.my_vote_id = data[0].id;
@@ -171,7 +173,7 @@ angular.module('starter.controllers', ['ngStorage'])
   
 })
 
-.controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
+.controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
   $ionicModal.fromTemplateUrl('templates/confirm-vote-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -191,11 +193,11 @@ angular.module('starter.controllers', ['ngStorage'])
         console.log("party = "+$scope.parties[$scope.pid].id);
         if ($sessionStorage.my_vote_id > 0) {
             meth = 'PUT';
-            url = '/api/votes/'+$sessionStorage.my_vote_id+'.json'
+            url = ApiEndpoint + '/votes/'+$sessionStorage.my_vote_id+'.json'
         }
         else {
             meth = 'POST';
-            url = '/api/votes.json';
+            url = ApiEndpoint + '/votes.json';
         }
         console.log("user id = " + $sessionStorage.uid);
         console.log("party id = "+ $scope.parties[$scope.pid].id);
