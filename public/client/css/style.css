@@ -1,13 +1,13 @@
-@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 
-/* Empty. Add your own CSS if you like */
+@import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+
 body {
   font-family: 'Open Sans Hebrew', serif;
   color:#888888;
   background: #F2F2F2;
 }
 
-.header {
+.signup-header {
   background-image: url('../img/welcome-background.png');
   color: white;
   background-repeat: no-repeat; 
@@ -19,7 +19,7 @@ body {
   padding: 2px 5px;
 }
 
-.header h1 {
+.signup-header h1 {
     color: white;
     margin: 0px;
 }
@@ -30,7 +30,8 @@ body {
 }
 
 .main .emphasized {
-  font-size:28px;font-weight:bold;
+  font-size:28px;
+  font-weight:bold;
 }
 
 .row .bold {
@@ -45,6 +46,53 @@ body {
   background-size: 280px 44px;   
   width: 280px;
   height: 44px; 
+}
+
+.header {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.header .title {
+  font-size:42px;
+  font-weight: 200;
+}
+
+.post {
+  background-color: rgb(102, 102, 255);
+  color: white;
+  margin: 10px 0px;
+}
+
+.post .textwrapper {
+  min-height: 180px;
+  display: table;
+  width: 100%;
+}
+
+.post .text {
+  font-size:20px;
+  padding: 10px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.post-text {
+  min-height:200px;
+}
+
+.loader {
+  padding:50px;
+}
+
+.tab-title {
+  font-size: 16px;
+  padding-right: 10px;
+}
+
+.ion-compose:before {
+  font-size: 28px;
+}
 }
 
 .row-note {
@@ -160,4 +208,27 @@ text-decoration: underline;
 
 .pane, .view ,.item{
   background: #F2F2F2;
+}
+
+.party-block {
+  border: 1px solid grey;
+  color: black;
+  margin: 4px;
+  height: 98px;
+  box-shadow: 1px 2px 0px #888888;
+}
+
+.selected {
+  background-color: #7dc314;
+  color: white;
+} 
+
+.party-code {
+  font-size: 34px;
+} 
+
+.party-name {
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 15px
 }

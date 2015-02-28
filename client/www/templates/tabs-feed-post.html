@@ -8,17 +8,11 @@
     	מעוניינים להשפיע? כיתבו פוסט שישלח למעגל החברים באופן אנונימי לחלוטין.
     </div>
   </div>
-	<div class="result-tabs">
-	  <a class="button button-dark" href="#/tabs/feed/post">כתוב</a>
-	  <a class="button" href="#/tabs/feed/me">אני</a>
-	  <a class="button" href="#/tabs/feed/friends">חברים</a>
-	</div>    
 	<form ng-submit="postToFeed()" ng-controller="FeedPostCtrl">
 	  <div class="item item-body text-center">
 	    <p>
-	    	<textarea name="text" ng-model="text" placeholder="תוכן ההודעה" style="min-height:50px;"></textarea>
+	    	<textarea name="text" ng-model="text" placeholder="תוכן ההודעה" class="post-text"></textarea>
 	    </p>
-
 	    <p>
 			<button class="button button-balanced">
 			  שלח קמפיין
