@@ -65,7 +65,7 @@ gulp.task('add-proxy', function() {
 gulp.task('remove-proxy', function() {
   return replace({
     regex: "http://localhost:8100/api",
-    replacement: "https://ivote.org.il/apis",
+    replacement: "https://ivote.org.il/api",
     paths: replaceFiles,
     recursive: false,
     silent: false,
