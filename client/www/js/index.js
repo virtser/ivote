@@ -4,7 +4,7 @@ var uid = 0;
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']);
 // angular.module('ionicApp', ['ionic'])
 
-app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint) {
+app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -13,6 +13,7 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    PushWoosh.init();
   });
 })
 

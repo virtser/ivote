@@ -1,11 +1,11 @@
 angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
 
-    if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
-        console.log('Auto login');
-        $state.go('tabs.result-me');
-    }
+    // if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
+    //     console.log('Auto login');
+    //     $state.go('tabs.result-me');
+    // }
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -45,6 +45,21 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
         console.log('Got Token: ' + response.authResponse.accessToken);
         console.log("Api Endpoint = " + ApiEndpoint);
+
+        PushWoosh.registerDevice()
+        .then(function(result) {
+            console.log("Pushwoosh result: " + result);
+            if (window.ionic.Platform.isIOS()) {
+                var deviceToken = status['deviceToken'];
+                console.warn('iOS push device token: ' + deviceToken);
+            } else if (window.ionic.Platform.isAndroid()) {
+                var pushToken = status;
+                console.warn('Android push token: ' + pushToken);
+            } else {
+              console.warn('[ngPushWoosh] Unsupported platform');
+            }
+        });
+
         $http({
             method: 'POST',
             url: ApiEndpoint + '/connect',
@@ -246,11 +261,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 })
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
-    
-    $scope.ctrIndex = 16;
 
-    if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
-        console.log('Bad integrity. Logging out.');
-        $state.go('signin');        
-    }
+    // if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
+    //     console.log('Bad integrity. Logging out.');
+    //     $state.go('signin');        
+    // }
 })
