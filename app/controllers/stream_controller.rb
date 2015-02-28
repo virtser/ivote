@@ -39,6 +39,7 @@ def user
 
 	  # Instantiate Stream user feed object
 	  @user_feed = @stream_client.feed('user', @user_id)
+	  # logger.info "Following feeds: " +	@user_feed.following(10).to_yaml
 
 		# Get User activities 
 	  result = @user_feed.get(:limit=>10)
