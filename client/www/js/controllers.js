@@ -2,8 +2,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 .controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
 
-    if ($cookies.fbsr_1557020157879112 != null)
+    if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
+        console.log('Auto login');
         $state.go('tabs.result-me');
+    }
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -229,4 +231,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
     })
   }
 
+})
+
+.controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
+    if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
+        console.log('Bad integrity. Logging out.');
+        $state.go('signin');        
+    }
 })
