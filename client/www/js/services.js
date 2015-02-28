@@ -16,7 +16,7 @@ angular.module('starter.services', ['ngResource'])
     return $resource(ApiEndpoint + '/votes/' + $sessionStorage.uid + '.json');
 })
 
-.factory('Results', function ($resource) {
+.factory('Results', function ($resource, ApiEndpoint) {
     return $resource(ApiEndpoint + '/votes/results/1.json');
 })
 
