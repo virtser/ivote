@@ -65,6 +65,7 @@ GEM
     minitest (5.5.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    pg (0.17.1)
     rack (1.5.2)
     rack-oauth2 (1.0.10)
       activesupport (>= 2.3)
@@ -140,6 +141,7 @@ DEPENDENCIES
   fb_graph2
   jbuilder (~> 2.0)
   jquery-rails
+  pg (= 0.17.1)
   rails (= 4.1.6)
   rails_12factor (= 0.0.2)
   sass-rails (~> 4.0.3)
