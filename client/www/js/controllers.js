@@ -2,6 +2,9 @@ angular.module('starter.controllers', ['ngStorage'])
 
 .controller('SignInCtrl', function($scope, $state, $http, $sessionStorage) {
 
+    if ($sessionStorage.uid != null)
+        $state.go('tabs.result-me');
+
   $scope.logout = function () {
     openFB.revokePermissions(
         function() {
