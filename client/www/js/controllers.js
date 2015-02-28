@@ -172,7 +172,7 @@ angular.module('starter.controllers', ['ngStorage'])
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties) {
-  $ionicModal.fromTemplateUrl('../templates/confirm-vote-modal.html', {
+  $ionicModal.fromTemplateUrl('templates/confirm-vote-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
