@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150221122236) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "parties", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -35,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150221122236) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "fbuser_id",  limit: 8
+    t.integer  "fbuser_id"
   end
 
   create_table "votes", force: true do |t|
