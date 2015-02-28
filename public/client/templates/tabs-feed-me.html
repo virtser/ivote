@@ -12,15 +12,16 @@
   </div>
 
 	<div class="result-tabs">
-	  <a class="button button-dark">אני</a>
+	  <a class="button" href="#/tabs/feed/post">כתוב</a>
+	  <a class="button button-dark" href="#/tabs/feed/me">אני</a>
 	  <a class="button" href="#/tabs/feed/friends">חברים</a>
 	</div>    
 
 		<div ng-repeat="item in feedData"> 
 		  <div class="item item-avatar">
 		    <!-- <img src="mcfly.jpg"> -->
-		    <h2>מצביע הבית היהודי</h2>
-		    <p>חבר של חבר</p>
+		    <h2>מצביע {{ item.party }}</h2>
+		    <!-- <p>חבר של חבר</p> -->
 		  </div>
 
 		  <div class="item item-body">
@@ -34,7 +35,7 @@
 		    </p> -->
 		  </div>
 
-		  <div class="item tabs tabs-secondary tabs-icon-left">
+		  <!-- <div class="item tabs tabs-secondary tabs-icon-left"> -->
 		  <!--   <a class="tab-item" href="#">
 		      <i class="icon ion-thumbsup"></i>
 		      Like
@@ -43,11 +44,11 @@
 		      <i class="icon ion-chatbox"></i>
 		      Comment
 		    </a> -->
-		    <a class="tab-item" href="#">
-		      <i class="icon ion-share"></i>
-		      Share
-		    </a>
-		  </div>
+		    <!-- <a class="tab-item" href="#"> -->
+		      <!-- <i class="icon ion-share"></i> -->
+		      <!-- Share -->
+		    <!-- </a> -->
+		  <!-- </div> -->
 
 		</div>	    
 

@@ -4,7 +4,7 @@ var uid = 0;
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']);
 // angular.module('ionicApp', ['ionic'])
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $rootScope, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,7 +21,7 @@ app.run(function($ionicPlatform) {
 .config(function($stateProvider, $urlRouterProvider) {
 
   // ttvote: openFB.init({appId: '788436027893381'});
-  openFB.init({appId: '1557020157879112'});
+  // openFB.init({appId: '1557020157879112'});
 
   $stateProvider
     .state('signin', {
@@ -61,6 +61,15 @@ app.run(function($ionicPlatform) {
         }
       }
     })
+    .state('tabs.feed', {
+      url: '/feed',
+      views: {
+        'tabs-feed': {
+          templateUrl: 'templates/tabs-feed-friends.html',
+          controller: 'FeedFlatCtrl'
+        }
+      }
+    })
     .state('tabs.feed-me', {
         url: '/feed/me',
         views: {
@@ -76,6 +85,15 @@ app.run(function($ionicPlatform) {
           'tabs-feed': {
             templateUrl: 'templates/tabs-feed-friends.html',
             controller: 'FeedFlatCtrl'
+          }
+        }
+    })
+    .state('tabs.feed-post', {
+        url: '/feed/post',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed-post.html',
+            controller: 'FeedPostCtrl'
           }
         }
     })
