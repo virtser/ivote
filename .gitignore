@@ -19,3 +19,7 @@
 /tmp
 *.orig
 *.log
+client/platforms/android
+client/platforms/ios
+client/plugins/android.json
+client/plugins/ios.json

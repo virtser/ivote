@@ -4,10 +4,19 @@ var uid = 0;
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']);
 // angular.module('ionicApp', ['ionic'])
 
-app.run(function($ionicPlatform, $rootScope, $state) {
+app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    /***
+        if (window.cordova) {
+            ApiEndpoint = 'https://ivote.org.il/api';
+        }
+        else {
+            console.log("change API endpoint to local!");
+            ApiEndpoint = 'http://localhost:8100/api';
+        }
+    ***/
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -17,6 +26,9 @@ app.run(function($ionicPlatform, $rootScope, $state) {
     }
   });
 })
+
+.value('ApiEndpoint', 'http://localhost:8100/api')
+//.value('ApiEndpoint', 'https://ivote.org.il/api')
 
 .config(function($stateProvider, $urlRouterProvider) {
 
