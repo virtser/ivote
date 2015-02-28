@@ -2,6 +2,14 @@ require 'stream'
 
 class ConnectController < ApplicationController
 
+  # GET /user/1.json
+  def user
+    unless params[:fbuser_id].nil?
+      @user = User.find_by(fbuser_id: params[:fbuser_id])
+      render json: @user.id, status: :ok
+    end
+  end
+
   # POST /connect
   # POST /connect.json
   def create
@@ -10,6 +18,7 @@ class ConnectController < ApplicationController
 
       # Get more data on user from Facebook
       @fb_user = FbGraph2::User.me(params[:token]).fetch
+      logger.info "FB user details: " + @fb_user.to_yaml
 
       # Initialize Syream client with your api key and secret
       client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')

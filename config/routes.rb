@@ -15,6 +15,7 @@ scope '/api' do
 
   scope '/connect' do
     post '/' => 'connect#create'
+    get  '/user/:fbuser_id' => 'connect#user'
   end
 
   scope '/stream' do
