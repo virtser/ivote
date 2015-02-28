@@ -52,7 +52,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
             if (window.ionic.Platform.isIOS()) {
                 var deviceToken = status['deviceToken'];
                 console.warn('iOS push device token: ' + deviceToken);
-            }
             } else if (window.ionic.Platform.isAndroid()) {
                 var pushToken = status;
                 console.warn('Android push token: ' + pushToken);
