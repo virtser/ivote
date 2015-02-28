@@ -16,6 +16,12 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
-    "https://github.com/Wizcorp/phonegap-facebook-plugin.git"
+    "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
+    "org.apache.cordova.console",
+    "org.apache.cordova.device",
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.file",
+    "https://github.com/phonegap-build/PushPlugin",
+    "org.apache.cordova.media"
   ]
 }
