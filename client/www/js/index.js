@@ -32,9 +32,6 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint) {
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // ttvote: openFB.init({appId: '788436027893381'});
-  // openFB.init({appId: '1557020157879112'});
-
   $stateProvider
     .state('signin', {
       url: "/sign-in",
@@ -70,6 +67,15 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint) {
         'tabs-results': {
           templateUrl: 'templates/results-friends.html',
           controller: 'ResultsFriendsCtrl'
+        }
+      }
+    })
+    .state('tabs.feed', {
+      url: '/feed',
+      views: {
+        'tabs-feed': {
+          templateUrl: 'templates/tabs-feed-friends.html',
+          controller: 'FeedFlatCtrl'
         }
       }
     })

@@ -4,7 +4,19 @@ angular.module('starter.services', ['ngResource'])
     return $resource(ApiEndpoint + '/parties.json');
 })
 
-.factory('Results', function ($resource, ApiEndpoint) {
+.factory('Results', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/votes/results/1.json');
+})
+
+.factory('GetUserID', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/connect/user/' + $sessionStorage.fbuid + '.json');
+})
+
+.factory('UserVote', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/votes/' + $sessionStorage.uid + '.json');
+})
+
+.factory('Results', function ($resource) {
     return $resource(ApiEndpoint + '/votes/results/1.json');
 })
 

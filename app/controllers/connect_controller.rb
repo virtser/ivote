@@ -2,6 +2,14 @@ require 'stream'
 
 class ConnectController < ApplicationController
 
+  # GET /user/1.json
+  def user
+    unless params[:fbuser_id].nil?
+      @user = User.find_by(fbuser_id: params[:fbuser_id])
+      render json: @user.id, status: :ok
+    end
+  end
+
   # POST /connect
   # POST /connect.json
   def create
@@ -10,9 +18,10 @@ class ConnectController < ApplicationController
 
       # Get more data on user from Facebook
       @fb_user = FbGraph2::User.me(params[:token]).fetch
+      logger.info "FB user details: " + @fb_user.to_yaml
 
       # Initialize Syream client with your api key and secret
-      @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
+      client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
 
       # Get user details
       @user = User.find_by(fbuser_id: @fb_user.id)
@@ -27,7 +36,8 @@ class ConnectController < ApplicationController
           logger.info  "REGISTER USER!"
 
           # Instantiate Stream user feed object
-          @user_feed = @stream_client.feed('flat', @user.id)
+          my_user_feed = client.feed('user', @user.id)
+          my_flat_feed = client.feed('flat', @user.id)
 
           # Save user friends 
           @fb_user.friends.each do |u|
@@ -37,16 +47,15 @@ class ConnectController < ApplicationController
               @relation = Relation.new(user_id: @user.id, friend_user_id: @friend.id)
               @relation.save
 
-              # Follow Stream of another feed
-              @user_feed.follow('user', @friend.id)
-
               @opposite_relation = Relation.new(user_id: @friend.id, friend_user_id: @user.id)
               @opposite_relation.save
 
-              # Instantiate Stream user feed object
-              @user_feed = @stream_client.feed('flat', @friend.id)
-              # Follow Stream of another feed
-              @user_feed.follow('user', @user.id)
+              # Follow Stream of friend
+              my_flat_feed.follow('user', @friend.id)
+
+              # Opposite follow 
+              friend_flat_feed = client.feed('flat', @friend.id)
+              friend_flat_feed.follow('user', @user.id)
 
               logger.info 'SAVING RELATIONS!'
             end 
