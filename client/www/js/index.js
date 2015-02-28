@@ -61,6 +61,15 @@ app.run(function($ionicPlatform, $rootScope, $state) {
         }
       }
     })
+    .state('tabs.feed', {
+      url: '/feed',
+      views: {
+        'tabs-feed': {
+          templateUrl: 'templates/tabs-feed-friends.html',
+          controller: 'FeedFlatCtrl'
+        }
+      }
+    })
     .state('tabs.feed-me', {
         url: '/feed/me',
         views: {

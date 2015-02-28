@@ -21,7 +21,7 @@ def post
 	  # Add the activity to the Stream feed
   	  activity_data = {:actor => @user_id, :verb => 'post', :object => 1, :post => @text}
 	  activity_response = @user_feed.add_activity(activity_data)      
-      
+
       render json: activity_response, status: :ok
     else
       logger.error  "ERROR!"
@@ -42,6 +42,17 @@ def user
 
 		# Get User activities 
 	  result = @user_feed.get(:limit=>10)
+
+	  result["results"].each_with_index do |item, index|
+
+		  @user_party_id = Vote.where(user_id: item["actor"]).limit(1).pluck(:party_id)
+
+		  # Get user party
+		  @party_name = Party.where(id: @user_party_id).pluck(:name).first
+		  result["results"][index]["party"] = @party_name
+
+	  end
+
       render json: result["results"], status: :ok
 end
 
@@ -58,6 +69,16 @@ def flat
 
 	  # Get Flat activities 
 	  result = @user_feed.get(:limit=>10)
+
+	  result["results"].each_with_index do |item, index|
+
+		  @user_party_id = Vote.where(user_id: item["actor"]).limit(1).pluck(:party_id)
+
+		  # Get user party
+		  @party_name = Party.where(id: @user_party_id).pluck(:name).first
+		  result["results"][index]["party"] = @party_name
+
+	  end
 
       render json: result["results"], status: :ok
 end
