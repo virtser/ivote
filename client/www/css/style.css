@@ -90,6 +90,11 @@ body {
   padding-right: 10px;
 }
 
+.ion-compose:before {
+  font-size: 28px;
+}
+}
+
 .row-note {
   display: -webkit-box;
   display: -webkit-flex;

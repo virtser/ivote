@@ -1,12 +1,15 @@
-<ion-view view-title="קמפיינים">
-    <ion-content>	  
+<ion-view view-title="קמפיינים"> 
+ <ion-nav-buttons side="primary">
+  <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
+ </ion-nav-buttons>
+
+        <ion-content>	  
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title">קמפיינים</div>
     <div class="col-50">
     </div>
   </div>
 	<div class="result-tabs">
-	  <a class="button" href="#/tabs/feed/post">כתוב</a>
 	  <a class="button" href="#/tabs/feed/me">אני</a>
 	  <a class="button button-dark" href="#/tabs/feed/friends">חברים</a>
 	</div>    
