@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
 
     if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
         console.log('Auto login');
@@ -45,6 +45,17 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
         console.log('Got Token: ' + response.authResponse.accessToken);
         console.log("Api Endpoint = " + ApiEndpoint);
+
+        PushWoosh.registerDevice()
+        .then(function(result) {
+            console.log("Pushwoosh result: " + result);
+            // do what you want with the response from
+            // pushwoosh after the registration is successful
+            //
+            // member.deviceToken = result.deviceToken;
+            // member.save;
+        });
+
         $http({
             method: 'POST',
             url: ApiEndpoint + '/connect',

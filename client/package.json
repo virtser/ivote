@@ -23,6 +23,7 @@
     "org.apache.cordova.file",
     "https://github.com/phonegap-build/PushPlugin",
     "org.apache.cordova.media",
-    "https://github.com/Wizcorp/phonegap-facebook-plugin.git"
+    "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
+    "com.pushwoosh.plugins.pushwoosh"
   ]
 }
