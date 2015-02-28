@@ -45,6 +45,7 @@ class ConnectController < ApplicationController
 
               # Instantiate Stream user feed object
               @user_feed = @stream_client.feed('flat', @friend.id)
+              
               # Follow Stream of another feed
               @user_feed.follow('user', @user.id)
 
