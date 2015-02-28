@@ -280,3 +280,7 @@ a.friends-link {
 .btn-wrapper {
   margin-top: 40px;
 }
+
+.result-btn {
+  height: 80px;
+}
