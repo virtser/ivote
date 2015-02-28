@@ -1,1 +1,15 @@
-Hello world
+
+To setup build for native, do these steps:
+
+$ ionic platform add android
+$ ionic platform add ios
+
+Both will give errors on facebookConnectPlugin missing APP_ID and APP_NAME, ignore)
+
+$ cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote"
+
+Now you should be able to build:
+
+$ ionic build ios
+$ ionic build android
+
