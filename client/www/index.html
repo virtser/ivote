@@ -33,35 +33,6 @@
 
   <ion-nav-view animation="slide-left-right"></ion-nav-view>
 
-  <script id="sign-in.html" type="text/ng-template">
-    <ion-view title="הזדהות" left-buttons="leftButtons" right-buttons="rightButtons">
-      <ion-content has-header="true">
-        <div class="text-center">
-            <div>
-                <h1>תעודת זהות</h1>
-            </div>
-            <div>
-                <h2>
-                    <p>למה אנחנו מבקשים הזדהות ?</p>
-                    <p>על מנת להבטיח את אמינות התוצאות.</p>
-                </h2>
-            </div>
-            <div>
-                <h2>
-                    <p>ההצבעה הינה חשאית ומאובטחת.</p>
-                    <p>לעולם לא נשתף את הצבעתך או כל מידע פרטי.</p>
-                </h2>
-            </div>
-        </div>
-        <div class="text-center padding">
-          <button class="button icon icon-right ion-ios7-pulse-strong button-positive" ng-click="fbLogin()">
-          התחבר עם פייסבוק
-          </button>
-        </div>
-      </ion-content>
-    </ion-view>
-  </script>
-
   <script id="tabs.html" type="text/ng-template">
 
   <ion-nav-bar animation="nav-title-slide-ios7"
@@ -86,35 +57,8 @@
     </ion-tabs>
   </script>
 
-  <script id="my-modal.html" type="text/ng-template">
-    <ion-modal-view>
-      <ion-header-bar>
-        <h1 class="title">Confirm Vote</h1>
-      </ion-header-bar>
-      <ion-content>
-          <div class="row-note row-center responsive-sm">
-            <div class="col-note">
-              <div style="text-align:center;">
-                <h1>{{ parties[pid].code }}</h1>
-                <h5>{{ parties[pid].name }}</h5>
-              </div>
-            </div>
-          </div>
-          <div class="row-note row-center responsive-sm">
-            <div class="col-50">
-                  <button class="button button-block button-balanced" ng-click="confirmVote()">
-                  אישור
-                  </button>
-            </div>
-            <div class="col-50">
-                  <button class="button button-block button-dark" ng-click="closeModal()">
-                  ביטול
-                  </button>
-            </div>
-          </div>
-      </ion-content>
-    </ion-modal-view>
-  </script>
+<div id="fb-root"></div>
+<script src="lib/facebookConnectPlugin.js"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
