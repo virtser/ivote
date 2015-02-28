@@ -13,15 +13,16 @@
 	<div class="row loader" ng-hide="feedData.length > 0">
 	  	<div class="col text-center"><i class="icon ion-loading-c"></i> טוען...</div>
 	</div>
-
 	<div class="post" ng-repeat="item in feedData"> 
 	  <div class="row">
 	    <div class="col">מצביע\ה {{ item.party }}</div>
 	    <div class="col text-left">חבר</div>
 	  </div>
 	  <div class="row">
-	    <div class="col text">
-	      {{ item.post }}
+	    <div class="col">
+	    	<div class="textwrapper">
+	      		<div class="text">{{ item.post }}</div>
+	      	</div>
 	    </div>
 	  </div>
 	</div>
