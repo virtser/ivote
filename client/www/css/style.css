@@ -211,6 +211,7 @@ a.friends-link {
 }
 
 .party-block {
+  background-color: white;
   border: 1px solid grey;
   color: black;
   margin: 4px;

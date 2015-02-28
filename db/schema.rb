@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221122236) do
+ActiveRecord::Schema.define(version: 20150228204234) do
 
   create_table "parties", force: true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150221122236) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fbuser_id"
+    t.string   "email"
   end
 
   create_table "votes", force: true do |t|
