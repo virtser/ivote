@@ -10,23 +10,23 @@
     <a class="button icon button-dark" >אני</a>
     <a class="button icon" href="#/tabs/results/friends">חברים</a>
   </div>
-        <div ng-repeat="party in parties | limitTo: 16">
-            <div class="row" ng-if="$index % 4 == 0" >
+        <div ng-repeat="party in parties">
+            <div class="row" ng-if="$index % 4 == 0 && $index < indexCtrl">
+              {{$index}}
               <div class="col-25" data-ng-repeat="n in [0,1,2,3]">
-                
-
-                <div class="party-block selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party">
+                {{ $parent.$parent.$index+n }}
+                <div class="party-block selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party && ($index+n != 25 || $index+n != 26) ">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
                         &nbsp;
                         &nbsp;
-                        <div class="party-code">{{ parties[$parent.$parent.$parent.$index+n].code }}</div>
+                        <div nclass="party-code">{{ parties[$parent.$parent.$parent.$index+n].code }}</div>
                         <div class="party-name">{{ parties[$parent.$parent.$parent.$index+n].name }}</div>
                         &nbsp;
                         &nbsp;
                     </div>
                 </div>
               
-                <div class="party-block" ng-if="($parent.$parent.$index+n+1) != my_vote_party">
+                <div class="party-block" ng-if="($parent.$parent.$index+n+1) != my_vote_party && ($parent.$parent.$index+n  != 26 || $parent.$parent.$index+n  != 27)">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
                         &nbsp;
                         &nbsp;
@@ -36,6 +36,20 @@
                         &nbsp;
                     </div>
                 </div>
+              </div>
+            </div>
+            <div class="row" ng-if="$index == 15">
+              <div class="col-50  col-offset-6">
+                <button class="button button-large button-block button-balanced" ng-click="showMore()">
+                אחר
+                </button>
+              </div>
+             <div class="col-50  col-offset-6">
+                <button class="button button-large button-block button-assertive"
+                ng-controller='ConfirmVoteCtrl' ng-click="openModal(26)">
+                >
+                לא מצביע
+                </button>
               </div>
             </div>
         </div>

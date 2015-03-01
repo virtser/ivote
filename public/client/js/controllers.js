@@ -115,6 +115,13 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 })
 
 .controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
+    $scope.indexCtrl= 16;
+    
+    $scope.showMore = function() {
+      $scope.indexCtrl = 25;
+      console.log(" $scope.ctrIndex ",  $scope.ctrIndex = 25);
+   };
+
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
     $scope.my_vote_id = $sessionStorage.my_vote_id;
@@ -125,6 +132,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply");
     });
+
+
+
 }])
 
 .controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
@@ -251,6 +261,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 })
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
+
     // if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
     //     console.log('Bad integrity. Logging out.');
     //     $state.go('signin');        
