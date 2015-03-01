@@ -2,10 +2,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 .controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
 
-    // if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
-    //     console.log('Auto login');
-    //     $state.go('tabs.result-me');
-    // }
+    if ($sessionStorage.uid != null) {
+        console.log('Auto login');
+        $state.go('tabs.result-friends');
+    }
 
     function connectToOurServer(authToken, devToken) {
             $http({
@@ -26,10 +26,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
                         $sessionStorage.my_vote_party = data[0].party_id;
                     }
                     console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                    $state.go('tabs.result-me');
+                    $state.go('tabs.result-friends');
                   }).
                   error(function(data, status, headers, config) {
-                    $state.go('tabs.result-me');
+                    $state.go('tabs.result-friends');
                   });
             })
             .error(function(data, status, headers, config) {
@@ -89,7 +89,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
-        facebookConnectPlugin.login(['public_profile, user_friends'], fbLoginSuccess, fbLoginError);
+        facebookConnectPlugin.login(['public_profile, user_friends, email'], fbLoginSuccess, fbLoginError);
     };
 
   $scope.signIn = function() {
@@ -251,8 +251,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
 
-    // if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
-    //     console.log('Bad integrity. Logging out.');
-    //     $state.go('signin');        
-    // }
+    if ($sessionStorage.uid == null) {
+        console.log('Bad integrity. Logging out.');
+        $state.go('signin');        
+    }
 })
