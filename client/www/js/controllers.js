@@ -48,45 +48,51 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
         PushWoosh.registerDevice()
         .then(function(result) {
-            console.log("Pushwoosh result: " + result);
+            console.log("Pushwoosh result2: ", result);
+            var devToken = "";
             if (window.ionic.Platform.isIOS()) {
-                var deviceToken = status['deviceToken'];
-                console.warn('iOS push device token: ' + deviceToken);
-            } else if (window.ionic.Platform.isAndroid()) {
-                var pushToken = status;
-                console.warn('Android push token: ' + pushToken);
-            } else {
+                devToken = "&device_token=" + result['deviceToken'];
+                console.warn('iOS push device token: ' + result['deviceToken']);
+            }
+            else if (window.ionic.Platform.isAndroid()) {
+                devToken = "&device_token=" + result;
+                console.warn('Android push token: ' + result);
+            }
+            else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
-        });
 
-        $http({
-            method: 'POST',
-            url: ApiEndpoint + '/connect',
-            headers: {
-               'Content-Type': "application/x-www-form-urlencoded"
-            },
-            data: 'token='+response.authResponse.accessToken,
-            timeout: 30000
-        })
-        .success(function(data, status, headers, config) {
-            $sessionStorage.uid = data.id;
-            $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
-              success(function(data, status, headers, config) {
-                if (data.length > 0) {
-                    $sessionStorage.my_vote_id = data[0].id;
-                    $sessionStorage.my_vote_party = data[0].party_id;
-                }
-                console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                $state.go('tabs.result-me');
-              }).
-              error(function(data, status, headers, config) {
-                $state.go('tabs.result-me');
-              });
-        })
-        .error(function(data, status, headers, config) {
-            console.log('call to our server fails. stat=' + status);
-            $state.go('signin');
+            $http({
+                method: 'POST',
+                url: ApiEndpoint + '/connect',
+                headers: {
+                   'Content-Type': "application/x-www-form-urlencoded"
+                },
+                data: 'token='+response.authResponse.accessToken+devToken,
+                timeout: 30000
+            })
+            .success(function(data, status, headers, config) {
+                $sessionStorage.uid = data.id;
+                $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
+                  success(function(data, status, headers, config) {
+                    if (data.length > 0) {
+                        $sessionStorage.my_vote_id = data[0].id;
+                        $sessionStorage.my_vote_party = data[0].party_id;
+                    }
+                    console.log("i last voted for: "+$sessionStorage.my_vote_id);
+                    $state.go('tabs.result-me');
+                  }).
+                  error(function(data, status, headers, config) {
+                    $state.go('tabs.result-me');
+                  });
+            })
+            .error(function(data, status, headers, config) {
+                console.log('call to our server fails. stat=' + status);
+                $state.go('signin');
+            });
+
+        }, function(reason) {
+                console.log('PushWoosh.registerDevice fails. reason=' + reason);
         });
 
     };

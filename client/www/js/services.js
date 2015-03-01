@@ -99,6 +99,7 @@ angular.module('starter.services', ['ngResource'])
         if (window.ionic.Platform.isIOS()) {
           pushNotification.registerDevice(deferred.resolve, deferred.reject);
         } else if (window.ionic.Platform.isAndroid()) {
+          pushNotification.registerDevice(deferred.resolve, deferred.reject);
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
           deferred.resolve(false);
