@@ -137,7 +137,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 }])
 
-.controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
+.controller('ResultsFriendsCtrl', function($scope, Results, Parties) {
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -147,7 +147,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
           if (value.party_id == party.id)
             value.name = party.name;
         })
-        console.log(value);
+        // console.log(value);
       });
       $scope.results.total_number_of_votes = total_number_of_votes;
     });

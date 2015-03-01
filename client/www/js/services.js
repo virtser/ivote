@@ -5,7 +5,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('Results', function ($resource, $sessionStorage, ApiEndpoint) {
-    return $resource(ApiEndpoint + '/votes/results/1.json');
+    return $resource(ApiEndpoint + '/votes/results/' + $sessionStorage.uid + '.json');
 })
 
 .factory('GetUserID', function ($resource, $sessionStorage, ApiEndpoint) {
@@ -14,10 +14,6 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('UserVote', function ($resource, $sessionStorage, ApiEndpoint) {
     return $resource(ApiEndpoint + '/votes/' + $sessionStorage.uid + '.json');
-})
-
-.factory('Results', function ($resource, ApiEndpoint) {
-    return $resource(ApiEndpoint + '/votes/results/1.json');
 })
 
 .factory('FeedFlat', function ($resource, $sessionStorage, ApiEndpoint) {
@@ -101,7 +97,7 @@ angular.module('starter.services', ['ngResource'])
         } else if (window.ionic.Platform.isAndroid()) {
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
-          deferred.resolve(false);
+          returndeferred.resolve(false);
         }
         return deferred.promise;
       },
