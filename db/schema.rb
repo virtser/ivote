@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150301210538) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "device_token"
-    t.integer  "fb_user_id"
+    t.integer  "fb_user_id", :bigint
   end
 
   create_table "votes", force: true do |t|
