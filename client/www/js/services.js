@@ -98,7 +98,7 @@ angular.module('starter.services', ['ngResource'])
           pushNotification.registerDevice(deferred.resolve, deferred.reject);
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
-          returndeferred.resolve(false);
+          deferred.reject("Push not supported on this platform");
         }
         return deferred.promise;
       },

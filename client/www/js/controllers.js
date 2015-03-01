@@ -7,25 +7,36 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
     //     $state.go('tabs.result-me');
     // }
 
-  $scope.logout = function () {
-    openFB.revokePermissions(
-        function() {
-            alert('Permissions revoked');
-        },
-        function(error) {
-            alert(error.message);
-        }
-    );
-
-    openFB.fbLogout(
-        function() {
-            alert ('Facebook Logout Successful.');
-        },
-        function(error) {
-            alert(error.message);
-        }
-    );
-  }
+    function connectToOurServer(authToken, devToken) {
+            $http({
+                method: 'POST',
+                url: ApiEndpoint + '/connect',
+                headers: {
+                   'Content-Type': "application/x-www-form-urlencoded"
+                },
+                data: authToken+devToken,
+                timeout: 30000
+            })
+            .success(function(data, status, headers, config) {
+                $sessionStorage.uid = data.id;
+                $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
+                  success(function(data, status, headers, config) {
+                    if (data.length > 0) {
+                        $sessionStorage.my_vote_id = data[0].id;
+                        $sessionStorage.my_vote_party = data[0].party_id;
+                    }
+                    console.log("i last voted for: "+$sessionStorage.my_vote_id);
+                    $state.go('tabs.result-me');
+                  }).
+                  error(function(data, status, headers, config) {
+                    $state.go('tabs.result-me');
+                  });
+            })
+            .error(function(data, status, headers, config) {
+                console.log('call to our server fails. stat=' + status);
+                $state.go('signin');
+            });
+    }
 
     var fbLoginSuccess = function(response) {
         if (!response.authResponse){
@@ -61,38 +72,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
             else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
-
-            $http({
-                method: 'POST',
-                url: ApiEndpoint + '/connect',
-                headers: {
-                   'Content-Type': "application/x-www-form-urlencoded"
-                },
-                data: 'token='+response.authResponse.accessToken+devToken,
-                timeout: 30000
-            })
-            .success(function(data, status, headers, config) {
-                $sessionStorage.uid = data.id;
-                $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
-                  success(function(data, status, headers, config) {
-                    if (data.length > 0) {
-                        $sessionStorage.my_vote_id = data[0].id;
-                        $sessionStorage.my_vote_party = data[0].party_id;
-                    }
-                    console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                    $state.go('tabs.result-me');
-                  }).
-                  error(function(data, status, headers, config) {
-                    $state.go('tabs.result-me');
-                  });
-            })
-            .error(function(data, status, headers, config) {
-                console.log('call to our server fails. stat=' + status);
-                $state.go('signin');
-            });
-
+            connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
                 console.log('PushWoosh.registerDevice fails. reason=' + reason);
+            connectToOurServer('token='+response.authResponse.accessToken, "");
         });
 
     };
