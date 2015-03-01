@@ -1,13 +1,9 @@
-angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
+angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 'starter.utils'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
-
-    if ($sessionStorage.uid != null) {
-        console.log('Auto login');
-        $state.go('tabs.result-friends');
-    }
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh, $localstorage) {
 
     function connectToOurServer(authToken, devToken) {
+            console.log("calling our server with authToken = " + authToken + " devToken = " + devToken);
             $http({
                 method: 'POST',
                 url: ApiEndpoint + '/connect',
@@ -19,6 +15,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
             })
             .success(function(data, status, headers, config) {
                 $sessionStorage.uid = data.id;
+                $localstorage.set('uid', data.id);
                 $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
                   success(function(data, status, headers, config) {
                     if (data.length > 0) {
@@ -42,6 +39,15 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
             });
     }
 
+    console.log("localstorage token = " + $localstorage.get('fb_token'));
+    console.log("localstorage uid = " + $localstorage.get('uid'));
+    if ($localstorage.get('fb_token') != null && ($localstorage.get('uid') != null)) {
+        $sessionStorage.uid = $localstorage.get('uid');
+        console.log('Auto login');
+        connectToOurServer('token='+$localstorage.get('fb_token'), "");
+        // $state.go('tabs.result-me');
+    }
+
     var fbLoginSuccess = function(response) {
         if (!response.authResponse){
             fbLoginError("Cannot find the authResponse");
@@ -60,6 +66,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
         console.log('Got Token: ' + response.authResponse.accessToken);
         console.log("Api Endpoint = " + ApiEndpoint);
+        $localstorage.set('fb_token', response.authResponse.accessToken)
 
         PushWoosh.registerDevice()
         .then(function(result) {
@@ -130,7 +137,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 }])
 
-.controller('ResultsFriendsCtrl', function($scope, Results, Parties) {
+.controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -146,7 +153,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
     });
     
   });
-  
+
+  $scope.shareAnywhere = function() {
+      $cordovaSocialSharing.share("תראו איך החברים שלי מצביעים", "הצבעות חברים", "../img/ivote-logo.png", "https://ivote.org.il");
+  }  
   
 })
 
@@ -253,10 +263,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 })
 
-.controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
-
-    if ($sessionStorage.uid == null) {
+.controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies, $localstorage) {
+    if ($localstorage.get('fb_token', null) == null || ($sessionStorage.uid == null)) {
         console.log('Bad integrity. Logging out.');
-        $state.go('signin');        
+        $state.go('signin');
     }
 })
