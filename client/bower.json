@@ -8,6 +8,7 @@
     "angular-resource": "~1.3.13",
     "ngstorage": "~0.3.0",
     "ngCordova": "~0.1.12-alpha",
-    "angular-cookies": "~1.3.14"
+    "angular-cookies": "~1.3.14",
+    "ng-cordova": "~0.0.3"
   }
 }
