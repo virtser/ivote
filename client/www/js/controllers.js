@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
+angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova'])
 
 .controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
 
@@ -130,7 +130,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 }])
 
-.controller('ResultsFriendsCtrl', function($scope, Results, Parties) {
+.controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -146,7 +146,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
     });
     
   });
-  
+
+  $scope.shareAnywhere = function() {
+      $cordovaSocialSharing.share("תראו איך החברים שלי מצביעים", "הצבעות חברים", "../img/ivote-logo.png", "https://ivote.org.il");
+  }  
   
 })
 
