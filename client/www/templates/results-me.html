@@ -12,9 +12,7 @@
   </div>
         <div ng-repeat="party in parties">
             <div class="row" ng-if="$index % 4 == 0 && $index < indexCtrl">
-              {{$index}}
               <div class="col-25" data-ng-repeat="n in [0,1,2,3]">
-                {{ $parent.$parent.$index+n }}
                 <div class="party-block selected" ng-if="($parent.$parent.$index+n+1) == my_vote_party && ($index+n != 25 || $index+n != 26) ">
                     <div ng-controller='ConfirmVoteCtrl' ng-click="openModal({{ $parent.$parent.$parent.$index+n }})">
                         &nbsp;
