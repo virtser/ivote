@@ -25,12 +25,14 @@ class ConnectController < ApplicationController
 
       # Get user details
       @user = User.find_by(fb_id: fb_user.id)
+      logger.info @user.to_yaml
 
       # Check if user not registered yet
       if @user.nil?
 
         # Register user
         @user = User.new(fb_id: fb_user.id, first_name: fb_user.first_name, last_name: fb_user.last_name, email: fb_user.email, device_token: params[:device_token])
+        logger.info @user.to_yaml
 
         if @user.save
           logger.info  "REGISTER USER!"
