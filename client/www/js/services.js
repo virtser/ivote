@@ -97,7 +97,7 @@ angular.module('starter.services', ['ngResource'])
         } else if (window.ionic.Platform.isAndroid()) {
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
-          returndeferred.resolve(false);
+          deferred.resolve(false);
         }
         return deferred.promise;
       },

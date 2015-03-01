@@ -78,10 +78,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
                     $sessionStorage.my_vote_party = data[0].party_id;
                 }
                 console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                $state.go('tabs.result-me');
+                $state.go('tabs.result-friends');
               }).
               error(function(data, status, headers, config) {
-                $state.go('tabs.result-me');
+                $state.go('tabs.result-friends');
               });
         })
         .error(function(data, status, headers, config) {
