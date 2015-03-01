@@ -23,7 +23,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'starter.utils'
                         $sessionStorage.my_vote_party = data[0].party_id;
                     }
                     console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                    $state.go('tabs.result-me');
+
+                    if ($sessionStorage.my_vote_id != null)
+                      $state.go('tabs.result-friends');
+                    else
+                      $state.go('tabs.result-me');
                   }).
                   error(function(data, status, headers, config) {
                     $state.go('tabs.result-me');
@@ -96,7 +100,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'starter.utils'
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
-        facebookConnectPlugin.login(['public_profile, user_friends'], fbLoginSuccess, fbLoginError);
+        facebookConnectPlugin.login(['public_profile, user_friends, email'], fbLoginSuccess, fbLoginError);
     };
 
   $scope.signIn = function() {
@@ -257,7 +261,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'starter.utils'
 })
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies, $localstorage) {
-//    if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
     if ($localstorage.get('fb_token', null) == null || ($sessionStorage.uid == null)) {
         console.log('Bad integrity. Logging out.');
         $state.go('signin');
