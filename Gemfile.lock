@@ -38,6 +38,7 @@ GEM
       execjs
     coffee-script-source (1.9.0)
     erubis (2.7.0)
+    excon (0.44.3)
     execjs (2.3.0)
     fb_graph2 (0.5.0)
       activesupport (>= 3.2)
@@ -61,6 +62,9 @@ GEM
     json (1.8.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (2.4.3)
     minitest (5.5.1)
     multi_json (1.10.1)
@@ -141,6 +145,7 @@ DEPENDENCIES
   fb_graph2
   jbuilder (~> 2.0)
   jquery-rails
+  mandrill-api
   pg (= 0.17.1)
   rails (= 4.1.6)
   rails_12factor (= 0.0.2)
