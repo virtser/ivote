@@ -1,11 +1,11 @@
 angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
 
-    if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
-        console.log('Auto login');
-        $state.go('tabs.result-me');
-    }
+    // if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
+    //     console.log('Auto login');
+    //     $state.go('tabs.result-me');
+    // }
 
   $scope.logout = function () {
     openFB.revokePermissions(
@@ -45,6 +45,21 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
         console.log('Got Token: ' + response.authResponse.accessToken);
         console.log("Api Endpoint = " + ApiEndpoint);
+
+        PushWoosh.registerDevice()
+        .then(function(result) {
+            console.log("Pushwoosh result: " + result);
+            if (window.ionic.Platform.isIOS()) {
+                var deviceToken = status['deviceToken'];
+                console.warn('iOS push device token: ' + deviceToken);
+            } else if (window.ionic.Platform.isAndroid()) {
+                var pushToken = status;
+                console.warn('Android push token: ' + pushToken);
+            } else {
+              console.warn('[ngPushWoosh] Unsupported platform');
+            }
+        });
+
         $http({
             method: 'POST',
             url: ApiEndpoint + '/connect',
@@ -100,6 +115,13 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 })
 
 .controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
+    $scope.indexCtrl= 16;
+    
+    $scope.showMore = function() {
+      $scope.indexCtrl = 25;
+      console.log(" $scope.ctrIndex ",  $scope.ctrIndex = 25);
+   };
+
     $scope.parties = Parties.query();
     $scope.user_id = $sessionStorage.uid;
     $scope.my_vote_id = $sessionStorage.my_vote_id;
@@ -110,6 +132,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply");
     });
+
+
+
 }])
 
 .controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
@@ -236,8 +261,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 })
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
-    if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
-        console.log('Bad integrity. Logging out.');
-        $state.go('signin');        
-    }
+
+    // if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
+    //     console.log('Bad integrity. Logging out.');
+    //     $state.go('signin');        
+    // }
 })

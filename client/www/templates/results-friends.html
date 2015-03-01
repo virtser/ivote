@@ -2,10 +2,13 @@
  <ion-nav-buttons side="primary">
   <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
  </ion-nav-buttons>
+ <ion-nav-buttons side="secondary">
+  <a class="button ion-share" href="#/tabs/share" style="border:0px"></a>
+ </ion-nav-buttons>
   <ion-content>
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title">תוצאות</div>
-    <div class="col-50">      לחץ על העמודות כדי,
+    <div class="col-50">      לחץ על העמודות כדי,<br/>
       להוסיף לקואליציה
     </div>
   </div>
@@ -13,17 +16,18 @@
     <a class="button icon" href="#/tabs/results/me">אני</a>
     <a class="button icon button-dark" >חברים</a>
   </div>  
-  <div class="results-friend-box">
+  <div class="button button-full button-positive">
     <span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span>
   </div>
   <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
-        <div class="result-party">{{result.name}}</div>
-        <div class="result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
-        <div class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</div>
-        </div>
-        <a class="friends-link">{{result.number_of_votes}} חברים</a>
+        <div class="row">
+          <div class="col result-party">{{result.name}}</div>
+          <div class="col result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
+          <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</span>
+          </div>  
+          <div class="col"><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
       </ion-item>
     </ion-list>
   </ion-content>
