@@ -158,8 +158,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     });
   });
 
-  $scope.shareAnywhere = function() {
-      $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
+  $scope.shareAnywhere = function(message, subject) {
+      console.log("Message: " + message + ", subject: " + subject);
+      $cordovaSocialSharing.share(message, subject, "../img/ivote-logo.png", "https://ivote.org.il");
   }    
 })
 
