@@ -116,7 +116,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 .controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
     $scope.indexCtrl= 16;
-    
+
     $scope.showMore = function() {
       $scope.indexCtrl = 25;
       console.log(" $scope.ctrIndex ",  $scope.ctrIndex = 25);
@@ -141,6 +141,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
+      $scope.totalSelected = 0;
+
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
@@ -149,12 +151,18 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
         })
         // console.log(value);
       });
+      $scope.toggleItem = function (result) {
+        var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
+        result.selected = !result.selected;
+        $scope.totalSelected += seats * (result.selected ? 1 : -1);
+        $scope.selectedPercents = $scope.totalSelected * 100 / 120;
+      };
       $scope.results.total_number_of_votes = total_number_of_votes;
     });
-    
+
   });
-  
-  
+
+
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
