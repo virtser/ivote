@@ -89,14 +89,16 @@ end
 
    def send_mail
       user_id = params[:user_id].to_s
-      logger.info "UserId: " + user_id
+      logger.info "UserId: " + user_id.to_yaml
 
       friends = Relation.where(user_id: user_id)
+      logger.info "Friends IDs: " + friends.to_yaml
 
       friends.each do |f|
+        logger.info "Friend: " + f.to_yaml
 
         email = User.where(id: f[:friend_user_id]).pluck(:email).first
-        logger.info "User email: " + email
+        logger.info "Friend email: " + email.to_yaml
 
         begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'

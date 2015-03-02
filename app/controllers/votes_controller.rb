@@ -128,7 +128,6 @@ class VotesController < ApplicationController
       friends.each do |f|
 
         email = User.where(id: f[:friend_user_id]).pluck(:email).first
-        logger.info "User email: " + email
 
         begin
             mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
