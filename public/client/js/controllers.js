@@ -114,7 +114,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   console.log('HomeTabCtrl');
 })
 
-.controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
+.controller('ResultsMeCtrl', ['$scope', '$state', 'Parties', '$sessionStorage', function($scope, $state, Parties, $sessionStorage) {
     $scope.indexCtrl= 16;
     
     $scope.showMore = function() {
@@ -127,20 +127,19 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.my_vote_id = $sessionStorage.my_vote_id;
     $scope.my_vote_party = $sessionStorage.my_vote_party;
     $scope.$on('vote:updated', function(event,data) {
-        console.log("vote updated");
-        $scope.my_vote_id = $sessionStorage.my_vote_id;
+        console.log("vote:updated: " + JSON.stringify(data));
+        $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
-        console.log("vote updated after apply");
+        console.log("vote updated after apply: " + $scope.my_vote_id);
+        $state.go('tabs.result-friends');
     });
-
-
-
 }])
 
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
+      $scope.totalSelected = 0;
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
@@ -149,15 +148,19 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         })
         // console.log(value);
       });
+      $scope.toggleItem = function (result) {
+        var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
+        result.selected = !result.selected;
+        $scope.totalSelected += seats * (result.selected ? 1 : -1);
+        $scope.selectedPercents = $scope.totalSelected * 100 / 120;
+      };
       $scope.results.total_number_of_votes = total_number_of_votes;
     });
-    
   });
 
   $scope.shareAnywhere = function() {
-      $cordovaSocialSharing.share("תראו איך החברים שלי מצביעים", "הצבעות חברים", "../img/ivote-logo.png", "https://ivote.org.il");
-  }  
-  
+      $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
+  }    
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
@@ -177,7 +180,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.modal.hide();
   };
   $scope.confirmVote = function() {
-        console.log("party = "+$scope.parties[$scope.pid].id);
+        console.log("confirm vote party = " + $scope.parties[$scope.pid].id);
+        console.log("confirm vote my_vote_id = " + $sessionStorage.my_vote_id);
         if ($sessionStorage.my_vote_id > 0) {
             meth = 'PUT';
             url = ApiEndpoint + '/votes/'+$sessionStorage.my_vote_id+'.json'
@@ -202,7 +206,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             data: vote_data
         })
         .success(function(data, status, headers, config) {
-            console.log("vote success: " + data);
             $sessionStorage.my_vote_party = $scope.parties[$scope.pid].id;
             $rootScope.$broadcast('vote:updated',data);
             $scope.modal.hide();
@@ -239,26 +242,29 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   $scope.postToFeed = function() {
     console.log('Post to Feed of '+ $sessionStorage.uid +', text: ' + $scope.text);
 
-    var post_data = '{ "text" : "' + $scope.text + '" }';
+    if ($scope.text != '' && $scope.text != 'undefined') {
 
-    meth = 'POST';
-    url = '/api/stream/post/'+ $sessionStorage.uid +'.json'
+      var post_data = '{ "text" : "' + $scope.text + '" }';
 
-    $http({
-        method: meth,
-        url: url,
-        headers: {
-           'Content-Type': "application/json"
-        },
-        data: post_data
-    })
-    .success(function(data, status, headers, config) {
-        console.log("post success: " + data);
-        $state.go('tabs.feed-friends');
-    })
-    .error(function(data, status, headers, config) {
-        console.log('post failed!');
-    })
+      meth = 'POST';
+      url = '/api/stream/post/'+ $sessionStorage.uid +'.json'
+
+      $http({
+          method: meth,
+          url: url,
+          headers: {
+             'Content-Type': "application/json"
+          },
+          data: post_data
+      })
+      .success(function(data, status, headers, config) {
+          console.log("post success: " + data);
+          $state.go('tabs.feed-friends');
+      })
+      .error(function(data, status, headers, config) {
+          console.log('post failed!');
+      })
+    }
   }
 
 })
