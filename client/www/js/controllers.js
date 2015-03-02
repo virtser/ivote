@@ -127,10 +127,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.my_vote_id = $sessionStorage.my_vote_id;
     $scope.my_vote_party = $sessionStorage.my_vote_party;
     $scope.$on('vote:updated', function(event,data) {
-        console.log("vote updated");
-        $scope.my_vote_id = $sessionStorage.my_vote_id;
+        console.log("vote:updated: " + JSON.stringify(data));
+        $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
-        console.log("vote updated after apply");
+        console.log("vote updated after apply: " + $scope.my_vote_id);
     });
 
 
@@ -161,7 +161,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   });
 
   $scope.shareAnywhere = function() {
-      $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
+      $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
   }  
   
 })
@@ -183,7 +183,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.modal.hide();
   };
   $scope.confirmVote = function() {
-        console.log("party = "+$scope.parties[$scope.pid].id);
+        console.log("confirm vote party = " + $scope.parties[$scope.pid].id);
+        console.log("confirm vote my_vote_id = " + $sessionStorage.my_vote_id);
         if ($sessionStorage.my_vote_id > 0) {
             meth = 'PUT';
             url = ApiEndpoint + '/votes/'+$sessionStorage.my_vote_id+'.json'
@@ -208,7 +209,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             data: vote_data
         })
         .success(function(data, status, headers, config) {
-            console.log("vote success: " + data);
             $sessionStorage.my_vote_party = $scope.parties[$scope.pid].id;
             $rootScope.$broadcast('vote:updated',data);
             $scope.modal.hide();
