@@ -90,7 +90,7 @@ body {
   padding-right: 10px;
 }
 
-.ion-compose:before {
+.ion-compose:before, .ion-share:before {
   font-size: 28px;
 }
 }

@@ -1,31 +1,52 @@
-angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
+angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 'starter.utils'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh, $localstorage) {
 
-    // if (($cookies.fbsr_1557020157879112 != null) && ($sessionStorage.uid != null)) {
-    //     console.log('Auto login');
-    //     $state.go('tabs.result-me');
-    // }
+    function connectToOurServer(authToken, devToken) {
+            console.log("calling our server with authToken = " + authToken + " devToken = " + devToken);
+            $http({
+                method: 'POST',
+                url: ApiEndpoint + '/connect',
+                headers: {
+                   'Content-Type': "application/x-www-form-urlencoded"
+                },
+                data: authToken+devToken,
+                timeout: 30000
+            })
+            .success(function(data, status, headers, config) {
+                $sessionStorage.uid = data.id;
+                $localstorage.set('uid', data.id);
+                $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
+                  success(function(data, status, headers, config) {
+                    if (data.length > 0) {
+                        $sessionStorage.my_vote_id = data[0].id;
+                        $sessionStorage.my_vote_party = data[0].party_id;
+                    }
+                    console.log("i last voted for: "+$sessionStorage.my_vote_id);
 
-  $scope.logout = function () {
-    openFB.revokePermissions(
-        function() {
-            alert('Permissions revoked');
-        },
-        function(error) {
-            alert(error.message);
-        }
-    );
+                    if ($sessionStorage.my_vote_id != null)
+                      $state.go('tabs.result-friends');
+                    else
+                      $state.go('tabs.result-me');
+                  }).
+                  error(function(data, status, headers, config) {
+                    $state.go('tabs.result-me');
+                  });
+            })
+            .error(function(data, status, headers, config) {
+                console.log('call to our server fails. stat=' + status);
+                $state.go('signin');
+            });
+    }
 
-    openFB.fbLogout(
-        function() {
-            alert ('Facebook Logout Successful.');
-        },
-        function(error) {
-            alert(error.message);
-        }
-    );
-  }
+    console.log("localstorage token = " + $localstorage.get('fb_token'));
+    console.log("localstorage uid = " + $localstorage.get('uid'));
+    if ($localstorage.get('fb_token') != null && ($localstorage.get('uid') != null)) {
+        $sessionStorage.uid = $localstorage.get('uid');
+        console.log('Auto login');
+        connectToOurServer('token='+$localstorage.get('fb_token'), "");
+        // $state.go('tabs.result-me');
+    }
 
     var fbLoginSuccess = function(response) {
         if (!response.authResponse){
@@ -45,48 +66,27 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
         console.log('Got Token: ' + response.authResponse.accessToken);
         console.log("Api Endpoint = " + ApiEndpoint);
+        $localstorage.set('fb_token', response.authResponse.accessToken)
 
         PushWoosh.registerDevice()
         .then(function(result) {
-            console.log("Pushwoosh result: " + result);
+            console.log("Pushwoosh result2: ", result);
+            var devToken = "";
             if (window.ionic.Platform.isIOS()) {
-                var deviceToken = status['deviceToken'];
-                console.warn('iOS push device token: ' + deviceToken);
-            } else if (window.ionic.Platform.isAndroid()) {
-                var pushToken = status;
-                console.warn('Android push token: ' + pushToken);
-            } else {
+                devToken = "&device_token=" + result['deviceToken'];
+                console.warn('iOS push device token: ' + result['deviceToken']);
+            }
+            else if (window.ionic.Platform.isAndroid()) {
+                devToken = "&device_token=" + result;
+                console.warn('Android push token: ' + result);
+            }
+            else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
-        });
-
-        $http({
-            method: 'POST',
-            url: ApiEndpoint + '/connect',
-            headers: {
-               'Content-Type': "application/x-www-form-urlencoded"
-            },
-            data: 'token='+response.authResponse.accessToken,
-            timeout: 30000
-        })
-        .success(function(data, status, headers, config) {
-            $sessionStorage.uid = data.id;
-            $http.get(ApiEndpoint + '/votes/user/'+data.id+'.json').
-              success(function(data, status, headers, config) {
-                if (data.length > 0) {
-                    $sessionStorage.my_vote_id = data[0].id;
-                    $sessionStorage.my_vote_party = data[0].party_id;
-                }
-                console.log("i last voted for: "+$sessionStorage.my_vote_id);
-                $state.go('tabs.result-me');
-              }).
-              error(function(data, status, headers, config) {
-                $state.go('tabs.result-me');
-              });
-        })
-        .error(function(data, status, headers, config) {
-            console.log('call to our server fails. stat=' + status);
-            $state.go('signin');
+            connectToOurServer('token='+response.authResponse.accessToken, devToken);
+        }, function(reason) {
+                console.log('PushWoosh.registerDevice fails. reason=' + reason);
+            connectToOurServer('token='+response.authResponse.accessToken, "");
         });
 
     };
@@ -100,7 +100,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
-        facebookConnectPlugin.login(['public_profile, user_friends'], fbLoginSuccess, fbLoginError);
+        facebookConnectPlugin.login(['public_profile, user_friends, email'], fbLoginSuccess, fbLoginError);
     };
 
   $scope.signIn = function() {
@@ -137,7 +137,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 }])
 
-.controller('ResultsFriendsCtrl', function($scope,Results,Parties) {
+.controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -147,13 +147,16 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
           if (value.party_id == party.id)
             value.name = party.name;
         })
-        console.log(value);
+        // console.log(value);
       });
       $scope.results.total_number_of_votes = total_number_of_votes;
     });
     
   });
-  
+
+  $scope.shareAnywhere = function() {
+      $cordovaSocialSharing.share("תראו איך החברים שלי מצביעים", "הצבעות חברים", "../img/ivote-logo.png", "https://ivote.org.il");
+  }  
   
 })
 
@@ -260,10 +263,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies'])
 
 })
 
-.controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies) {
-
-    // if (($cookies.fbsr_1557020157879112 == null) || ($sessionStorage.uid == null)) {
-    //     console.log('Bad integrity. Logging out.');
-    //     $state.go('signin');        
-    // }
+.controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies, $localstorage) {
+    if ($localstorage.get('fb_token', null) == null || ($sessionStorage.uid == null)) {
+        console.log('Bad integrity. Logging out.');
+        $state.go('signin');
+    }
 })

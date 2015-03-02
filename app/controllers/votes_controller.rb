@@ -1,3 +1,5 @@
+require 'mandrill'
+
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
@@ -65,6 +67,9 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
+
+        send_mail
+
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
         format.json { render :show, status: :created, location: @vote }
       else
@@ -107,5 +112,66 @@ class VotesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
       params.require(:vote).permit(:user_id, :party_id)
+    end
+
+    def send_mail
+      begin
+          mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
+          template_name = "example template_name"
+          template_content = [{"content"=>"example content", "name"=>"example name"}]
+          message = {"subject"=>"example subject",
+           "text"=>"Example text content",
+           "merge_vars"=>
+              [{"vars"=>[{"content"=>"merge2 content", "name"=>"merge2"}],
+                  "rcpt"=>"recipient.email@example.com"}],
+           "merge_language"=>"mailchimp",
+           "merge"=>true,
+           "global_merge_vars"=>[{"content"=>"merge1 content", "name"=>"merge1"}],
+           "auto_html"=>nil,
+           "images"=>
+              [{"type"=>"image/png", "content"=>"ZXhhbXBsZSBmaWxl", "name"=>"IMAGECID"}],
+           "attachments"=>
+              [{"type"=>"text/plain",
+                  "content"=>"ZXhhbXBsZSBmaWxl",
+                  "name"=>"myfile.txt"}],
+           "google_analytics_domains"=>["example.com"],
+           "tags"=>["password-resets"],
+           "headers"=>{"Reply-To"=>"message.reply@example.com"},
+           "subaccount"=>"customer-123",
+           "return_path_domain"=>nil,
+           "auto_text"=>nil,
+           "to"=>
+              [{"email"=>"recipient.email@example.com",
+                  "type"=>"to",
+                  "name"=>"Recipient Name"}],
+           "from_name"=>"Example Name",
+           "bcc_address"=>"message.bcc_address@example.com",
+           "preserve_recipients"=>nil,
+           "track_clicks"=>nil,
+           "track_opens"=>nil,
+           "inline_css"=>nil,
+           "from_email"=>"message.from_email@example.com",
+           "recipient_metadata"=>
+              [{"rcpt"=>"recipient.email@example.com", "values"=>{"user_id"=>123456}}],
+           "view_content_link"=>nil,
+           "url_strip_qs"=>nil,
+           "metadata"=>{"website"=>"www.example.com"},
+           "google_analytics_campaign"=>"message.from_email@example.com",
+           "signing_domain"=>nil,
+           "tracking_domain"=>nil,
+           "important"=>false,
+           "html"=>"<p>Example HTML content</p>"}
+          async = false
+          # ip_pool = "Main Pool"
+          # send_at = "example send_at"
+          result = mandrill.messages.send_template template_name, template_content, message, async
+
+          logger.info "Email sending result: " + result.to_yaml
+          
+      rescue Mandrill::Error => e
+          # Mandrill errors are thrown as exceptions
+          logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
+          # raise
+      end      
     end
 end

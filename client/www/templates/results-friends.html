@@ -1,11 +1,9 @@
 <ion-view view-title="תוצאות - חברים">
-
-
-  <ion-nav-buttons side="primary">
+ <!-- <ion-nav-buttons side="primary">
   <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
- </ion-nav-buttons>
+ </ion-nav-buttons> -->
  <ion-nav-buttons side="secondary">
-  <a class="button ion-share" href="#/tabs/share" style="border:0px"></a>
+  <a class="button ion-share" ng-click="shareAnywhere()" style="border:0px"></a>
  </ion-nav-buttons>
   <ion-content>
   <div class="row header" ng-controller="IntegrityCtrl">
@@ -15,29 +13,25 @@
     </div>
   </div>
   <div class="result-tabs">
-
     <a class="button icon" href="#/tabs/results/me">אני</a>
     <a class="button icon button-dark" >חברים</a>
-  </div>
+  </div>  
   <div class="button button-full button-positive">
     <span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span>
   </div>
   <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" ng-class="{ selected: result.selected }" ng-click="toggleItem(result)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
         <div class="row">
           <div class="col result-party">{{result.name}}</div>
           <div class="col result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
           <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</span>
-          </div>
+          </div>  
           <div class="col"><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
-        </div>
       </ion-item>
     </ion-list>
   </ion-content>
-
-  <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
+ <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
     <div class="total-bar" ng-class="{valid: selectedPercents >= 61}" style="width: {{selectedPercents}}%">{{totalSelected}}</div>
   </div>
-
 </ion-view>

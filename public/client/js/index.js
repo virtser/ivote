@@ -1,7 +1,7 @@
 var uid = 0;
 // var serverPrefix = "https://ivoteorgil.herokuapp.com/client";
 
-var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services']);
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.utils']);
 // angular.module('ionicApp', ['ionic'])
 
 app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh) {

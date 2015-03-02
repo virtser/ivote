@@ -5,7 +5,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('Results', function ($resource, $sessionStorage, ApiEndpoint) {
-    return $resource(ApiEndpoint + '/votes/results/1.json');
+    return $resource(ApiEndpoint + '/votes/results/' + $sessionStorage.uid + '.json');
 })
 
 .factory('GetUserID', function ($resource, $sessionStorage, ApiEndpoint) {
@@ -14,10 +14,6 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('UserVote', function ($resource, $sessionStorage, ApiEndpoint) {
     return $resource(ApiEndpoint + '/votes/' + $sessionStorage.uid + '.json');
-})
-
-.factory('Results', function ($resource, ApiEndpoint) {
-    return $resource(ApiEndpoint + '/votes/results/1.json');
 })
 
 .factory('FeedFlat', function ($resource, $sessionStorage, ApiEndpoint) {
@@ -99,9 +95,10 @@ angular.module('starter.services', ['ngResource'])
         if (window.ionic.Platform.isIOS()) {
           pushNotification.registerDevice(deferred.resolve, deferred.reject);
         } else if (window.ionic.Platform.isAndroid()) {
+          pushNotification.registerDevice(deferred.resolve, deferred.reject);
         } else {
           console.warn('[ngPushWoosh] Unsupported platform');
-          deferred.resolve(false);
+          deferred.reject("Push not supported on this platform");
         }
         return deferred.promise;
       },
