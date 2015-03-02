@@ -4,9 +4,9 @@
 # Install server
 gem install rails --version=4.1.6
 
+bundle install
 rake db:migrate
 rake db:seed
-
 
 # Install client
 sudo npm install -g cordova ionic
