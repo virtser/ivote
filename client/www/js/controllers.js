@@ -49,6 +49,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     }
 
     var fbLoginSuccess = function(response) {
+        console.log('fbLoginSuccess');
+
         if (!response.authResponse){
             fbLoginError("Cannot find the authResponse");
             $state.go('tabs.home');
@@ -68,10 +70,12 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         console.log("Api Endpoint = " + ApiEndpoint);
         $localstorage.set('fb_token', response.authResponse.accessToken)
 
+        var devToken = "";
+
+      try {
         PushWoosh.registerDevice()
         .then(function(result) {
             console.log("Pushwoosh result2: ", result);
-            var devToken = "";
             if (window.ionic.Platform.isIOS()) {
                 devToken = "&device_token=" + result['deviceToken'];
                 console.warn('iOS push device token: ' + result['deviceToken']);
@@ -83,20 +87,23 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
-            connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
-                console.log('PushWoosh.registerDevice fails. reason=' + reason);
-            connectToOurServer('token='+response.authResponse.accessToken, "");
+            console.log('PushWoosh.registerDevice fails. reason=' + reason);
         });
+      }
+      catch(err) {
+        console.error(err.message);
+      }
 
+      connectToOurServer('token='+response.authResponse.accessToken, devToken);
     };
 
     var fbLoginError = function(error){
-        console.log("error: " + error);
+        alert("fbLoginError: " + error);
     };
 
     $scope.newLogin = function() {
-        console.log('Login');
+        console.log('newLogin');
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
