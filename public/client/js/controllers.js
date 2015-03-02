@@ -49,7 +49,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     }
 
     var fbLoginSuccess = function(response) {
-        alert('fbLoginSuccess');
+        console.log('fbLoginSuccess');
 
         if (!response.authResponse){
             fbLoginError("Cannot find the authResponse");
@@ -64,36 +64,38 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             access_token: response.authResponse.accessToken,
             expiration_date: expDate
         }
-        alert(response);
+        console.log(response);
 
-        alert('Got Token: ' + response.authResponse.accessToken);
-        alert("Api Endpoint = " + ApiEndpoint);
+        console.log('Got Token: ' + response.authResponse.accessToken);
+        console.log("Api Endpoint = " + ApiEndpoint);
         $localstorage.set('fb_token', response.authResponse.accessToken)
 
+        var devToken = "";
+
+      try {
         PushWoosh.registerDevice()
         .then(function(result) {
             console.log("Pushwoosh result2: ", result);
-            var devToken = "";
             if (window.ionic.Platform.isIOS()) {
                 devToken = "&device_token=" + result['deviceToken'];
                 console.warn('iOS push device token: ' + result['deviceToken']);
-                alert('iOS platform');
             }
             else if (window.ionic.Platform.isAndroid()) {
                 devToken = "&device_token=" + result;
                 console.warn('Android push token: ' + result);
-                alert('Android platform');
             }
             else {
-              alert('Unsupported platform');
               console.warn('[ngPushWoosh] Unsupported platform');
             }
-            connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
-            alert('Not Registered');
             console.log('PushWoosh.registerDevice fails. reason=' + reason);
-            connectToOurServer('token='+response.authResponse.accessToken, "");
         });
+      }
+      catch(err) {
+        console.error(err.message);
+      }
+
+      connectToOurServer('token='+response.authResponse.accessToken, devToken);
     };
 
     var fbLoginError = function(error){
@@ -101,7 +103,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     };
 
     $scope.newLogin = function() {
-        alert('newLogin');
+        console.log('newLogin');
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
