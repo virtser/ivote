@@ -77,20 +77,23 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             if (window.ionic.Platform.isIOS()) {
                 devToken = "&device_token=" + result['deviceToken'];
                 console.warn('iOS push device token: ' + result['deviceToken']);
+                alert('iOS platform');
             }
             else if (window.ionic.Platform.isAndroid()) {
                 devToken = "&device_token=" + result;
                 console.warn('Android push token: ' + result);
+                alert('Android platform');
             }
             else {
+              alert('Unsupported platform');
               console.warn('[ngPushWoosh] Unsupported platform');
             }
             connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
-                console.log('PushWoosh.registerDevice fails. reason=' + reason);
+            alert('Not Registered');
+            console.log('PushWoosh.registerDevice fails. reason=' + reason);
             connectToOurServer('token='+response.authResponse.accessToken, "");
         });
-
     };
 
     var fbLoginError = function(error){
