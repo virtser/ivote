@@ -114,7 +114,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   console.log('HomeTabCtrl');
 })
 
-.controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
+.controller('ResultsMeCtrl', ['$scope', '$state', 'Parties', '$sessionStorage', function($scope, $state, Parties, $sessionStorage) {
     $scope.indexCtrl= 16;
     
     $scope.showMore = function() {
@@ -131,10 +131,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply: " + $scope.my_vote_id);
+        $state.go('tabs.result-friends');
     });
-
-
-
 }])
 
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
@@ -162,8 +160,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
   $scope.shareAnywhere = function() {
       $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
-  }  
-  
+  }    
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
