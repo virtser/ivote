@@ -92,7 +92,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     };
 
     var fbLoginError = function(error){
-        console.log("error: " + error);
+        alert("error: " + error);
     };
 
     $scope.newLogin = function() {
