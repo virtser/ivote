@@ -64,10 +64,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             access_token: response.authResponse.accessToken,
             expiration_date: expDate
         }
-        console.log(response);
+        alert(response);
 
-        console.log('Got Token: ' + response.authResponse.accessToken);
-        console.log("Api Endpoint = " + ApiEndpoint);
+        alert('Got Token: ' + response.authResponse.accessToken);
+        alert("Api Endpoint = " + ApiEndpoint);
         $localstorage.set('fb_token', response.authResponse.accessToken)
 
         PushWoosh.registerDevice()
