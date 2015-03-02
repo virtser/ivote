@@ -156,7 +156,7 @@ class VotesController < ApplicationController
            "tracking_domain"=>nil,
            "important"=>false,
            "html"=>""}
-          async = false
+          async = true
           # ip_pool = "Main Pool"
           # send_at = "example send_at"
           result = mandrill.messages.send_template template_name, template_content, message, async
