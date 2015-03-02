@@ -49,6 +49,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     }
 
     var fbLoginSuccess = function(response) {
+        alert('fbLoginSuccess');
+
         if (!response.authResponse){
             fbLoginError("Cannot find the authResponse");
             $state.go('tabs.home');
@@ -92,11 +94,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     };
 
     var fbLoginError = function(error){
-        alert("error: " + error);
+        alert("fbLoginError: " + error);
     };
 
     $scope.newLogin = function() {
-        console.log('Login');
+        alert('newLogin');
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
