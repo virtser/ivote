@@ -132,12 +132,13 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply");
     });
-
-
-
 }])
 
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
+  $scope.renderImgSrc = function (id) {
+    console.log("renderImgSrc", id);
+  };
+
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -145,11 +146,15 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
+
           if (value.party_id == party.id)
             value.name = party.name;
         })
         // console.log(value);
-      });
+       
+     });
+
+
       $scope.toggleItem = function (result) {
         var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
         result.selected = !result.selected;
@@ -157,12 +162,15 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.selectedPercents = $scope.totalSelected * 100 / 120;
       };
       $scope.results.total_number_of_votes = total_number_of_votes;
+
     });
   });
 
   $scope.shareAnywhere = function() {
       $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
   }  
+
+
   
 })
 
