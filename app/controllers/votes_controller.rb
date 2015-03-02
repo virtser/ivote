@@ -68,6 +68,8 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
 
+        logger.info vote_params.to_yaml
+
         send_mail
 
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
@@ -84,6 +86,9 @@ class VotesController < ApplicationController
   def update
     respond_to do |format|
       if @vote.update(vote_params)
+
+        send_mail
+        
         format.html { redirect_to @vote, notice: 'Vote was successfully updated.' }
         format.json { render :show, status: :ok, location: @vote }
       else
@@ -115,52 +120,42 @@ class VotesController < ApplicationController
     end
 
     def send_mail
+      user_id = params[:vote][:user_id].to_s
+      logger.info "UserId: " + user_id
+
+      email = User.where(id: user_id).pluck(:email).first
+      logger.info "User email: " + email
+
       begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
-          template_name = "example template_name"
+          template_name = "vote"
           template_content = [{"content"=>"example content", "name"=>"example name"}]
-          message = {"subject"=>"example subject",
-           "text"=>"Example text content",
-           "merge_vars"=>
-              [{"vars"=>[{"content"=>"merge2 content", "name"=>"merge2"}],
-                  "rcpt"=>"recipient.email@example.com"}],
-           "merge_language"=>"mailchimp",
-           "merge"=>true,
-           "global_merge_vars"=>[{"content"=>"merge1 content", "name"=>"merge1"}],
+          message = {"subject"=>"iVote חבר/ה שלך הצביע/ה באפליקציית",
+           "text"=>"iVote חבר/ה שלך הצביע/ה באפליקציית",
            "auto_html"=>nil,
-           "images"=>
-              [{"type"=>"image/png", "content"=>"ZXhhbXBsZSBmaWxl", "name"=>"IMAGECID"}],
-           "attachments"=>
-              [{"type"=>"text/plain",
-                  "content"=>"ZXhhbXBsZSBmaWxl",
-                  "name"=>"myfile.txt"}],
-           "google_analytics_domains"=>["example.com"],
-           "tags"=>["password-resets"],
-           "headers"=>{"Reply-To"=>"message.reply@example.com"},
-           "subaccount"=>"customer-123",
+           "google_analytics_domains"=>["ivote.org.il"],
+           "tags"=>["friend-vote"],
+           "headers"=>{"Reply-To"=>"we@ivote.org.il"},
            "return_path_domain"=>nil,
            "auto_text"=>nil,
            "to"=>
-              [{"email"=>"recipient.email@example.com",
+              [{"email"=>email,
                   "type"=>"to",
-                  "name"=>"Recipient Name"}],
-           "from_name"=>"Example Name",
-           "bcc_address"=>"message.bcc_address@example.com",
+                  "name"=>"David Virtser"}],
+           "from_name"=>"iVote App",
            "preserve_recipients"=>nil,
            "track_clicks"=>nil,
            "track_opens"=>nil,
            "inline_css"=>nil,
-           "from_email"=>"message.from_email@example.com",
+           "from_email"=>"we@ivote.org.il",
            "recipient_metadata"=>
-              [{"rcpt"=>"recipient.email@example.com", "values"=>{"user_id"=>123456}}],
+              [{"rcpt"=>email, "values"=>{"user_id"=>user_id}}],
            "view_content_link"=>nil,
            "url_strip_qs"=>nil,
-           "metadata"=>{"website"=>"www.example.com"},
-           "google_analytics_campaign"=>"message.from_email@example.com",
            "signing_domain"=>nil,
            "tracking_domain"=>nil,
            "important"=>false,
-           "html"=>"<p>Example HTML content</p>"}
+           "html"=>""}
           async = false
           # ip_pool = "Main Pool"
           # send_at = "example send_at"
