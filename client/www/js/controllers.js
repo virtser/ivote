@@ -138,7 +138,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply: " + $scope.my_vote_id);
-        $state.go('tabs.result-friends');
+        // $state.go('tabs.result-friends');
     });
 }])
 
