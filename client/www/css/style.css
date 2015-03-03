@@ -180,10 +180,11 @@ a.col-note {
 }
 .result-number{
   /*display: inline-block;*/
-  /*float: left;*/
+  float: left;
+  margin-right:2px;
   font-weight: bold;
   color: hsl(0, 100%, 100%);
-  padding: 5px;
+
 }
 
 .result-tabs{
@@ -318,8 +319,8 @@ a.friends-link {
   background-color: #E1E1E1;
   border: none;
   color: #6F6F6F;
-  height: 58px;
-  line-height: 59px;
+  height: 65px;
+  line-height: 65px;
   margin-top: 4px;
   margin-bottom: 4px;
 }
@@ -338,4 +339,21 @@ a.friends-link {
 .margin-fix {
   margin: 0px;
   padding: 0px;
+}
+
+.result-bar-wrapper {
+  min-width: 134px;
+}
+
+.small-invite-btn {
+  font-size: 19px;
+  color: #4693C8;
+  width: 127px;
+  display: inline-block;
+  background: url('../img/buttons/invite-1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  float: left;
+  margin-left: 20px;
 }

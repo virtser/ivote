@@ -19,6 +19,7 @@
   <div class="friends-invite">
     <span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span>
+    <div class="small-invite-btn" href="#/tabs/results/me">הזמנת חברים</div>
   </div>
   <ion-list>
       <ion-item class="margin-fix" ng-repeat="result in results" type="item-text-wrap" >
@@ -26,9 +27,12 @@
           <div class="party-img-wrapper">
             <img class="party-img" ng-src="{{renderImgSrc($index)}}">
           </div>
+    
+          <div class="result-bar-wrapper">
           <div class="col result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
             <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</span>
           </div>  
+        </div>
           <div class="col"><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
         </div>
       </ion-item>
