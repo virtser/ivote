@@ -67,7 +67,7 @@ class VotesController < ApplicationController
 
     already_voted = Vote.where(user_id: vote_params[:user_id])
 
-    unless already_voted[:id].nil?
+    unless already_voted.nil?
       render json: 'Already voted', status: :unprocessable_entity
       return
     end
