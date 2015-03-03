@@ -153,7 +153,7 @@ SocialSharing.js is brought in automatically. Make sure though you include a ref
 You can share text, a subject (in case the user selects the email application), (any type and location of) file (like an image), and a link.
 However, what exactly gets shared, depends on the application the user chooses to complete the action. A few examples:
 - Mail: message, subject, file.
-- Twitter: message, image (other filetypes are not supported), link (which is automatically shortened if the Twitter client deems it necessary).
+- Twitter: message, image (other filetypes are not supported), link (which is automatically shortened).
 - Google+ / Hangouts (Android only): message, subject, link
 - Flickr: message, image (an image is required for this option to show up).
 - Facebook iOS: message, image (other filetypes are not supported), link.
@@ -396,18 +396,6 @@ window.plugins.socialsharing.iPadPopupCoordinates = function() {
 Note that since iOS 8 this popup is the only way Apple allows you to share stuff, so this plugin has been adjusted to use this plugin as standard for iOS 8 and positions
 the popup at the bottom of the screen (seems like a logical default because that's where it previously was as well).
 You can however override this position in the same way as explained above.
-
-**Note**: when using the [WkWebView polyfill](https://github.com/Telerik-Verified-Plugins/WKWebView) the `iPadPopupCoordinates` overrides [doesn't work](https://github.com/Telerik-Verified-Plugins/WKWebView/issues/77) so you can call the alternative `setIPadPopupCoordinates` method to define the popup position just before you call the `share` method.
-
-example :
-
-```js
-var targetRect = event.targetElement.getBoundingClientRect(),
-    targetBounds = targetRect.left + ',' + targetRect.top + ',' + targetRect.width + ',' + targetRect.height;
-
-window.plugins.socialsharing.setIPadPopupCoordinates(targetBounds);
-window.plugins.socialsharing.share('Hello from iOS :)')
-```
 
 ## 5. Credits ##
 
