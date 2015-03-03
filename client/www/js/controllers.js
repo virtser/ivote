@@ -41,10 +41,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
     console.log("localstorage token = " + $localstorage.get('fb_token'));
     console.log("localstorage uid = " + $localstorage.get('uid'));
+
     if ($localstorage.get('fb_token') != null && ($localstorage.get('uid') != null)) {
         $sessionStorage.uid = $localstorage.get('uid');
         console.log('Auto login');
-        devToken = ""
+
         if (window.cordova) {
             if ($localstorage.get('push_token')) {
                 devToken = "&device_token=" + $localstorage.get('push_token');
@@ -101,7 +102,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
             console.log('PushWoosh.registerDevice fails. reason=' + reason);
-        });
+            connectToOurServer('token='+response.authResponse.accessToken, "");
+        });        
       }
       catch(err) {
         console.error(err.message);
