@@ -323,3 +323,19 @@ a.friends-link {
   margin-top: 4px;
   margin-bottom: 4px;
 }
+
+.party-img-wrapper {
+  width: 72px;
+}
+
+.party-img {
+  height: 18px;
+  float: left;
+  margin-top: 7px;
+  margin-left: 6px;
+}
+
+.margin-fix {
+  margin: 0px;
+  padding: 0px;
+}

@@ -145,7 +145,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   
   $scope.renderImgSrc = function (id) {
-    console.log("renderImgSrc", id);
+    return '../img/parties/' + (id+1)+"-1.png";
+    
+   
   };
 
   $scope.parties = Parties.query(function(){
@@ -162,7 +164,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         // console.log(value);
        
      });
-
 
       $scope.toggleItem = function (result) {
         var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
