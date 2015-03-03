@@ -16,14 +16,16 @@
     <a class="button icon" href="#/tabs/results/me">אני</a>
     <a class="button icon button-dark" >חברים</a>
   </div>  
-  <div class="button button-full button-positive">
+  <div class="friends-invite">
     <span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span>
   </div>
   <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
         <div class="row">
-          <div class="col result-party">{{result.name}}</div>
+          {{renderImgSrcs($index)}}
+        <!--   <div class="col result-party">{{result.name}}</div> -->
+          <img class="col result-party" ng-src="">
           <div class="col result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
           <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</span>
           </div>  
