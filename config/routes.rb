@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+root 'home#index'
+
 scope '/api' do
   resources :relations
   resources :parties
@@ -21,8 +23,6 @@ scope '/api' do
     get  '/user/:user_id' => 'stream#user'
     get  '/flat/:user_id' => 'stream#flat'
   end
-
-root '/'
 
 end
 
