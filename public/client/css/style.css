@@ -1,7 +1,7 @@
-
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 
 body {
+  direction: rtl;
   font-family: 'Open Sans Hebrew', serif;
   color:#888888;
   background: #F2F2F2;
@@ -10,12 +10,12 @@ body {
 .signup-header {
   background-image: url('../img/welcome-background.png');
   color: white;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: 100% 80px;   
+  background-size: 100% 80px;
   display: block;
   width: 100%;
-  height: 80px; 
+  height: 80px;
   padding: 2px 5px;
 }
 
@@ -41,11 +41,11 @@ body {
 .facebook-button {
   border: 0px;
   background-image: url('../img/sigunp.png');
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: 280px 44px;   
+  background-size: 280px 44px;
   width: 280px;
-  height: 44px; 
+  height: 44px;
 }
 
 .header {
@@ -64,9 +64,9 @@ body {
 }
 
 .post .textwrapper {
-  min-height: 180px;
+  min-height: 160px;
   display: table;
-  width: 100%;
+  width: 90%;
 }
 
 .post .text {
@@ -78,7 +78,7 @@ body {
 }
 
 .post-text {
-  min-height:200px;
+  min-height:160px;
 }
 
 .loader {
@@ -146,6 +146,30 @@ a.col-note {
   /*display: inline-block;*/
   background-color: #1383C3;
   height:30px;
+}
+
+.total-bar-ph {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(70,70,70,1)), color-stop(5%,rgba(78,78,78,1)), color-stop(19%,rgba(88,88,88,1)), color-stop(35%,rgba(95,95,95,1)), color-stop(46%,rgba(97,97,97,1)), color-stop(62%,rgba(95,95,95,1)), color-stop(76%,rgba(90,90,90,1)), color-stop(100%,rgba(73,73,73,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(70,70,70,1) 0%,rgba(78,78,78,1) 5%,rgba(88,88,88,1) 19%,rgba(95,95,95,1) 35%,rgba(97,97,97,1) 46%,rgba(95,95,95,1) 62%,rgba(90,90,90,1) 76%,rgba(73,73,73,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(70,70,70,1) 0%,rgba(78,78,78,1) 5%,rgba(88,88,88,1) 19%,rgba(95,95,95,1) 35%,rgba(97,97,97,1) 46%,rgba(95,95,95,1) 62%,rgba(90,90,90,1) 76%,rgba(73,73,73,1) 100%); /* W3C */
+  padding: 0;
+  text-align: left;
+  direction: ltr;
+}
+
+.total-bar-ph > .total-bar {
+  background-color: #F00;
+  color: #FFF;
+  font-weight: bold;
+  vertical-align: middle;
+  text-align: right;
+  font-size: 20px;
+  padding: 0 8px;
+  line-height: 43px;
+}
+
+.total-bar-ph > .total-bar.valid {
+  background-color: #7dc314;
 }
 
 .result-party{
@@ -224,11 +248,11 @@ a.friends-link {
 .selected {
   background-color: #7dc314;
   color: white;
-} 
+}
 
 .party-code {
   font-size: 34px;
-} 
+}
 
 .party-name {
   font-size: 12px;
@@ -278,7 +302,7 @@ a.friends-link {
 .modal-party-code {
   margin-top: 19px;
   font-size: 34px;
-} 
+}
 
 .btn-wrapper {
   margin-top: 40px;

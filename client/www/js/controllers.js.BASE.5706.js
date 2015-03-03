@@ -49,8 +49,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     }
 
     var fbLoginSuccess = function(response) {
-        console.log('fbLoginSuccess');
-
         if (!response.authResponse){
             fbLoginError("Cannot find the authResponse");
             $state.go('tabs.home');
@@ -70,12 +68,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         console.log("Api Endpoint = " + ApiEndpoint);
         $localstorage.set('fb_token', response.authResponse.accessToken)
 
-        var devToken = "";
-
-      try {
         PushWoosh.registerDevice()
         .then(function(result) {
             console.log("Pushwoosh result2: ", result);
+            var devToken = "";
             if (window.ionic.Platform.isIOS()) {
                 devToken = "&device_token=" + result['deviceToken'];
                 console.warn('iOS push device token: ' + result['deviceToken']);
@@ -87,23 +83,20 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
+            connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
-            console.log('PushWoosh.registerDevice fails. reason=' + reason);
+                console.log('PushWoosh.registerDevice fails. reason=' + reason);
+            connectToOurServer('token='+response.authResponse.accessToken, "");
         });
-      }
-      catch(err) {
-        console.error(err.message);
-      }
 
-      connectToOurServer('token='+response.authResponse.accessToken, devToken);
     };
 
     var fbLoginError = function(error){
-        alert("fbLoginError: " + error);
+        console.log("error: " + error);
     };
 
     $scope.newLogin = function() {
-        console.log('newLogin');
+        console.log('Login');
         if (!window.cordova) {
             facebookConnectPlugin.browserInit('1557020157879112');
         }
@@ -121,7 +114,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   console.log('HomeTabCtrl');
 })
 
-.controller('ResultsMeCtrl', ['$scope', '$state', 'Parties', '$sessionStorage', function($scope, $state, Parties, $sessionStorage) {
+.controller('ResultsMeCtrl', ['$scope', 'Parties', '$sessionStorage', function($scope, Parties, $sessionStorage) {
     $scope.indexCtrl= 16;
     
     $scope.showMore = function() {
@@ -134,20 +127,17 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.my_vote_id = $sessionStorage.my_vote_id;
     $scope.my_vote_party = $sessionStorage.my_vote_party;
     $scope.$on('vote:updated', function(event,data) {
-        console.log("vote:updated: " + JSON.stringify(data));
-        $scope.my_vote_id = data.id;
+        console.log("vote updated");
+        $scope.my_vote_id = $sessionStorage.my_vote_id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
-        console.log("vote updated after apply: " + $scope.my_vote_id);
-        $state.go('tabs.result-friends');
+        console.log("vote updated after apply");
     });
+
+
+
 }])
 
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
-  
-  $scope.renderImgSrc = function (id) {
-    console.log("renderImgSrc", id);
-  };
-
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -155,15 +145,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
-
           if (value.party_id == party.id)
             value.name = party.name;
         })
         // console.log(value);
-       
-     });
-
-
+      });
       $scope.toggleItem = function (result) {
         var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
         result.selected = !result.selected;
@@ -171,15 +157,13 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.selectedPercents = $scope.totalSelected * 100 / 120;
       };
       $scope.results.total_number_of_votes = total_number_of_votes;
-
     });
   });
 
-  $scope.shareAnywhere = function(message, subject) {
-      console.log("Message: " + message + ", subject: " + subject);
-      $cordovaSocialSharing.share(message, subject, "../img/ivote-logo.png", "https://ivote.org.il");
-  }    
-
+  $scope.shareAnywhere = function() {
+      $cordovaSocialSharing.share("תר�?ו �?יך החברי�? שלי מצביעי�?", "הצבעות חברי�?", "../img/ivote-logo.png", "https://ivote.org.il");
+  }  
+  
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
@@ -199,8 +183,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.modal.hide();
   };
   $scope.confirmVote = function() {
-        console.log("confirm vote party = " + $scope.parties[$scope.pid].id);
-        console.log("confirm vote my_vote_id = " + $sessionStorage.my_vote_id);
+        console.log("party = "+$scope.parties[$scope.pid].id);
         if ($sessionStorage.my_vote_id > 0) {
             meth = 'PUT';
             url = ApiEndpoint + '/votes/'+$sessionStorage.my_vote_id+'.json'
@@ -225,6 +208,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             data: vote_data
         })
         .success(function(data, status, headers, config) {
+            console.log("vote success: " + data);
             $sessionStorage.my_vote_party = $scope.parties[$scope.pid].id;
             $rootScope.$broadcast('vote:updated',data);
             $scope.modal.hide();

@@ -89,52 +89,59 @@ end
 
    def send_mail
       user_id = params[:user_id].to_s
-      logger.info "UserId: " + user_id
+      logger.info "UserId: " + user_id.to_yaml
 
-      email = User.where(id: user_id).pluck(:email).first
-      logger.info "User email: " + email
+      friends = Relation.where(user_id: user_id)
+      logger.info "Friends IDs: " + friends.to_yaml
 
-      begin
+      friends.each do |f|
+        logger.info "Friend: " + f.to_yaml
+
+        email = User.where(id: f[:friend_user_id]).pluck(:email).first
+        logger.info "Friend email: " + email.to_yaml
+
+        begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
           template_name = "post"
           template_content = [{"content"=>"example content", "name"=>"example name"}]
-		message = {"subject"=>"iVote חבר/ה שלך כתב/ה קמפיין חדש באפליקציית",
-		     "text"=>"iVote חבר/ה שלך כתב/ה קמפיין חדש באפליקציית",
-		     "auto_html"=>nil,
-		     "google_analytics_domains"=>["ivote.org.il"],
-		     "tags"=>["friend-vote"],
-		     "headers"=>{"Reply-To"=>"we@ivote.org.il"},
-		     "return_path_domain"=>nil,
-		     "auto_text"=>nil,
-		     "to"=>
-              [{"email"=>email,
-                  "type"=>"to",
-                  "name"=>"David Virtser"}],
-           "from_name"=>"iVote App",
-           "preserve_recipients"=>nil,
-           "track_clicks"=>nil,
-           "track_opens"=>nil,
-           "inline_css"=>nil,
-           "from_email"=>"we@ivote.org.il",
-           "recipient_metadata"=>
-              [{"rcpt"=>email, "values"=>{"user_id"=>user_id}}],
-           "view_content_link"=>nil,
-           "url_strip_qs"=>nil,
-           "signing_domain"=>nil,
-           "tracking_domain"=>nil,
-           "important"=>false,
-           "html"=>""}
-          async = false
-          # ip_pool = "Main Pool"
-          # send_at = "example send_at"
-          result = mandrill.messages.send_template template_name, template_content, message, async
+  		    message = {"subject"=>"iVote חבר/ה שלך כתב/ה קמפיין חדש באפליקציית",
+  		     "text"=>"iVote חבר/ה שלך כתב/ה קמפיין חדש באפליקציית",
+  		     "auto_html"=>nil,
+  		     "google_analytics_domains"=>["ivote.org.il"],
+  		     "tags"=>["friend-post"],
+  		     "headers"=>{"Reply-To"=>"we@ivote.org.il"},
+  		     "return_path_domain"=>nil,
+  		     "auto_text"=>nil,
+  		     "to"=>
+                [{"email"=>email,
+                    "type"=>"to",
+                    "name"=>"David Virtser"}],
+             "from_name"=>"iVote App",
+             "preserve_recipients"=>nil,
+             "track_clicks"=>nil,
+             "track_opens"=>nil,
+             "inline_css"=>nil,
+             "from_email"=>"we@ivote.org.il",
+             "recipient_metadata"=>
+                [{"rcpt"=>email, "values"=>{"user_id"=>user_id}}],
+             "view_content_link"=>nil,
+             "url_strip_qs"=>nil,
+             "signing_domain"=>nil,
+             "tracking_domain"=>nil,
+             "important"=>false,
+             "html"=>""}
+            async = true
+            # ip_pool = "Main Pool"
+            # send_at = "example send_at"
+            result = mandrill.messages.send_template template_name, template_content, message, async
 
-          logger.info "Email sending result: " + result.to_yaml
-          
-      rescue Mandrill::Error => e
-          # Mandrill errors are thrown as exceptions
-          logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
-          # raise
-      end      
+            logger.info "Email sending result: " + result.to_yaml
+            
+        rescue Mandrill::Error => e
+            # Mandrill errors are thrown as exceptions
+            logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
+            # raise
+        end   
+      end   
     end
 end
