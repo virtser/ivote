@@ -24,16 +24,16 @@
   <ion-list>
       <ion-item class="margin-fix" ng-repeat="result in results" type="item-text-wrap" >
         <div class="row">
-          <div class="party-img-wrapper">
+          <div class="party-img-wrapper col-20">
             <img class="party-img" ng-src="{{renderImgSrc($index)}}">
           </div>
     
-          <div class="result-bar-wrapper">
-          <div class="col result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
+          <div class="result-bar-wrapper col">
+          <div class="result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+20}}%">
             <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</span>
           </div>  
         </div>
-          <div class="col"><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
+          <div class="col-20"><br/><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
         </div>
       </ion-item>
     </ion-list>
