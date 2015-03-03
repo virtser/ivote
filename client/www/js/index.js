@@ -95,6 +95,15 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh) {
           }
         }
     })
+    .state('tabs.results-share', {
+        url: '/results/share',
+        views: {
+          'tabs-results': {
+            templateUrl: 'templates/share.html',
+            controller: 'ShareCtrl'
+        }
+      }
+    })
 
    $urlRouterProvider.otherwise("/sign-in");
 

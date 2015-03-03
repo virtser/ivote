@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 'starter.utils'])
 
-.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh, $localstorage) {
+.controller('SignInCtrl', function($scope, $state, $http, $sessionStorage, $cookies, ApiEndpoint, PushWoosh, $localstorage, $location) {
 
     function connectToOurServer(authToken, devToken) {
             console.log("calling our server with authToken = " + authToken + " devToken = " + devToken);
@@ -296,4 +296,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         console.log('Bad integrity. Logging out.');
         $state.go('signin');
     }
+})
+
+.controller('ShareCtrl', function($scope, $state, $http, $sessionStorage) {
+    console.log("boom");
 })
