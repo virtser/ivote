@@ -65,10 +65,15 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
 
+    already_voted = Vote.where(user_id: vote_params[:user_id])
+
+    unless already_voted[:id].nil?
+      render json: 'Already voted', status: :unprocessable_entity
+      return
+    end
+
     respond_to do |format|
       if @vote.save
-
-        logger.info vote_params.to_yaml
 
         send_mail
 
