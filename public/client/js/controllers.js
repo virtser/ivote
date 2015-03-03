@@ -41,10 +41,20 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
     console.log("localstorage token = " + $localstorage.get('fb_token'));
     console.log("localstorage uid = " + $localstorage.get('uid'));
+
     if ($localstorage.get('fb_token') != null && ($localstorage.get('uid') != null)) {
         $sessionStorage.uid = $localstorage.get('uid');
         console.log('Auto login');
-        connectToOurServer('token='+$localstorage.get('fb_token'), "");
+
+        if (window.cordova) {
+            if ($localstorage.get('push_token')) {
+                devToken = "&device_token=" + $localstorage.get('push_token');
+                connectToOurServer('token='+$localstorage.get('fb_token'), devToken);
+            }
+        }
+        else {
+            connectToOurServer('token='+$localstorage.get('fb_token'), "");
+        }
         // $state.go('tabs.result-me');
     }
 
@@ -78,24 +88,27 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             console.log("Pushwoosh result2: ", result);
             if (window.ionic.Platform.isIOS()) {
                 devToken = "&device_token=" + result['deviceToken'];
+                $localstorage.set('push_token', result['deviceToken'])
                 console.warn('iOS push device token: ' + result['deviceToken']);
             }
             else if (window.ionic.Platform.isAndroid()) {
                 devToken = "&device_token=" + result;
+                $localstorage.set('push_token', result)
                 console.warn('Android push token: ' + result);
             }
             else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
+            connectToOurServer('token='+response.authResponse.accessToken, devToken);
         }, function(reason) {
             console.log('PushWoosh.registerDevice fails. reason=' + reason);
-        });
+            connectToOurServer('token='+response.authResponse.accessToken, "");
+        });        
       }
       catch(err) {
         console.error(err.message);
       }
 
-      connectToOurServer('token='+response.authResponse.accessToken, devToken);
     };
 
     var fbLoginError = function(error){
@@ -145,7 +158,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   
   $scope.renderImgSrc = function (id) {
-    return '../img/parties/' + (id+1)+"-1.png";
+    return 'img/parties/' + (id+1)+"-1.png";
     
    
   };
