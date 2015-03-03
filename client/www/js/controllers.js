@@ -149,14 +149,16 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply: " + $scope.my_vote_id);
-        // $state.go('tabs.result-friends');
+        $state.go('tabs.result-friends');
     });
 }])
 
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
   
   $scope.renderImgSrc = function (id) {
-    console.log("renderImgSrc", id);
+    return '../img/parties/' + (id+1)+"-1.png";
+    
+   
   };
 
   $scope.parties = Parties.query(function(){
@@ -170,13 +172,14 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
           if (value.party_id == party.id)
             value.name = party.name;
         })
+        
         // console.log(value);
        
      });
 
-
       $scope.toggleItem = function (result) {
         var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
+
         result.selected = !result.selected;
         $scope.totalSelected += seats * (result.selected ? 1 : -1);
         $scope.selectedPercents = $scope.totalSelected * 100 / 120;
