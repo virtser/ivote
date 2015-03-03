@@ -138,16 +138,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply: " + $scope.my_vote_id);
-        // $state.go('tabs.result-friends');
+        $state.go('tabs.result-friends');
     });
 }])
 
 .controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
-  
-  $scope.renderImgSrc = function (id) {
-    console.log("renderImgSrc", id);
-  };
-
   $scope.parties = Parties.query(function(){
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
@@ -155,15 +150,11 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       angular.forEach($scope.results, function(value, key) {
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
-
           if (value.party_id == party.id)
             value.name = party.name;
         })
         // console.log(value);
-       
-     });
-
-
+      });
       $scope.toggleItem = function (result) {
         var seats = result.number_of_votes / $scope.results.total_number_of_votes * 120;
         result.selected = !result.selected;
@@ -171,7 +162,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.selectedPercents = $scope.totalSelected * 100 / 120;
       };
       $scope.results.total_number_of_votes = total_number_of_votes;
-
     });
   });
 
@@ -179,7 +169,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       console.log("Message: " + message + ", subject: " + subject);
       $cordovaSocialSharing.share(message, subject, "../img/ivote-logo.png", "https://ivote.org.il");
   }    
-
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
@@ -261,9 +250,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   $scope.postToFeed = function() {
     console.log('Post to Feed of '+ $sessionStorage.uid +', text: ' + $scope.text);
 
-    alert($scope.text);
-
-    if (!angular.isUndefined($scope.text) || $scope.text !== '') {
+    if ($scope.text != '' && $scope.text != 'undefined') {
 
       var post_data = '{ "text" : "' + $scope.text + '" }';
 

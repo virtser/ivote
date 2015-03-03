@@ -188,6 +188,7 @@ a.col-note {
 
 .result-tabs{
   text-align: center;
+
 }
 
 .results-title {
@@ -216,6 +217,7 @@ a.col-note {
 .friends-number {
   font-size: 30px;
   padding-left: 10px;
+  margin-right: 16px;
 }
 
 .friends-voted {
@@ -310,4 +312,14 @@ a.friends-link {
 
 .result-btn {
   height: 80px;
+}
+
+.friends-invite {
+  background-color: #E1E1E1;
+  border: none;
+  color: #6F6F6F;
+  height: 58px;
+  line-height: 59px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
