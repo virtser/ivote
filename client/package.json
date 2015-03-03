@@ -21,7 +21,6 @@
     "org.apache.cordova.device",
     "org.apache.cordova.dialogs",
     "org.apache.cordova.file",
-    "org.apache.cordova.media",
     "com.pushwoosh.plugins.pushwoosh",
     "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
     "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
