@@ -2,7 +2,13 @@
 <html lang="he">
 <head>
   <meta charset="UTF-8">
-
+  <meta property="og:url"                content="https://ivote.org.il" />
+  <meta property="fb:app_id"             content="1557020157879112" />
+  <meta property="og:title"              content="iVote - .מצביעים. משפיעים. מנצחים" />
+  <meta property="og:description"        content="1. ביחרו באופן אנונימי לחלוטין את המפלגה שעבורה אתם מתכוונים להצביע בבחירות הקרובות.
+  2. צפו בתוצאות הבחירות המבוססות על מעגל החברים שלכם.
+  3. השפיעו על מעגל החברים שלכם תוך שמירה על פרטיות מלאה!" />
+  <meta property="og:image"              content="https://ivote.org.il/client/img/share.jpg" />
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title></title>
 
@@ -24,9 +30,14 @@
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
   <script src="js/utils.js"></script>
+
+<!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
 </head>
 
 <body ng-app="starter">
+<div style="direction: rtl;">
   <ion-nav-bar animation="nav-title-slide-ios7"
                class="bar-dark"
                back-button-type="button-icon"
@@ -50,6 +61,7 @@
 
     </ion-tabs>
   </script>
+</div>
 
 <div id="fb-root"></div>
 <script src="lib/facebookConnectPlugin.js"></script>

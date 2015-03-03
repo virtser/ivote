@@ -121,13 +121,11 @@ class VotesController < ApplicationController
 
     def send_mail
       user_id = params[:vote][:user_id].to_s
-      logger.info "UserId: " + user_id
 
-      friends = Relation.where(user_id: user_id)
+      friends = Relation.where(user_id: user_id).pluck(:friend_user_id)
+      emails = User.where("id IN (?)", friends).pluck(:email)
 
-      friends.each do |f|
-
-        email = User.where(id: f[:friend_user_id]).pluck(:email).first
+      emails.each do |email|
 
         begin
             mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
