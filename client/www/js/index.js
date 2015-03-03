@@ -17,7 +17,7 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh) {
   });
 })
 
-.value('ApiEndpoint', 'https://ivote.org.il/api')
+.value('ApiEndpoint', 'http://localhost:8100/api')
 
 .config(function($stateProvider, $urlRouterProvider) {
 
