@@ -5,7 +5,6 @@
  <ion-nav-buttons side="primary">
   <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
  </ion-nav-buttons>
-
   <ion-content>
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title">תוצאות</div>
@@ -37,8 +36,9 @@
           <div class="col"><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
         </div>
       </ion-item>
-      
+    
     </ion-list>
+    <div ng-if="!results.length">asdasdasdasdasdas </div>
   </ion-content>
  <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
     <div class="total-bar" ng-class="{valid: selectedPercents >= 61}" style="width: {{selectedPercents}}%">{{totalSelected}}</div>
