@@ -450,3 +450,21 @@ a.friends-link {
 .back-btn {
   font-size: 28px;
 }
+
+.big-invite-btn {
+  text-decoration: none;
+  font-size: 23px;
+  color: #4693C8;
+  width: 148px;
+  display: inline-block;
+  background: url('../img/buttons/invite-2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 83px;
+  line-height: 81px;
+  margin-top: 3px;
+}
+
+.invite-big-text {
+  font-size: 20px;
+}
