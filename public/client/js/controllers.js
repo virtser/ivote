@@ -148,6 +148,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.my_vote_party = $sessionStorage.my_vote_party;
     $scope.$on('vote:updated', function(event,data) {
         console.log("vote:updated: " + JSON.stringify(data));
+        $sessionStorage.my_vote_id = data.id;
         $scope.my_vote_id = data.id;
         $scope.my_vote_party = $sessionStorage.my_vote_party;
         console.log("vote updated after apply: " + $scope.my_vote_id);
