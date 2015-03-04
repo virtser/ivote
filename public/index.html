@@ -14,6 +14,38 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
 mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
   <title>iVote - ".מצביעים. משפיעים. מנצחים"</title>
   <link rel="shortcut icon" href="/favicon.ico?2" type="image/x-icon" />
+
+  <script>
+  function detectmob() {
+
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+     if(isMobile.any()) {
+       window.location = "client/";
+     } else {
+       window.location = "client/iframe.html";
+     }
+  }
+  </script>
 <head>
   <meta charset="utf-8">
   <title>Slate Template</title>
@@ -41,7 +73,7 @@ mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
         <div class="w-col w-col-6"><img class="hero-iphone" src="images/phone.png" width="221" alt="54f4d02cdced7ed62ba93585_phone.png">
         </div>
         <div class="w-col w-col-6 w-clearfix call-to-action"><img class="logo" src="images/logo.png" alt="54f4c81694de5ed82b5f1bc7_logo.png">
-          <a class="button top" href="client/">
+          <a class="button top" href="#" onclick="detectmob();">
             <div style="direction: rtl;">אני רוצה להצביע ולהשפיע!</div>
           </a>
         </div>
