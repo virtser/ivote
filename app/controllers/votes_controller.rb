@@ -68,8 +68,6 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
 
-        logger.info vote_params.to_yaml
-
         send_mail
 
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }

@@ -156,10 +156,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     });
 }])
 
-.controller('ResultsFriendsCtrl', function($scope, $cordovaSocialSharing, Results, Parties) {
+.controller('ResultsFriendsCtrl', function($scope, Results, Parties) {
   
   $scope.renderImgSrc = function (id) {
-    return 'img/parties/' + (id+1)+"-1.png";
+    return 'img/parties/' + id + '-1.png';
     
    
   };
@@ -191,12 +191,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
     });
   });
-
-  $scope.shareAnywhere = function(message, subject) {
-      console.log("Message: " + message + ", subject: " + subject);
-      $cordovaSocialSharing.share(message, subject, "../img/ivote-logo.png", "https://ivote.org.il");
-  }    
-
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint) {
