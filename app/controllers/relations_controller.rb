@@ -12,15 +12,6 @@ class RelationsController < ApplicationController
   def show
   end
 
-  # GET /relations/new
-  def new
-    @relation = Relation.new
-  end
-
-  # GET /relations/1/edit
-  def edit
-  end
-
   # POST /relations
   # POST /relations.json
   def create
@@ -37,30 +28,7 @@ class RelationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /relations/1
-  # PATCH/PUT /relations/1.json
-  def update
-    respond_to do |format|
-      if @relation.update(relation_params)
-        format.html { redirect_to @relation, notice: 'Relation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @relation }
-      else
-        format.html { render :edit }
-        format.json { render json: @relation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /relations/1
-  # DELETE /relations/1.json
-  def destroy
-    @relation.destroy
-    respond_to do |format|
-      format.html { redirect_to relations_url, notice: 'Relation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_relation
