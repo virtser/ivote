@@ -158,7 +158,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 .controller('ResultsFriendsCtrl', function($scope, Results, Parties) {
   
   $scope.renderImgSrc = function (id) {
-    return 'img/parties/' + (id+1)+"-1.png";
+    return 'img/parties/' + id + '-1.png';
     
    
   };
