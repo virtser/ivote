@@ -85,7 +85,9 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       try {
         PushWoosh.registerDevice()
         .then(function(result) {
+
             console.log("Pushwoosh result2: ", result);
+
             if (window.ionic.Platform.isIOS()) {
                 devToken = "&device_token=" + result['deviceToken'];
                 $localstorage.set('push_token', result['deviceToken'])
@@ -99,14 +101,17 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             else {
               console.warn('[ngPushWoosh] Unsupported platform');
             }
+
             connectToOurServer('token='+response.authResponse.accessToken, devToken);
+
         }, function(reason) {
-            console.log('PushWoosh.registerDevice fails. reason=' + reason);
+            alert('PushWoosh.registerDevice fails. reason=' + reason);
             connectToOurServer('token='+response.authResponse.accessToken, "");
         });        
       }
       catch(err) {
-        console.error(err.message);
+        alert(err.message);
+        connectToOurServer('token='+response.authResponse.accessToken, "");
       }
 
     };
