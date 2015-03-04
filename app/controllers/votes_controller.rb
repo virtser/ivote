@@ -37,27 +37,11 @@ class VotesController < ApplicationController
     @myuser_id = params[:user_id]
     @my_vote = Vote.where(user_id: @myuser_id)
     render json: @my_vote, status: :ok
-
-  end
-
-  # GET /votes
-  # GET /votes.json
-  def index
-    @votes = Vote.all
   end
 
   # GET /votes/1
   # GET /votes/1.json
   def show
-  end
-
-  # GET /votes/new
-  def new
-    @vote = Vote.new
-  end
-
-  # GET /votes/1/edit
-  def edit
   end
 
   # POST /votes
@@ -93,16 +77,6 @@ class VotesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /votes/1
-  # DELETE /votes/1.json
-  def destroy
-    @vote.destroy
-    respond_to do |format|
-      format.html { redirect_to votes_url, notice: 'Vote was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
