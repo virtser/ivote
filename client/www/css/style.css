@@ -65,7 +65,7 @@ body {
 .post .textwrapper {
   min-height: 160px;
   display: table;
-  width: 90%;
+  width: 100%;
 }
 
 .post .text {
@@ -181,6 +181,8 @@ a.col-note {
   /*display: inline-block;*/
   float: left;
   margin-right:2px;
+  margin-top: 5px;
+  margin-left:2px;
   font-weight: bold;
   color: hsl(0, 100%, 100%);
 
@@ -228,7 +230,7 @@ a.col-note {
 
 a.friends-link {
   position: relative;
-  top: -8px;
+  top: -10px;
   color: hsl(210, 100%, 50%);
   margin-right: 10px;
   text-decoration: underline;
@@ -331,7 +333,7 @@ a.friends-link {
 .party-img {
   height: 18px;
   float: left;
-  margin-top: 7px;
+  margin-top: 10px;
   margin-left: 6px;
 }
 

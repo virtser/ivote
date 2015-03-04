@@ -12,6 +12,40 @@
 <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
 for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
 mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
+  <title>iVote - ".מצביעים. משפיעים. מנצחים"</title>
+  <link rel="shortcut icon" href="/favicon.ico?2" type="image/x-icon" />
+
+  <script>
+  function detectmob() {
+
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+     if(isMobile.any()) {
+       window.location = "client/";
+     } else {
+       window.location = "client/iframe.html";
+     }
+  }
+  </script>
 <head>
   <meta charset="utf-8">
   <title>Slate Template</title>
@@ -29,7 +63,7 @@ mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
     });
   </script>
   <script type="text/javascript" src="js/modernizr.js"></script>
-  <link rel="shortcut icon" type="image/x-icon" href="images/webclip-slate.png">
+  <link rel="icon" href="favicon.ico" />
   <link rel="apple-touch-icon" href="images/webclip-slate.png">
 </head>
 <body>
@@ -39,7 +73,7 @@ mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
         <div class="w-col w-col-6"><img class="hero-iphone" src="images/phone.png" width="221" alt="54f4d02cdced7ed62ba93585_phone.png">
         </div>
         <div class="w-col w-col-6 w-clearfix call-to-action"><img class="logo" src="images/logo.png" alt="54f4c81694de5ed82b5f1bc7_logo.png">
-          <a class="button top" href="client/">
+          <a class="button top" href="#" onclick="detectmob();">
             <div style="direction: rtl;">אני רוצה להצביע ולהשפיע!</div>
           </a>
         </div>
@@ -83,7 +117,7 @@ mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
       </div>
     </div>
   </div>
-  <div class="w-section section purple">
+<!--   <div class="w-section section purple">
     <div class="w-container">
       <div class="w-row">
         <div class="w-col w-col-3 w-clearfix"><a class="button" href="#">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</a>
@@ -93,7 +127,7 @@ mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="w-section section grey footer"></div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>

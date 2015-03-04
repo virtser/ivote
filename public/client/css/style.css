@@ -65,7 +65,7 @@ body {
 .post .textwrapper {
   min-height: 160px;
   display: table;
-  width: 90%;
+  width: 100%;
 }
 
 .post .text {
@@ -179,10 +179,13 @@ a.col-note {
 }
 .result-number{
   /*display: inline-block;*/
-  /*float: left;*/
+  float: left;
+  margin-right:2px;
+  margin-top: 5px;
+  margin-left:2px;
   font-weight: bold;
   color: hsl(0, 100%, 100%);
-  padding: 5px;
+
 }
 
 .result-tabs{
@@ -227,7 +230,7 @@ a.col-note {
 
 a.friends-link {
   position: relative;
-  top: -8px;
+  top: -10px;
   color: hsl(210, 100%, 50%);
   margin-right: 10px;
   text-decoration: underline;
@@ -317,8 +320,41 @@ a.friends-link {
   background-color: #E1E1E1;
   border: none;
   color: #6F6F6F;
-  height: 58px;
-  line-height: 59px;
+  height: 65px;
+  line-height: 65px;
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+.party-img-wrapper {
+  width: 72px;
+}
+
+.party-img {
+  height: 18px;
+  float: left;
+  margin-top: 10px;
+  margin-left: 6px;
+}
+
+.margin-fix {
+  margin: 0px;
+  padding: 0px;
+}
+
+.result-bar-wrapper {
+  min-width: 134px;
+}
+
+.small-invite-btn {
+  font-size: 19px;
+  color: #4693C8;
+  width: 127px;
+  display: inline-block;
+  background: url('../img/buttons/invite-1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  float: left;
+  margin-left: 20px;
 }

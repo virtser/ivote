@@ -19,7 +19,7 @@ if Party.find_by(id: 3).nil?
 end
 
 if Party.find_by(id: 4).nil?
-    Party.create!(id: 4, name: 'השמאל של ישראל', code: 'מרצ')
+    Party.create!(id: 4, name: 'מרצ - השמאל של ישראל', code: 'מרצ')
 end
 
 if Party.find_by(id: 5).nil?

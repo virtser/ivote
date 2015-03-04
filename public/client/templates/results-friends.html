@@ -19,21 +19,26 @@
   <div class="friends-invite">
     <span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span>
+    <div class="small-invite-btn" href="#/tabs/results/me">הזמנת חברים</div>
   </div>
   <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="result in results" type="item-text-wrap" >
+      <ion-item class="margin-fix" ng-repeat="result in results | orderBy: 'number_of_votes': 'reverse'" type="item-text-wrap" >
         <div class="row">
-          {{renderImgSrcs($index)}}
-        <!--   <div class="col result-party">{{result.name}}</div> -->
-          <img class="col result-party" ng-src="">
-          <div class="col result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
-          <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120}}</span>
+          <div class="party-img-wrapper col-20">
+            <img class="party-img" ng-src="{{renderImgSrc(result.party_id)}}">
+          </div>
+    
+          <div class="result-bar-wrapper col">
+          <div class="result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+20}}%">
+            <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120 | number:0}}</span>
           </div>  
-          <div class="col"><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
+        </div>
+          <div class="col-20"><br/><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
+        </div>
       </ion-item>
     </ion-list>
   </ion-content>
- <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
+<!--  <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
     <div class="total-bar" ng-class="{valid: selectedPercents >= 61}" style="width: {{selectedPercents}}%">{{totalSelected}}</div>
-  </div>
+</div> -->
 </ion-view>

@@ -22,3 +22,22 @@ $ ionic build android
 Note: why is the facebook plugin part of the repo in the first place if we remove and add?
 The reason is for web facebook login we want it in, but when moving to mobile, if its in and you do a platform add,
 you will get an error as APP_ID and APP_NAME are not set, this error prevents all plugins from being added.
+
+
+Before building a release version, the console plugin should be removed:
+ionic plugin rm org.apache.cordova.console
+
+then, build a release version:
+ionic build --release android
+
+to sign the jar type:
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore platforms/android/ant-build/CordovaApp-release-unsigned.apk alias_name
+it will ask for a passcode, which is ivote2015
+
+finally use zipalign:
+zipalign -v 4 platforms/android/ant-build/CordovaApp-release-unsigned.apk platforms/android/ant-build/CordovaApp-release-aligned.apk
+
+(if zipalign is not found, you may need to copy it from Android SDK build-tool/<version>/zipalign to Android SDK tools/zipalign)
+
+The resulting aligned APK can be uploaded to Google Play
+
