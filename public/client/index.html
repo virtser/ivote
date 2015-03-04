@@ -13,7 +13,7 @@
   <link rel="icon" href="/favicon.ico?2" />
 
   <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
-  <link href="css/style.css?52" rel="stylesheet">
+  <link href="css/style.css?53" rel="stylesheet">
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.min.js"></script>
@@ -26,17 +26,50 @@
   <script src="cordova.js"></script>
 
   <!-- your app's js -->
-  <script src="js/index.js?52"></script>
-  <script src="js/controllers.js?52"></script>
-  <script src="js/services.js?52"></script>
-  <script src="js/utils.js?52"></script>
+  <script src="js/index.js?53"></script>
+  <script src="js/controllers.js?53"></script>
+  <script src="js/services.js?53"></script>
+  <script src="js/utils.js?53"></script>
 
 <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
 for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
 mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
+
+ <script>
+  function isIframe() {
+    return window!=window.top;
+  }
+  function detectmob() {
+
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+     if(!isMobile.any() && !isIframe()) {
+       window.location = "iframe.html";
+     }
+  }
+  </script>
 </head>
 
-<body ng-app="starter">
+<body ng-app="starter" onload="detectmob();">
 <div style="direction: rtl;">
   <ion-nav-bar animation="nav-title-slide-ios7"
                class="bar-dark"
