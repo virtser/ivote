@@ -105,12 +105,12 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             connectToOurServer('token='+response.authResponse.accessToken, devToken);
 
         }, function(reason) {
-            alert('PushWoosh.registerDevice fails. reason=' + reason);
+            console.log('PushWoosh.registerDevice fails. reason=' + reason);
             connectToOurServer('token='+response.authResponse.accessToken, "");
         });        
       }
       catch(err) {
-        alert(err.message);
+        console.error(err.message);
         connectToOurServer('token='+response.authResponse.accessToken, "");
       }
 
