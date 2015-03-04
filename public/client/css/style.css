@@ -65,7 +65,7 @@ body {
 .post .textwrapper {
   min-height: 160px;
   display: table;
-  width: 90%;
+  width: 100%;
 }
 
 .post .text {
