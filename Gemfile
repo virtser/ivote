@@ -40,6 +40,7 @@ end
 group :staging, :production do
   gem 'rails_12factor', '0.0.2'
   gem 'pg', '0.17.1'
+  gem 'newrelic_rpm'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
