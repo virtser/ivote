@@ -1,4 +1,5 @@
 require 'stream'
+require 'mixpanel-ruby'
 
 class ConnectController < ApplicationController
 
@@ -15,6 +16,8 @@ class ConnectController < ApplicationController
   def create
     unless params[:token].nil?
       logger.info  "TOKEN RECEIVED!"
+
+      tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
 
       # Get more data on user from Facebook
       fb_user = FbGraph2::User.me(params[:token]).fetch
@@ -36,6 +39,7 @@ class ConnectController < ApplicationController
 
         if @user.save
           logger.info  "REGISTER USER!"
+          tracker.track(@user.id, 'Registered')
 
           # Instantiate Stream user feed object
           my_user_feed = client.feed('user', @user.id)
@@ -70,6 +74,8 @@ class ConnectController < ApplicationController
         end
       else
         logger.info  "LOGIN USER!"   
+        tracker.track(@user.id, 'Login')
+
         render json: @user, status: :ok
       end
 

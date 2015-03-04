@@ -1,4 +1,5 @@
 require 'mandrill'
+require 'mixpanel-ruby'
 
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
@@ -52,6 +53,9 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
 
+        tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+        tracker.track(vote_params[:user_id], 'Vote')
+
         send_mail
 
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
@@ -68,6 +72,9 @@ class VotesController < ApplicationController
   def update
     respond_to do |format|
       if @vote.update(vote_params)
+
+        tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+        tracker.track(vote_params[:user_id], 'Vote Update')
 
         send_mail
         
@@ -135,6 +142,8 @@ class VotesController < ApplicationController
             result = mandrill.messages.send_template template_name, template_content, message, async
 
             logger.info "Email sending result: " + result.to_yaml
+            tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+            tracker.track(user_id, 'Email - Vote')
             
         rescue Mandrill::Error => e
             # Mandrill errors are thrown as exceptions
