@@ -210,8 +210,8 @@ a.col-note {
 }
 
 .results-friend-box {
-  margin: 10px;
-  padding: 20px;
+  /*margin: 10px;*/
+  /*padding: 20px;*/
   /*background-color: #EFF0F1;*/
   /*box-shadow: 0px 2px 3px hsl(0, 0%, 53%);*/
 }
@@ -321,7 +321,7 @@ a.friends-link {
   border: none;
   color: #6F6F6F;
   height: 65px;
-  line-height: 65px;
+  line-height: 46px;
   margin-top: 4px;
   margin-bottom: 4px;
 }

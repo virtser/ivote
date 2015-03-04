@@ -16,10 +16,10 @@
     <a class="button icon" href="#/tabs/results/me">אני</a>
     <a class="button icon button-dark" >חברים</a>
   </div>  
-  <div class="friends-invite">
-    <span class="friends-number">{{results.total_number_of_votes}}</span>
-    <span class="friends-voted">חברים הצביעו</span>
-    <a class="small-invite-btn"  ng-if="results.length" href="#/tabs/results/share">הזמנת חברים</a>
+  <div class="friends-invite row">
+    <div class="col"><span class="friends-number">{{results.total_number_of_votes}}</span>
+    <span class="friends-voted">חברים הצביעו</span></div>
+    <div class="col"><a class="small-invite-btn"  ng-if="results.length" href="#/tabs/results/share">הזמנת חברים</a></div>
   </div>
   <ion-list>
       <ion-item class="margin-fix" ng-repeat="result in results | orderBy: 'number_of_votes': 'reverse'" type="item-text-wrap" >
