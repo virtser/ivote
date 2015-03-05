@@ -109,6 +109,8 @@ class VotesController < ApplicationController
         emailList.push({"email"=>email, "type"=>"to"})
       end
 
+      logger.info "emailList: " + emailList.to_yaml
+
       begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
           template_name = "vote"
@@ -135,6 +137,9 @@ class VotesController < ApplicationController
            "important"=>false,
            "html"=>""}
           async = true
+
+          logger.info "message: " + message.to_yaml
+
           # ip_pool = "Main Pool"
           # send_at = "example send_at"
           result = mandrill.messages.send_template template_name, template_content, message, async
