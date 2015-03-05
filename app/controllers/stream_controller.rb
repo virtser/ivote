@@ -99,7 +99,9 @@ end
 
       emailList = []
       emails.each do |email|
-        emailList.push({"email"=>email, "type"=>"to"})
+        unless email.nil?
+          emailList.push({"email"=>email, "type"=>"to"})
+        end
       end
 
       logger.info "emailList: " + emailList
