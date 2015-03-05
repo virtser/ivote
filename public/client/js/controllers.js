@@ -277,7 +277,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   $scope.postToFeed = function() {
     console.log('Post to Feed of '+ $sessionStorage.uid +', text: ' + $scope.text);
 
-    if (!angular.isUndefined($scope.text) || $scope.text !== '') {
+    if (!angular.isUndefined($scope.text) && ($scope.text !== '')) {
 
       var post_data = { "text" : $scope.text };
 
