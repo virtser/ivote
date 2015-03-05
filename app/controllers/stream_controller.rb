@@ -97,9 +97,12 @@ end
       friends = Relation.where(user_id: user_id).pluck(:friend_user_id)
       emails = User.where("id IN (?)", friends).pluck(:email)
 
+      emailList = []
       emails.each do |email|
+        emailList.push({"email"=>email, "type"=>"to"})
+      end
 
-        begin
+      begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
           template_name = "post"
           template_content = [{"content"=>"example content", "name"=>"example name"}]
@@ -111,38 +114,32 @@ end
   		     "headers"=>{"Reply-To"=>"we@ivote.org.il"},
   		     "return_path_domain"=>nil,
   		     "auto_text"=>nil,
-  		     "to"=>
-                [{"email"=>email,
-                    "type"=>"to",
-                    "name"=>"David Virtser"}],
-             "from_name"=>"iVote App",
-             "preserve_recipients"=>nil,
-             "track_clicks"=>nil,
-             "track_opens"=>nil,
-             "inline_css"=>nil,
-             "from_email"=>"we@ivote.org.il",
-             "recipient_metadata"=>
-                [{"rcpt"=>email, "values"=>{"user_id"=>user_id}}],
-             "view_content_link"=>nil,
-             "url_strip_qs"=>nil,
-             "signing_domain"=>nil,
-             "tracking_domain"=>nil,
-             "important"=>false,
-             "html"=>""}
-            async = true
-            # ip_pool = "Main Pool"
-            # send_at = "example send_at"
-            result = mandrill.messages.send_template template_name, template_content, message, async
+  		     "to"=> emailList,
+           "from_name"=>"iVote App",
+           "preserve_recipients"=>nil,
+           "track_clicks"=>nil,
+           "track_opens"=>nil,
+           "inline_css"=>nil,
+           "from_email"=>"we@ivote.org.il",
+           "view_content_link"=>nil,
+           "url_strip_qs"=>nil,
+           "signing_domain"=>nil,
+           "tracking_domain"=>nil,
+           "important"=>false,
+           "html"=>""}
+          async = true
+          # ip_pool = "Main Pool"
+          # send_at = "example send_at"
+          result = mandrill.messages.send_template template_name, template_content, message, async
 
-            logger.info "Email sending result: " + result.to_yaml
-            tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
-            tracker.track(user_id, 'Email - Post')
-            
-        rescue Mandrill::Error => e
-            # Mandrill errors are thrown as exceptions
-            logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
-            # raise
-        end   
+          logger.info "Email sending result: " + result.to_yaml
+          tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+          tracker.track(user_id, 'Email - Post')
+          
+      rescue Mandrill::Error => e
+          # Mandrill errors are thrown as exceptions
+          logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
+          # raise
       end   
     end
 end
