@@ -35,9 +35,11 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.
 it will ask for a passcode, which is ivote2015
 
 finally use zipalign:
-zipalign -v 4 platforms/android/ant-build/CordovaApp-release-unsigned.apk platforms/android/ant-build/CordovaApp-release-aligned.apk
+zipalign -f -v 4 platforms/android/ant-build/CordovaApp-release-unsigned.apk platforms/android/ant-build/CordovaApp-release-aligned.apk
 
 (if zipalign is not found, you may need to copy it from Android SDK build-tool/<version>/zipalign to Android SDK tools/zipalign)
 
 The resulting aligned APK can be uploaded to Google Play
 
+Shortcut: I made a build_android.sh script for the above 3 steps for building an apk for release to Google Play
+you can use that. Make sure to increment android-versionCode in config.xml before uploading to Google Play. You may also update the version name
