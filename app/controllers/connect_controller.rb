@@ -15,13 +15,11 @@ class ConnectController < ApplicationController
   # POST /connect.json
   def create
     unless params[:token].nil?
-      logger.info  "TOKEN RECEIVED!"
-
       tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
 
       # Get more data on user from Facebook
       fb_user = FbGraph2::User.me(params[:token]).fetch
-      logger.info "FB my user details: " + fb_user.to_yaml
+      # logger.info "FB my user details: " + fb_user.to_yaml
 
       # Initialize Syream client with your api key and secret
       client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
@@ -35,7 +33,6 @@ class ConnectController < ApplicationController
 
         # Register user
         @user = User.new(fb_id: fb_user.id, first_name: fb_user.first_name, last_name: fb_user.last_name, email: fb_user.email, device_token: params[:device_token])
-        logger.info @user.to_yaml
 
         if @user.save
           logger.info  "REGISTER USER!"

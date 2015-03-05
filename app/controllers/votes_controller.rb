@@ -8,16 +8,13 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.json
   def results
-    logger.info "My user_id: " + params[:user_id]
     @myuser_id = params[:user_id]
 
     #TODO: Return voting results of my friends aggregated by parties.
     @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
-    logger.info "My friends ids: " + @friends.to_yaml
 
     if @friends.length > 0
       @friends_of_friends = Relation.where(user_id: @friends).pluck(:friend_user_id)
-      logger.info "My friends of friends ids: " + @friends.to_yaml
 
       if @friends_of_friends.length > 0
         @friends.push(@friends_of_friends) # add friends of friends

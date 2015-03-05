@@ -8,9 +8,6 @@ class StreamController < ApplicationController
 # POST /stream/post/1.json
 def post
 	unless params[:user_id].nil? && params[:text].nil?
-	  logger.info "GOT USER ID!"
-	  logger.info "PARAMS: " + params.to_yaml
-
 	  @user_id = params[:user_id]
 	  @text = params[:text] 
 
