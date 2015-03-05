@@ -279,7 +279,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
     if (!angular.isUndefined($scope.text) || $scope.text !== '') {
 
-      var post_data = '{ "text" : "' + $scope.text + '" }';
+      var post_data = { "text" : $scope.text };
 
       meth = 'POST';
       url = '/api/stream/post/'+ $sessionStorage.uid +'.json'

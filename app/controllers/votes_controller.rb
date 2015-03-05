@@ -140,8 +140,6 @@ class VotesController < ApplicationController
           result = mandrill.messages.send_template template_name, template_content, message, async
 
           logger.info "Email sending result: " + result.to_yaml
-          tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
-          tracker.track(user_id, 'Email - Vote')
           
       rescue Mandrill::Error => e
           # Mandrill errors are thrown as exceptions

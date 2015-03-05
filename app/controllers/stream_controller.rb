@@ -7,9 +7,12 @@ class StreamController < ApplicationController
 # POST /stream/post/1
 # POST /stream/post/1.json
 def post
+
 	unless params[:user_id].nil? && params[:text].nil?
 	  @user_id = params[:user_id]
-	  @text = params[:text] 
+	  text = params[:text]
+
+    logger.info "Post text: " + text.to_yaml
 
 	  # Initialize Stream client with your api key and secret
 	  @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
@@ -18,7 +21,7 @@ def post
 	  @user_feed = @stream_client.feed('user', @user_id)
 
 	  # Add the activity to the Stream feed
-  	activity_data = {:actor => @user_id, :verb => 'post', :object => 1, :post => @text}
+  	activity_data = {:actor => @user_id, :verb => 'post', :object => 1, :post => text}
 	  activity_response = @user_feed.add_activity(activity_data)   
 
     tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
@@ -26,11 +29,11 @@ def post
 
 	  send_mail
 
-      render json: activity_response, status: :ok
-    else
-      logger.error  "ERROR!"
-      render json: { message: "You provided an invalid user_id!" } , status: :forbidden 
-    end
+    render json: activity_response, status: :ok
+  else
+    logger.error  "ERROR!"
+    render json: { message: "You provided an invalid user_id!" } , status: :forbidden 
+  end
 end
 
 # GET /stream/user/1
@@ -133,8 +136,6 @@ end
           result = mandrill.messages.send_template template_name, template_content, message, async
 
           logger.info "Email sending result: " + result.to_yaml
-          tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
-          tracker.track(user_id, 'Email - Post')
           
       rescue Mandrill::Error => e
           # Mandrill errors are thrown as exceptions
