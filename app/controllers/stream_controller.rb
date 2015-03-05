@@ -104,8 +104,6 @@ end
         end
       end
 
-      logger.info "emailList: " + emailList
-
       begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
           template_name = "post"
@@ -133,8 +131,6 @@ end
            "html"=>""}
           async = true
           
-          logger.info "message: " + message
-
           # ip_pool = "Main Pool"
           # send_at = "example send_at"
           result = mandrill.messages.send_template template_name, template_content, message, async
