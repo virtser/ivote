@@ -1,5 +1,6 @@
 require 'stream'
 require 'mandrill'
+require 'mixpanel-ruby'
 
 class StreamController < ApplicationController
 
@@ -7,21 +8,21 @@ class StreamController < ApplicationController
 # POST /stream/post/1.json
 def post
 	unless params[:user_id].nil? && params[:text].nil?
-	  logger.info "GOT USER ID!"
-	  logger.info "PARAMS: " + params.to_yaml
-
 	  @user_id = params[:user_id]
 	  @text = params[:text] 
 
-  	  # Initialize Stream client with your api key and secret
-  	  @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
+	  # Initialize Stream client with your api key and secret
+	  @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
 
 	  # Instantiate Stream user feed object
 	  @user_feed = @stream_client.feed('user', @user_id)
 
 	  # Add the activity to the Stream feed
-  	  activity_data = {:actor => @user_id, :verb => 'post', :object => 1, :post => @text}
+  	activity_data = {:actor => @user_id, :verb => 'post', :object => 1, :post => @text}
 	  activity_response = @user_feed.add_activity(activity_data)   
+
+    tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+    tracker.track(@user_id, 'Post')
 
 	  send_mail
 
@@ -93,9 +94,14 @@ end
       friends = Relation.where(user_id: user_id).pluck(:friend_user_id)
       emails = User.where("id IN (?)", friends).pluck(:email)
 
+      emailList = []
       emails.each do |email|
+        unless email.nil?
+          emailList.push({"email"=>email, "type"=>"to"})
+        end
+      end
 
-        begin
+      begin
           mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
           template_name = "post"
           template_content = [{"content"=>"example content", "name"=>"example name"}]
@@ -107,36 +113,33 @@ end
   		     "headers"=>{"Reply-To"=>"we@ivote.org.il"},
   		     "return_path_domain"=>nil,
   		     "auto_text"=>nil,
-  		     "to"=>
-                [{"email"=>email,
-                    "type"=>"to",
-                    "name"=>"David Virtser"}],
-             "from_name"=>"iVote App",
-             "preserve_recipients"=>nil,
-             "track_clicks"=>nil,
-             "track_opens"=>nil,
-             "inline_css"=>nil,
-             "from_email"=>"we@ivote.org.il",
-             "recipient_metadata"=>
-                [{"rcpt"=>email, "values"=>{"user_id"=>user_id}}],
-             "view_content_link"=>nil,
-             "url_strip_qs"=>nil,
-             "signing_domain"=>nil,
-             "tracking_domain"=>nil,
-             "important"=>false,
-             "html"=>""}
-            async = true
-            # ip_pool = "Main Pool"
-            # send_at = "example send_at"
-            result = mandrill.messages.send_template template_name, template_content, message, async
+  		     "to"=> emailList,
+           "from_name"=>"iVote App",
+           "preserve_recipients"=>nil,
+           "track_clicks"=>nil,
+           "track_opens"=>nil,
+           "inline_css"=>nil,
+           "from_email"=>"we@ivote.org.il",
+           "view_content_link"=>nil,
+           "url_strip_qs"=>nil,
+           "signing_domain"=>nil,
+           "tracking_domain"=>nil,
+           "important"=>false,
+           "html"=>""}
+          async = true
+          
+          # ip_pool = "Main Pool"
+          # send_at = "example send_at"
+          result = mandrill.messages.send_template template_name, template_content, message, async
 
-            logger.info "Email sending result: " + result.to_yaml
-            
-        rescue Mandrill::Error => e
-            # Mandrill errors are thrown as exceptions
-            logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
-            # raise
-        end   
+          logger.info "Email sending result: " + result.to_yaml
+          tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+          tracker.track(user_id, 'Email - Post')
+          
+      rescue Mandrill::Error => e
+          # Mandrill errors are thrown as exceptions
+          logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
+          # raise
       end   
     end
 end

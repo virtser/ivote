@@ -5,9 +5,7 @@
 <meta property="og:url"                content="https://ivote.org.il" />
 <meta property="fb:app_id"             content="1557020157879112" />
 <meta property="og:title"              content="iVote - .מצביעים. משפיעים. מנצחים" />
-<meta property="og:description"        content="1. ביחרו באופן אנונימי לחלוטין את המפלגה שעבורה אתם מתכוונים להצביע בבחירות הקרובות.
-2. צפו בתוצאות הבחירות המבוססות על מעגל החברים שלכם.
-3. השפיעו על מעגל החברים שלכם תוך שמירה על פרטיות מלאה!" />
+<meta property="og:description"        content="מצביעים באופן חשאי למפלגה שבכוונתם לבחור. צופים בתוצאות המבוססות על מעגל החברים שלכם. היכנסו עכשיו להצביע ולהשפיע" />
 <meta property="og:image"              content="https://ivote.org.il/client/img/share.jpg" />
 
 <meta name="description" content="ביחרו באופן אנונימי לחלוטין את המפלגה שעבורה אתם מתכוונים להצביע בבחירות הקרובות">
@@ -77,7 +75,7 @@ mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
         <div class="w-col w-col-6"><img class="hero-iphone" src="images/phone.png" width="221" alt="54f4d02cdced7ed62ba93585_phone.png">
         </div>
         <div class="w-col w-col-6 w-clearfix call-to-action"><img class="logo" src="images/logo.png" alt="54f4c81694de5ed82b5f1bc7_logo.png">
-          <a class="button top" href="#" onclick="detectmob();">
+          <a class="button top" href="#" onclick="mixpanel.track('Homepage - Open App'); detectmob();">
             <div style="direction: rtl;">אני רוצה להצביע ולהשפיע!</div>
           </a>
         </div>

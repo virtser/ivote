@@ -117,7 +117,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     };
 
     var fbLoginError = function(error){
-        alert("fbLoginError: " + error);
+        console.log("fbLoginError: " + error);
     };
 
     $scope.newLogin = function() {

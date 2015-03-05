@@ -29,6 +29,8 @@ gem 'stream-ruby'
 # Mandrill email
 gem 'mandrill-api'
 
+gem 'mixpanel-ruby'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development, :test do
   gem 'spring'

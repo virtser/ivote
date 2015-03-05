@@ -1,4 +1,5 @@
 require 'mandrill'
+require 'mixpanel-ruby'
 
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
@@ -7,16 +8,13 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.json
   def results
-    logger.info "My user_id: " + params[:user_id]
     @myuser_id = params[:user_id]
 
     #TODO: Return voting results of my friends aggregated by parties.
     @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
-    logger.info "My friends ids: " + @friends.to_yaml
 
     if @friends.length > 0
       @friends_of_friends = Relation.where(user_id: @friends).pluck(:friend_user_id)
-      logger.info "My friends of friends ids: " + @friends.to_yaml
 
       if @friends_of_friends.length > 0
         @friends.push(@friends_of_friends) # add friends of friends
@@ -52,6 +50,9 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
 
+        tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+        tracker.track(vote_params[:user_id], 'Vote')
+
         send_mail
 
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
@@ -68,6 +69,9 @@ class VotesController < ApplicationController
   def update
     respond_to do |format|
       if @vote.update(vote_params)
+
+        tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+        tracker.track(vote_params[:user_id], 'Vote Update')
 
         send_mail
         
@@ -97,50 +101,52 @@ class VotesController < ApplicationController
       friends = Relation.where(user_id: user_id).pluck(:friend_user_id)
       emails = User.where("id IN (?)", friends).pluck(:email)
 
+      emailList = []
       emails.each do |email|
+        unless email.nil?
+          emailList.push({"email"=>email, "type"=>"to"})
+        end
+      end
 
-        begin
-            mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
-            template_name = "vote"
-            template_content = [{"content"=>"example content", "name"=>"example name"}]
-            message = {"subject"=>"iVote חבר/ה שלך הצביע/ה באפליקציית",
-             "text"=>"iVote חבר/ה שלך הצביע/ה באפליקציית",
-             "auto_html"=>nil,
-             "google_analytics_domains"=>["ivote.org.il"],
-             "tags"=>["friend-vote"],
-             "headers"=>{"Reply-To"=>"we@ivote.org.il"},
-             "return_path_domain"=>nil,
-             "auto_text"=>nil,
-             "to"=>
-                [{"email"=>email,
-                    "type"=>"to",
-                    "name"=>"David Virtser"}],
-             "from_name"=>"iVote App",
-             "preserve_recipients"=>nil,
-             "track_clicks"=>nil,
-             "track_opens"=>nil,
-             "inline_css"=>nil,
-             "from_email"=>"we@ivote.org.il",
-             "recipient_metadata"=>
-                [{"rcpt"=>email, "values"=>{"user_id"=>user_id}}],
-             "view_content_link"=>nil,
-             "url_strip_qs"=>nil,
-             "signing_domain"=>nil,
-             "tracking_domain"=>nil,
-             "important"=>false,
-             "html"=>""}
-            async = true
-            # ip_pool = "Main Pool"
-            # send_at = "example send_at"
-            result = mandrill.messages.send_template template_name, template_content, message, async
+      begin
+          mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
+          template_name = "vote"
+          template_content = [{"content"=>"example content", "name"=>"example name"}]
+          message = {"subject"=>"iVote חבר/ה שלך הצביע/ה באפליקציית",
+           "text"=>"iVote חבר/ה שלך הצביע/ה באפליקציית",
+           "auto_html"=>nil,
+           "google_analytics_domains"=>["ivote.org.il"],
+           "tags"=>["friend-vote"],
+           "headers"=>{"Reply-To"=>"we@ivote.org.il"},
+           "return_path_domain"=>nil,
+           "auto_text"=>nil,
+           "to"=> emailList,
+           "from_name"=>"iVote App",
+           "preserve_recipients"=>nil,
+           "track_clicks"=>nil,
+           "track_opens"=>nil,
+           "inline_css"=>nil,
+           "from_email"=>"we@ivote.org.il",
+           "view_content_link"=>nil,
+           "url_strip_qs"=>nil,
+           "signing_domain"=>nil,
+           "tracking_domain"=>nil,
+           "important"=>false,
+           "html"=>""}
+          async = true
 
-            logger.info "Email sending result: " + result.to_yaml
-            
-        rescue Mandrill::Error => e
-            # Mandrill errors are thrown as exceptions
-            logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
-            # raise
-        end   
+          # ip_pool = "Main Pool"
+          # send_at = "example send_at"
+          result = mandrill.messages.send_template template_name, template_content, message, async
+
+          logger.info "Email sending result: " + result.to_yaml
+          tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+          tracker.track(user_id, 'Email - Vote')
+          
+      rescue Mandrill::Error => e
+          # Mandrill errors are thrown as exceptions
+          logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
+          # raise
       end   
     end
 end

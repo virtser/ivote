@@ -67,6 +67,7 @@ GEM
       json (>= 1.7.7, < 2.0)
     mime-types (2.4.3)
     minitest (5.5.1)
+    mixpanel-ruby (1.7.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     newrelic_rpm (3.10.0.279)
@@ -147,6 +148,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mandrill-api
+  mixpanel-ruby
   newrelic_rpm
   pg (= 0.17.1)
   rails (= 4.1.6)
