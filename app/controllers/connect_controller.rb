@@ -42,27 +42,31 @@ class ConnectController < ApplicationController
           my_user_feed = client.feed('user', @user.id)
           my_flat_feed = client.feed('flat', @user.id)
 
-          # Save user friends 
+          # Get user friends Facebook IDs
+          fb_friends_ids = []
           fb_user.friends.each do |u|
-            @friend = User.find_by(fb_id: u.id)
+            fb_friends_ids.push(u.id)
+          end
 
-            unless @friend.nil?
-              @relation = Relation.new(user_id: @user.id, friend_user_id: @friend.id)
-              @relation.save
+          # Get user friends IDs
+          friends_ids = User.where("fb_id IN (?)", fb_friends_ids).pluck(:id)
 
-              @opposite_relation = Relation.new(user_id: @friend.id, friend_user_id: @user.id)
-              @opposite_relation.save
+          # Save user friends 
+          friends_ids.each do |f_id|
+            @relation = Relation.new(user_id: @user.id, friend_user_id: f_id)
+            @relation.save
 
-              # Follow Stream of friend
-              my_flat_feed.follow('user', @friend.id)
+            @opposite_relation = Relation.new(user_id: f_id, friend_user_id: @user.id)
+            @opposite_relation.save
 
-              # Opposite follow 
-              friend_flat_feed = client.feed('flat', @friend.id)
-              friend_flat_feed.follow('user', @user.id)
+            # Follow Stream of friend
+            my_flat_feed.follow('user', f_id)
 
-              logger.info 'SAVING RELATIONS!'
-            end 
+            # Opposite follow 
+            friend_flat_feed = client.feed('flat', f_id)
+            friend_flat_feed.follow('user', @user.id)
 
+            logger.info 'SAVING RELATIONS!'
           end
 
           render json: @user, status: :created
