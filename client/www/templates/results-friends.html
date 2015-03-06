@@ -1,0 +1,52 @@
+<ion-view cache-view="false" view-title="תוצאות - חברים">
+ <!-- <ion-nav-buttons side="primary">
+  <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
+ </ion-nav-buttons> -->
+ <ion-nav-buttons side="primary">
+  <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
+ </ion-nav-buttons>
+  <ion-content>
+  <div class="row header" ng-controller="IntegrityCtrl">
+    <div class="col title">תוצאות</div>
+    <div class="col-50"> <!--      לחץ על העמודות כדי,<br/>
+      להוסיף לקואליציה -->
+    </div>
+  </div>
+  <div class="result-tabs">
+    <a class="button icon" href="#/tabs/results/me">אני</a>
+    <a class="button icon button-dark" >חברים</a>
+  </div>  
+  <div class="friends-invite row">
+    <div class="col"><span class="friends-number">{{results.total_number_of_votes}}</span>
+    <span class="friends-voted">חברים הצביעו</span></div>
+    <div class="col"><a class="small-invite-btn"  ng-if="results.length" href="#/tabs/results/share">הזמנת חברים</a></div>
+  </div>
+  <ion-list>
+      <ion-item class="margin-fix" ng-repeat="result in results | orderBy: 'number_of_votes': 'reverse'" type="item-text-wrap" >
+        <div class="row">
+          <div class="party-img-wrapper col-33">
+            <img class="party-img" ng-src="{{renderImgSrc(result.party_id)}}">
+          </div>
+    
+          <div class="result-bar-wrapper col">
+          <div class="result-bar" style="width:{{result.number_of_votes/results.total_number_of_votes*75+5}}%">
+            <span class="result-number">{{result.number_of_votes/results.total_number_of_votes*120 | number:0}}</span>
+          </div>  
+        </div>
+          <div class="col-20"><br/><a class="friends-link">{{result.number_of_votes}} חברים</a></div>
+        </div>
+      </ion-item>
+    
+    </ion-list>
+    <div class="text-center row" ng-if="!results.length">
+      <div class="col invite-big-text">יש להזמין חברים על מנת לראות <br/>תוצאות ועוד יותר חשוב - להשפיע!
+        <a class="big-invite-btn" href="#/tabs/results/share">הזמנת חברים</a>
+      </div> 
+     
+    </div>
+  </ion-content>
+<!--  <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
+    <div class="total-bar" ng-class="{valid: selectedPercents >= 61}" style="width: {{selectedPercents}}%">{{totalSelected}}</div>
+</div>
+</div> -->
+</ion-view>

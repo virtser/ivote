@@ -1,96 +1,115 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngResource'])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Andrew Jostlin',
-    lastText: 'Did you get the ice cream?',
-    face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg'
-  }, {
-    id: 3,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 4,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
-  }];
-
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
-  }
+.factory('Parties', function ($resource, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/parties.json');
 })
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
+.factory('Results', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/votes/results/' + $sessionStorage.uid + '.json');
+})
 
-  // Some fake testing data
-  var friends = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    notes: 'Enjoys drawing things',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    notes: 'Odd obsession with everything',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Andrew Jostlen',
-    notes: 'Wears a sweet leather Jacket. I\'m a bit jealous',
-    face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg'
-  }, {
-    id: 3,
-    name: 'Adam Bradleyson',
-    notes: 'I think he needs to buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 4,
-    name: 'Perry Governor',
-    notes: 'Just the nicest guy',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
-  }];
+.factory('GetUserID', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/connect/user/' + $sessionStorage.fbuid + '.json');
+})
 
+.factory('UserVote', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/votes/' + $sessionStorage.uid + '.json');
+})
 
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+.factory('FeedFlat', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/stream/flat/' + $sessionStorage.uid + '.json');
+})
+
+.factory('FeedUser', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/stream/user/' + $sessionStorage.uid + '.json');
+})
+
+.factory('FeedPost', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/stream/post/' + $sessionStorage.uid + '.json');
+})
+
+.factory('PushWoosh', function($q, $state) {
+
+    var PW_APP_ID = "50DBB-3F2B6";
+    var pushNotification;
+
+    function initPW_iOS(pushwooshAppId) {
+        pushwooshAppId = PW_APP_ID;
+        pushNotification = window.plugins.pushNotification;
+
+        //set push notification callback before we initialize the plugin
+        document.addEventListener('push-notification', function(event) {
+                                //get the notification payload
+                                var notification = event.notification;
+
+                                //display alert to the user for example
+                                alert(notification.aps.alert);
+
+                                //clear the app badge
+                                pushNotification.setApplicationIconBadgeNumber(0);
+                            });
+
+        // Initialize the plugin
+        pushNotification.onDeviceReady({ pw_appid: pushwooshAppId });
+
+        //reset badges on app start
+        pushNotification.setApplicationIconBadgeNumber(0);
     }
-  }
-});
+
+    function initPW_Android(pushwooshAppId) {
+        pushwooshAppId = PW_APP_ID;
+        pushNotification = window.plugins.pushNotification;
+
+        //set push notification callback before we initialize the plugin
+        document.addEventListener('push-notification', function(event) {
+            var title = event.notification.title;
+            var userData = event.notification.userdata;
+
+            if(typeof(userData) != "undefined") {
+                console.warn('user data: ' + JSON.stringify(userData));
+            }
+
+            alert(title);
+        });
+
+        // Initialize the plugin
+        pushNotification.onDeviceReady({ projectid:802918675498, pw_appid : pushwooshAppId });
+
+        //reset badges on app start
+        pushNotification.setApplicationIconBadgeNumber(0);
+    }
+
+    var pw = {
+      init: function(pushwooshAppId) {
+        if (window.ionic.Platform.isIOS()) {
+          initPW_iOS(pushwooshAppId);
+        } else if (window.ionic.Platform.isAndroid()) {
+          initPW_Android(pushwooshAppId);
+        } else {
+          console.warn('[ngPushWoosh] Unsupported platform');
+        }
+      },
+
+      registerDevice: function() {
+        var deferred = $q.defer();
+        if (window.ionic.Platform.isIOS()) {
+          pushNotification.registerDevice(deferred.resolve, deferred.reject);
+        } else if (window.ionic.Platform.isAndroid()) {
+          pushNotification.registerDevice(deferred.resolve, deferred.reject);
+        } else {
+          console.warn('[ngPushWoosh] Unsupported platform');
+          deferred.reject("Push not supported on this platform");
+        }
+        return deferred.promise;
+      },
+
+      unregisterDevice: function() {
+        var deferred = $q.defer();
+        pushNotification.unregisterDevice(deferred.resolve, deferred.reject);
+        return deferred.promise;
+      }
+    };
+
+    return pw;
+  });
+

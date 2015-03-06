@@ -1,0 +1,13 @@
+{
+    "version": "3.4.9",
+    "name": "com.pushwoosh.plugins.pushwoosh",
+    "cordova_name": "Pushwoosh",
+    "description": "\n    This plugin allows you to send and receive push notifications. Powered by Pushwoosh (www.pushwoosh.com).\n    ",
+    "license": "MIT",
+    "platforms": [
+        "android",
+        "ios",
+        "wp8"
+    ],
+    "engines": []
+}

@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore .idea folder
+/.idea
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -15,3 +18,9 @@
 /log/*.log
 /tmp
 *.orig
+*.log
+client/platforms/android
+client/platforms/ios
+client/plugins/android.json
+client/plugins/ios.json
+ivote_development

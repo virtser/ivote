@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Tue Mar 03 2015 08:08:32 GMT+0000 (UTC) -->
+<html data-wf-site="54f21608244f6b8d381b8d11" data-wf-page="54f21608244f6b8d381b8d13">
+<meta property="og:url"                content="https://ivote.org.il" />
+<meta property="fb:app_id"             content="1557020157879112" />
+<meta property="og:title"              content="iVote - .מצביעים. משפיעים. מנצחים" />
+<meta property="og:description"        content="מצביעים באופן חשאי למפלגה שבכוונתם לבחור. צופים בתוצאות המבוססות על מעגל החברים שלכם. היכנסו עכשיו להצביע ולהשפיע" />
+<meta property="og:image"              content="https://ivote.org.il/client/img/share.jpg" />
+
+<meta name="description" content="ביחרו באופן אנונימי לחלוטין את המפלגה שעבורה אתם מתכוונים להצביע בבחירות הקרובות">
+<meta name="keywords" content="מצביעים, משפיעים, מנצחים">
+
+<!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("5169a311c1cad013734458bb88005dcd");</script><!-- end Mixpanel -->
+  <title>iVote - ".מצביעים. משפיעים. מנצחים"</title>
+  <link rel="shortcut icon" href="/favicon.ico?2" type="image/x-icon" />
+
+  <script>
+  function detectmob() {
+
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+     if(isMobile.any()) {
+       window.location = "client/";
+     } else {
+       window.location = "client/iframe.html";
+     }
+  }
+  </script>
+<head>
+  <meta charset="utf-8">
+  <title>Slate Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/ivote2015.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700","Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Bitter:400,700,400italic"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="images/webclip-slate.png">
+</head>
+<body>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54f3786440a3b4c0" async="async"></script>
+  <div class="w-section section hero">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6"><img class="hero-iphone" src="images/phone.png" width="221" alt="54f4d02cdced7ed62ba93585_phone.png">
+        </div>
+        <div class="w-col w-col-6 w-clearfix call-to-action"><img class="logo" src="images/logo.png" alt="54f4c81694de5ed82b5f1bc7_logo.png">
+          <a class="button top" href="#" onclick="mixpanel.track('Homepage - Open App'); detectmob();">
+            <div style="direction: rtl;">אני רוצה להצביע ולהשפיע!</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-section w-hidden-small w-hidden-tiny section grey"></div>
+  <div class="w-section w-clearfix section" id="features">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-9 w-clearfix">
+          <h2>הצביעו</h2>
+          <p>בוחרים בצורה אנונימית במפלגה שעבורה אתה מתכוונים להצביע בבחירות הקרובות</p>
+        </div>
+        <div class="w-col w-col-3 center"><img src="images/ivote-new.png" width="228" alt="54f4d22705479fc63494618a_ivote-new.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-section section grey">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 center"><img src="images/graph.png" width="274" alt="54f4d557dced7ed62ba93663_graph.png">
+        </div>
+        <div class="w-col w-col-9 w-clearfix center">
+          <h2>צפו</h2>
+          <p>צפו בתוצאות הבחירות המבוססות על מעגל החברים שלכם</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-section section">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-6 w-clearfix">
+          <h2>השפיעו</h2>
+          <p>השפיעו על מעגל החברים שלכם תוך שמירה על פרטיות מלאה</p>
+        </div>
+        <div class="w-col w-col-6 center"><img src="images/talk.png" width="250" alt="54f4d4ff05479fc6349461bb_talk.png">
+        </div>
+      </div>
+    </div>
+  </div>
+<!--   <div class="w-section section purple">
+    <div class="w-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-clearfix"><a class="button" href="#">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</a>
+        </div>
+        <div class="w-col w-col-9">
+          <h2 class="price-text">הורידו את האפליקציה עכשיו והתחילו להשפיע</h2>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="w-section section grey footer"></div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59150657-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

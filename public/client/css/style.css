@@ -1,1 +1,472 @@
-/* Empty. Add your own CSS if you like */
+@import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+
+body {
+  font-family: 'Open Sans Hebrew', serif;
+  color:#888888;
+  background: #F2F2F2;
+}
+
+.signup-header {
+  background-image: url('../img/welcome-background.png');
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 80px;
+  display: block;
+  width: 100%;
+  height: 80px;
+  padding: 2px 5px;
+}
+
+.signup-header h1 {
+    color: white;
+    margin: 0px;
+}
+
+.main {
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+.main .emphasized {
+  font-size:28px;
+  font-weight:bold;
+}
+
+.row .bold {
+  font-weight: bold;
+}
+
+.facebook-button {
+  border: 0px;
+  background-image: url('../img/sigunp.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 280px 44px;
+  width: 280px;
+  height: 44px;
+}
+
+.header {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.header .title {
+  font-size:42px;
+  font-weight: 200;
+}
+
+.post {
+  background-color: rgb(102, 102, 255);
+  color: white;
+  margin: 10px 0px;
+}
+
+.post .textwrapper {
+  min-height: 160px;
+  display: table;
+  width: 100%;
+}
+
+.post .text {
+  font-size:20px;
+  padding: 10px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.post-text {
+  min-height:160px;
+}
+
+.loader {
+  padding:50px;
+}
+
+.tab-title {
+  font-size: 16px;
+  padding-right: 10px;
+}
+
+.ion-compose:before, .ion-share:before {
+  font-size: 28px;
+}
+}
+
+.row-note {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  height: 190px;
+}
+
+
+.col-note {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #eeeeee;
+  background-image: url("../img/note-bg.png");
+  background-position: center;
+  background-size: 148px 190px;
+  background-repeat: no-repeat;
+  display: block;
+  width: 148px;
+  height: 190px; }
+
+.col-note-selected{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #eeeeee;
+  background-image: url("../img/note-bg-green.png");
+  background-position: center;
+  background-size: 148px 190px;
+  background-repeat: no-repeat;
+  display: block;
+}
+a.col-note {
+    text-decoration: none;
+}
+
+.result-bar{
+  /*display: inline-block;*/
+  background-color: #1383C3;
+  height:30px;
+}
+
+.total-bar-ph {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(70,70,70,1)), color-stop(5%,rgba(78,78,78,1)), color-stop(19%,rgba(88,88,88,1)), color-stop(35%,rgba(95,95,95,1)), color-stop(46%,rgba(97,97,97,1)), color-stop(62%,rgba(95,95,95,1)), color-stop(76%,rgba(90,90,90,1)), color-stop(100%,rgba(73,73,73,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(70,70,70,1) 0%,rgba(78,78,78,1) 5%,rgba(88,88,88,1) 19%,rgba(95,95,95,1) 35%,rgba(97,97,97,1) 46%,rgba(95,95,95,1) 62%,rgba(90,90,90,1) 76%,rgba(73,73,73,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, rgba(70,70,70,1) 0%,rgba(78,78,78,1) 5%,rgba(88,88,88,1) 19%,rgba(95,95,95,1) 35%,rgba(97,97,97,1) 46%,rgba(95,95,95,1) 62%,rgba(90,90,90,1) 76%,rgba(73,73,73,1) 100%); /* W3C */
+  padding: 0;
+  text-align: left;
+  direction: ltr;
+}
+
+.total-bar-ph > .total-bar {
+  background-color: #F00;
+  color: #FFF;
+  font-weight: bold;
+  vertical-align: middle;
+  text-align: right;
+  font-size: 20px;
+  padding: 0 8px;
+  line-height: 43px;
+}
+
+.total-bar-ph > .total-bar.valid {
+  background-color: #7dc314;
+}
+
+.result-party{
+  /*display: inline-block;*/
+  /*width:200px;*/
+  text-align: left;
+  padding-left: 10px;
+}
+.result-number{
+  /*display: inline-block;*/
+  float: left;
+  margin-right:2px;
+  margin-top: 5px;
+  margin-left:2px;
+  font-weight: bold;
+  color: hsl(0, 100%, 100%);
+
+}
+
+.result-tabs{
+  text-align: center;
+
+}
+
+.results-title {
+  display: block;
+  float: right;
+  font-size: 80px;
+}
+
+.results-subtitle {
+  display: block;
+  float: right;
+  font-size: 30px;
+}
+
+.results-title-box{
+  margin: 25px;
+}
+
+.results-friend-box {
+  /*margin: 10px;*/
+  /*padding: 20px;*/
+  /*background-color: #EFF0F1;*/
+  /*box-shadow: 0px 2px 3px hsl(0, 0%, 53%);*/
+}
+
+.friends-number {
+  font-size: 30px;
+  padding-left: 10px;
+  margin-right: 16px;
+}
+
+.friends-voted {
+  font-size: 20px;
+  position: relative;
+  top: -3px;
+}
+
+a.friends-link {
+  position: relative;
+  top: -10px;
+  color: hsl(210, 100%, 50%);
+  margin-right: 10px;
+  text-decoration: underline;
+}
+
+.pane, .view ,.item{
+  background: #F2F2F2;
+}
+
+.party-block {
+  background-color: white;
+  border: 1px solid grey;
+  color: black;
+  margin: 4px;
+  height: 98px;
+  box-shadow: 1px 2px 0px #888888;
+}
+
+.selected {
+  background-color: #7dc314;
+  color: white;
+}
+
+.party-code {
+  font-size: 34px;
+}
+
+.party-name {
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 15px
+}
+
+.modal-background {
+  background-color: #F7F7F7;
+}
+
+.modal-text {
+  text-align: center;
+  font-size: 18px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 14px;
+  height: 50px;
+}
+
+.modal-thick-text {
+  color: black;
+  font-weight: bold;
+}
+
+.modal-kalpi-img {
+  height: 146px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
+  margin-bottom: 30px;
+}
+
+
+.modal-party-block {
+  position: absolute;
+  top: 58px;
+  right: 50px;
+  color: black;
+  background-color: white;
+  margin: 4px;
+  height: 130px;
+  width: 98px;
+  text-align: center;
+}
+
+.modal-party-code {
+  margin-top: 19px;
+  font-size: 34px;
+}
+
+.btn-wrapper {
+  margin-top: 40px;
+}
+
+.result-btn {
+  height: 80px;
+}
+
+.friends-invite {
+  background-color: #E1E1E1;
+  border: none;
+  color: #6F6F6F;
+  height: 65px;
+  line-height: 46px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.party-img-wrapper {
+  width: 72px;
+}
+
+.party-img {
+  height: 18px;
+  float: left;
+  margin-top: 10px;
+  margin-left: 6px;
+}
+
+.margin-fix {
+  margin: 0px;
+  padding: 0px;
+}
+
+.result-bar-wrapper {
+  min-width: 134px;
+}
+
+.small-invite-btn {
+  text-decoration: none;
+  font-size: 19px;
+  color: #4693C8;
+  width: 127px;
+  display: inline-block;
+  background: url('../img/buttons/invite-1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.facebook-invite-btn {
+    text-decoration: none;
+  margin-top: 40px;
+  background: url('../img/buttons/fb.png');
+  display: block;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  height: 58px;
+  width: 287px;
+  margin: auto;
+  margin-bottom: 25px;
+  color: white;
+  font-size: 22px;
+  padding-top: 16px;
+  margin-top: 35px;
+  padding-right: 16px
+}
+
+.tweeter-invite-btn {
+    text-decoration: none;
+  margin-top: 20px;
+  background: url('../img/buttons/twtr.png');
+  display: block;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  height: 58px;
+  width: 287px;
+  margin: auto;
+  margin-bottom: 25px;
+  color: white;
+  font-size: 22px;
+  padding-top: 16px;
+  padding-right: 16px
+}
+
+.whatsup-invite-btn {
+    text-decoration: none;
+   margin-top: 20px;
+  background: url('../img/buttons/wtsp.png');
+  display: block;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  height: 58px;
+  width: 287px;
+  margin: auto;
+  margin-bottom: 25px;
+    color: white;
+  font-size: 22px;
+  padding-top: 16px;
+  padding-right: 16px
+}
+
+
+.mail-invite-btn {
+  text-decoration: none;
+  background: url('../img/buttons/mail.png');
+  display: block;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  height: 58px;
+  width: 287px;
+  margin: auto;
+  margin-bottom: 25px;
+  color: white;
+  font-size: 22px;
+  padding-top: 16px;
+  padding-right: 16px
+
+}
+
+
+
+.right {
+  float: right;
+}
+
+.invite-no-results {
+
+}
+
+.invite-text {
+
+}
+
+.back-btn {
+  font-size: 28px;
+}
+
+.big-invite-btn {
+  text-decoration: none;
+  font-size: 23px;
+  color: #4693C8;
+  width: 148px;
+  display: inline-block;
+  background: url('../img/buttons/invite-2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 83px;
+  line-height: 81px;
+  margin-top: 3px;
+}
+
+.invite-big-text {
+  font-size: 20px;
+}

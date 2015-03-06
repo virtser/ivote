@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
-# Use postgresql as the database for Active Record
-gem 'pg', '0.17.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,15 +22,28 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Facebook connect
-gem 'fb_graph'
+gem 'fb_graph2'
+
+# Stream feed
+gem 'stream-ruby', '2.2.2'
+
+# Mandrill email
+gem 'mandrill-api'
+
+gem 'mixpanel-ruby'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development, :test do
   gem 'spring'
+  
+  # Use postgresql as the database for Active Record
+  gem 'sqlite3'
 end
 # Required for Heroku
 group :staging, :production do
   gem 'rails_12factor', '0.0.2'
+  gem 'pg', '0.17.1'
+  gem 'newrelic_rpm'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,34 @@
+<ion-modal-view class="modal-background" style="direction: rtl;">
+  <ion-header-bar class="modal-background">
+    <div class="modal-text">האם ברצונך לאשר את הצבעתך למפלגת
+      <!-- <span class="modal-thick-text"> {{ parties[pid].code }} </span> -->
+    </div>
+  </ion-header-bar>
+  <ion-content>
+      <div class="row">
+        <img class="modal-kalpi-img" src="img/kalpi.png">
+          <div class="modal-party-block">
+            &nbsp;
+            &nbsp;
+            <div class="modal-party-code">{{ parties[pid].code }}</div>
+            <div class="party-name">{{ parties[pid].name }}</div>
+            &nbsp;
+            &nbsp;
+          </div>
+        </div> 
+      </div>
+
+      <div class="row btn-wrapper" style="direction: rtl;"> 
+        <div class="col-50 col-offset-6">
+              <button class="button button-block button-balanced" ng-click="confirmVote()">
+              אישור
+              </button>
+        </div>
+        <div class="col-50 col-offset-6">
+              <button class="button button-block button-dark" ng-click="closeModal()">
+              ביטול
+              </button>
+        </div>
+      </div>
+  </ion-content>
+</ion-modal-view>
