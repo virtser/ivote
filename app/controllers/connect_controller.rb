@@ -23,10 +23,11 @@ class ConnectController < ApplicationController
 
       # Initialize Syream client with your api key and secret
       client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
+      # client = Stream::Client.new('muxcgtqx9rb9', '6ewc4rb3jr6uut9c3hpyrb68dpsexw8uhk67vh8ea2phepj2f93kunr3cgjknjy3')
 
       # Get user details
       @user = User.find_by(fb_id: fb_user.id)
-      logger.info @user.to_yaml
+      # logger.info @user.to_yaml
 
       # Check if user not registered yet
       if @user.nil?
@@ -51,6 +52,8 @@ class ConnectController < ApplicationController
           # Get user friends IDs
           friends_ids = User.where("fb_id IN (?)", fb_friends_ids).pluck(:id)
 
+          follow_user = []                    
+
           # Save user friends 
           friends_ids.each do |f_id|
             @relation = Relation.new(user_id: @user.id, friend_user_id: f_id)
@@ -59,14 +62,16 @@ class ConnectController < ApplicationController
             @opposite_relation = Relation.new(user_id: f_id, friend_user_id: @user.id)
             @opposite_relation.save
 
-            # Follow Stream of friend
-            my_flat_feed.follow('user', f_id)
-
-            # Opposite follow 
-            friend_flat_feed = client.feed('flat', f_id)
-            friend_flat_feed.follow('user', @user.id)
+            follow_user.push({:source => 'flat:' + @user.id.to_s, :target => 'user:' + f_id.to_s})
+            follow_user.push({:source => 'flat:' + f_id.to_s, :target => 'user:' + @user.id.to_s})
 
             logger.info 'SAVING RELATIONS!'
+          end
+
+          # Follow Stream of friend
+          if follow_user.length > 0
+            client.follow_many(follow_user)
+            logger.info "Follow users: " + follow_user.to_yaml
           end
 
           render json: @user, status: :created
