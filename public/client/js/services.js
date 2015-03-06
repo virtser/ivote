@@ -28,6 +28,15 @@ angular.module('starter.services', ['ngResource'])
     return $resource(ApiEndpoint + '/stream/post/' + $sessionStorage.uid + '.json');
 })
 
+.factory('DLog', function($q, $state) {
+    var dcons = {
+      log: function() {
+//        console.log( Array.prototype.slice.call(arguments) );
+      }
+    };
+    return dcons;
+})
+
 .factory('PushWoosh', function($q, $state) {
 
     var PW_APP_ID = "50DBB-3F2B6";

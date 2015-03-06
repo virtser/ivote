@@ -4,7 +4,7 @@ var uid = 0;
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.utils']);
 // angular.module('ionicApp', ['ionic'])
 
-app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh) {
+app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh, DLog) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
