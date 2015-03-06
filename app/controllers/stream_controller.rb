@@ -16,7 +16,6 @@ def post
 
 	  # Initialize Stream client with your api key and secret
 	  @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
-    # @stream_client = Stream::Client.new('muxcgtqx9rb9', '6ewc4rb3jr6uut9c3hpyrb68dpsexw8uhk67vh8ea2phepj2f93kunr3cgjknjy3')
 
 	  # Instantiate Stream user feed object
 	  @user_feed = @stream_client.feed('user', @user_id)
@@ -44,7 +43,6 @@ def user
 
 	  # Initialize Stream client with your api key and secret
 	  @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
-    # @stream_client = Stream::Client.new('muxcgtqx9rb9', '6ewc4rb3jr6uut9c3hpyrb68dpsexw8uhk67vh8ea2phepj2f93kunr3cgjknjy3')
 
 	  # Instantiate Stream user feed object
 	  @user_feed = @stream_client.feed('user', @user_id)
@@ -73,7 +71,6 @@ def flat
 
 	  # Initialize Stream client with your api key and secret
 	  @stream_client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
-    # @stream_client = Stream::Client.new('muxcgtqx9rb9', '6ewc4rb3jr6uut9c3hpyrb68dpsexw8uhk67vh8ea2phepj2f93kunr3cgjknjy3')
 
 	  # Instantiate Stream user feed object
 	  @user_feed = @stream_client.feed('flat', @user_id)
