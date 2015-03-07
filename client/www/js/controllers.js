@@ -179,8 +179,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   
   $scope.renderImgSrc = function (id) {
     return 'img/parties/' + id + '-1.png?2';
-    
-   
   };
 
   $scope.parties = Parties.query(function(){
