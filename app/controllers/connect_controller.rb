@@ -54,6 +54,7 @@ class ConnectController < ApplicationController
           follow_user = []                    
 
           # Save user friends 
+          # TODO: Change to BULK INSERT
           friends_ids.each do |f_id|
             @relation = Relation.new(user_id: @user.id, friend_user_id: f_id)
             @relation.save
