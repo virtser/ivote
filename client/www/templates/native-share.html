@@ -6,11 +6,10 @@
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title right">שיתוף תוצאות</div>
   </div>
-      <a class="facebook-invite-btn" ng-click="shareViaFacebook('some message', null, 'https://ivote.org.il')">שיתוף בפייסבוק</a>
-      <a class="tweeter-invite-btn" ng-click="shareViaTwitter('some message', null, 'https://ivote.org.il')">ציוץ בטוויטר</a>
-      <a class="whatsup-invite-btn" ng-click="shareViaWhatsApp('some message', null, 'https://ivote.org.il')">שליחה בוואטסאפ</a>
-
-      <a class="mail-invite-btn" href="mailto:?subject=iVote&body=https://ivote.org.il">שליחה במייל</a>
+      <a class="facebook-invite-btn" ng-click="shareViaFacebook()">שיתוף בפייסבוק</a>
+      <a class="tweeter-invite-btn" ng-click="shareViaTwitter()">ציוץ בטוויטר</a>
+      <a class="whatsup-invite-btn" ng-click="shareViaWhatsApp()">שליחה בוואטסאפ</a>
+      <a class="mail-invite-btn" ng-click="shareViaEmail()">שליחה במייל</a>
   </ion-content>
 </ion-view>
 
