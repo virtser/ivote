@@ -24,6 +24,7 @@
     "com.pushwoosh.plugins.pushwoosh",
     "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
     "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
-    "nl.x-services.plugins.socialsharing"
+    "nl.x-services.plugins.socialsharing",
+    "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git"
   ]
 }
