@@ -14,15 +14,13 @@ h1 {
   font-weight: 700;
 }
 h2 {
-  margin-top: 59px;
-  margin-right: 90px;
+  margin-top: 73px;
   margin-bottom: 10px;
-  float: right;
   font-family: Montserrat, sans-serif;
-  color: #9c9c9c;
+  color: #1383c3;
   font-size: 32px;
   line-height: 36px;
-  font-weight: 400;
+  font-weight: 700;
   text-align: right;
 }
 h3 {
@@ -53,30 +51,25 @@ h6 {
 }
 p {
   display: block;
-  margin-right: 90px;
   margin-bottom: 5px;
-  padding-left: 169px;
-  float: right;
+  direction: rtl;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   color: #a1a1a1;
-  font-size: 23px;
-  line-height: 23px;
+  font-size: 25px;
+  line-height: 30px;
   text-align: right;
 }
 .button {
   display: inline-block;
-  margin-top: 18px;
-  margin-right: -96px;
   padding: 18px 21px;
   float: right;
   border-radius: 5px;
-  background-color: white;
+  background-color: #489fd9;
   box-shadow: rgba(255, 255, 255, 0.29) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.27) 0px 2px 11px 0px;
   -webkit-transition: background-color 300ms ease;
   transition: background-color 300ms ease;
   color: white;
   font-size: 20px;
-  font-weight: 700;
   text-align: center;
   text-decoration: none;
 }
@@ -88,25 +81,25 @@ p {
 .button.app-button {
   padding: 8px 17px;
 }
-.button.top {
-  margin-right: 0px;
-  background-color: #1383c3;
-  background-image: none;
-  background-position: 0% 0%;
-  background-size: auto;
-  background-repeat: repeat;
-  background-attachment: scroll;
+.button.android {
+  margin-right: 33px;
+  background-color: white;
+  background-image: url('../images/Google-Play-logo-3300x746-transparent.png');
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .section {
   padding-top: 65px;
   padding-bottom: 65px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.09);
-  background-color: #f9f9f9;
 }
 .section.hero {
   padding-bottom: 0px;
   background-image: url('../images/back.jpg');
+  background-position: 50% 37%;
   background-size: cover;
+  opacity: 0.99;
 }
 .section.white.subfooter {
   padding-top: 0px;
@@ -114,7 +107,7 @@ p {
   text-align: center;
 }
 .section.grey {
-  background-color: #383838;
+  background-color: #e8e8e8;
 }
 .section.grey.footer {
   padding-top: 49px;
@@ -124,17 +117,19 @@ p {
 .section.purple {
   padding-top: 50px;
   padding-bottom: 50px;
-  background-color: #1383c3;
+  background-color: #292929;
 }
 .hero-iphone {
   display: block;
   margin-right: auto;
   margin-bottom: -73px;
   margin-left: auto;
+  float: none;
   text-shadow: black 0px 0px 0px;
 }
 .app-name {
   margin-top: 3px;
+  float: right;
   font-family: Montserrat, sans-serif;
   color: #5c5c5c;
   font-size: 19px;
@@ -144,14 +139,17 @@ p {
 }
 .nav-link {
   display: inline-block;
+  margin-top: 22px;
   margin-right: 12px;
   margin-left: 12px;
+  float: left;
   border-bottom: 2px solid transparent;
   -webkit-transition: border 300ms ease;
   transition: border 300ms ease;
-  font-family: Montserrat, sans-serif;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   color: #5c5c5c;
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -164,22 +162,25 @@ p {
 .hero-header {
   margin-top: 130px;
   margin-bottom: 19px;
-  font-family: Exo, sans-serif;
+  float: right;
+  direction: rtl;
+  font-family: Montserrat, sans-serif;
   color: white;
-  font-size: 74px;
-  font-weight: 300;
+  font-size: 42px;
   text-align: right;
   text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px;
 }
 .hero-subtitle {
   margin-bottom: 20px;
+  float: right;
+  direction: rtl;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   color: rgba(255, 255, 255, 0.83);
-  font-size: 34px;
+  font-size: 18px;
   line-height: 22px;
-  font-weight: 100;
+  font-weight: 400;
   text-align: right;
-  text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px;
+  text-shadow: rgba(0, 0, 0, 0.20) 0px 2px 0px;
 }
 .icon-title {
   margin-top: 22px;
@@ -190,15 +191,16 @@ p {
   font-weight: 400;
 }
 .price-text {
-  margin-top: 29px;
+  margin-top: 11px;
   float: right;
   background-image: none;
   box-shadow: none;
+  direction: rtl;
   color: white;
   font-size: 25px;
   line-height: 28px;
-  font-weight: 400;
-  text-align: right;
+  font-weight: 700;
+  text-decoration: none;
   text-shadow: none;
 }
 .logo-in-footer {
@@ -264,13 +266,17 @@ p {
   text-align: center;
 }
 .navbar {
+  height: auto;
   padding-top: 39px;
   padding-bottom: 39px;
+  background-image: url('../images/header.png');
+  background-repeat: no-repeat;
 }
 .social-widget {
   display: inline-block;
   margin-top: 17px;
   margin-right: 14px;
+  float: right;
 }
 .text-link {
   color: #745785;
@@ -283,53 +289,89 @@ p {
   margin-top: 17px;
 }
 .logo {
-  margin-top: 175px;
-  margin-right: 0px;
+  margin-right: 12px;
   float: right;
 }
+.faq {
+  direction: rtl;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: right;
+}
+.faqpar {
+  font-size: 17px;
+  line-height: 20px;
+}
+.menu {
+  margin-top: 17px;
+  margin-right: 28px;
+  margin-left: 32px;
+  float: right;
+  direction: rtl;
+  color: white;
+  font-size: 17px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+.titleimage {
+  margin-top: 121px;
+  padding-bottom: 27px;
+  float: right;
+}
+.fb {
+  margin-left: 488px;
+  float: left;
+}
+.footer.lower {
+  margin-top: 50px;
+}
+.fblike {
+  margin-top: -15px;
+  margin-left: 152px;
+  padding-top: 0px;
+  float: right;
+}
+.social-center {
+  margin-right: 24px;
+  margin-left: 24px;
+}
 @media (max-width: 991px) {
-  h2 {
-    margin-top: 43px;
-  }
   p {
     font-size: 14px;
     line-height: 21px;
   }
-  .button {
-    float: right;
-    text-align: center;
+  .button.android {
+    margin-right: 7px;
   }
   .section.hero {
     padding-top: 34px;
     padding-bottom: 1px;
-    background-position: 48% 0%;
   }
   .hero-iphone {
     text-shadow: black 0px 0px 0px;
   }
   .hero-header {
     font-size: 38px;
-    text-align: center;
     text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px;
   }
   .hero-subtitle {
-    text-align: center;
     text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px;
   }
-  .price-text {
-    margin-right: 1px;
-    box-shadow: none;
-    text-shadow: none;
+  .fblike {
+    margin-right: -22px;
+    margin-left: 0px;
   }
 }
 @media (max-width: 767px) {
   h2 {
     margin-top: 0px;
-    float: right;
   }
   .button {
-    margin-right: 0px;
+    float: right;
+  }
+  .button.android {
     float: none;
+    background-color: white;
   }
   .section {
     padding-top: 33px;
@@ -340,11 +382,12 @@ p {
     padding-right: 38px;
     padding-bottom: 52px;
     padding-left: 38px;
-    background-position: 0% 0%;
     text-align: center;
   }
   .hero-iphone {
+    margin-top: 26px;
     margin-bottom: 1px;
+    float: none;
     text-shadow: black 0px 0px 0px;
   }
   .app-name {
@@ -357,13 +400,15 @@ p {
   }
   .hero-header {
     margin-top: 30px;
+    text-align: center;
     text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px;
+  }
+  .hero-subtitle {
+    text-align: center;
   }
   .price-text {
     margin-bottom: 31px;
-    float: none;
     box-shadow: none;
-    text-align: center;
     text-shadow: none;
   }
   .subfooter-right {
@@ -381,24 +426,46 @@ p {
   .social-widget {
     margin-right: 11px;
     margin-left: 11px;
+    float: left;
   }
   .logo {
     display: inline-block;
-    margin-top: 23px;
-    float: none;
+    margin-top: -59px;
+    float: right;
+  }
+  .menu {
+    margin-top: -5px;
+    margin-right: 0px;
+    margin-left: 320px;
+    padding-top: 23px;
+    float: left;
+  }
+  .titleimage {
+    margin-top: 4px;
+  }
+  .fblike {
+    margin-right: 37px;
   }
 }
 @media (max-width: 479px) {
-  h2 {
-    margin-right: 0px;
-  }
   h3 {
     font-size: 18px;
     line-height: 23px;
   }
-  p {
+  .button {
+    width: 100%;
+    margin-bottom: 17px;
+    float: right;
+    font-size: 27px;
+    font-weight: 700;
+  }
+  .button.android {
+    display: block;
+    width: 100%;
     margin-right: 0px;
-    padding-left: 0px;
+    float: right;
+    background-color: white;
+    background-position: 66% 91%;
   }
   .section {
     text-align: center;
@@ -410,6 +477,10 @@ p {
   .hero-iphone {
     text-shadow: black 0px 0px 0px;
   }
+  .nav-link {
+    margin-top: 16px;
+    float: left;
+  }
   .hero-header {
     font-size: 32px;
     text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px;
@@ -418,7 +489,33 @@ p {
     font-size: 23px;
   }
   .logo {
-    margin-top: 25px;
+    margin-top: 9px;
+    float: none;
+  }
+  .menu {
+    display: inline;
+    width: 100%;
+    margin-top: 6px;
+    margin-right: 0px;
+    margin-left: 3px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    float: right;
+    text-align: right;
+    list-style-type: none;
+  }
+  .titleimage {
+    margin-top: 1px;
+  }
+  .fblike {
+    margin-top: -21px;
+    margin-right: -166px;
+    float: left;
+  }
+  .social-center {
+    margin-right: 12px;
+    margin-left: 12px;
   }
 }
 
