@@ -72,6 +72,8 @@ GEM
     multi_xml (0.5.5)
     newrelic_rpm (3.10.0.279)
     pg (0.17.1)
+    pushwoosh (1.0.1)
+      httparty (~> 0.13.3)
     rack (1.5.2)
     rack-oauth2 (1.0.10)
       activesupport (>= 2.3)
@@ -151,6 +153,7 @@ DEPENDENCIES
   mixpanel-ruby
   newrelic_rpm
   pg (= 0.17.1)
+  pushwoosh
   rails (= 4.1.6)
   rails_12factor (= 0.0.2)
   sass-rails (~> 4.0.3)
