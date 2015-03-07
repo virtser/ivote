@@ -83,6 +83,7 @@ class ConnectController < ApplicationController
         # Update user device token on login
         unless params[:device_token].nil?
           @user.update(device_token: params[:device_token])
+          logger.info  "Device token updated: " + params[:device_token]  
         end
 
         tracker.track(@user.id, 'Login')
