@@ -1,7 +1,7 @@
 var uid = 0;
 // var serverPrefix = "https://ivoteorgil.herokuapp.com/client";
 
-var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.utils']);
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.utils', 'ngCordova']);
 // angular.module('ionicApp', ['ionic'])
 
 app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh, DLog) {
@@ -100,6 +100,15 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh, DLo
         views: {
           'tabs-results': {
             templateUrl: 'templates/share.html',
+            controller: 'ShareCtrl'
+        }
+      }
+    })
+    .state('tabs.results-native-share', {
+        url: '/results/native-share',
+        views: {
+          'tabs-results': {
+            templateUrl: 'templates/native-share.html',
             controller: 'ShareCtrl'
         }
       }
