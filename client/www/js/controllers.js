@@ -184,6 +184,12 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   };
 
   $scope.parties = Parties.query(function(){
+
+      $scope.is_native = false;
+      if (window.cordova) {
+        $scope.is_native = true;
+      }
+
     $scope.results = Results.query(function(){
       var total_number_of_votes = 0;
       $scope.totalSelected = 0;
@@ -325,6 +331,35 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     }
 })
 
-.controller('ShareCtrl', function($scope, $state, $http, $sessionStorage, DLog) {
-    DLog.log("boom");
+.controller('ShareCtrl', function($scope, $state, $http, $sessionStorage, DLog, $cordovaSocialSharing, $ionicPlatform) {
+    $scope.shareViaTwitter = function(message, image, link) {
+        $ionicPlatform.ready(function() {
+            $cordovaSocialSharing.canShareVia("twitter", message, image, link).then(function(result) {
+                $cordovaSocialSharing.shareViaTwitter(message, image, link);
+            }, function(error) {
+                alert("Cannot share on Twitter");
+            });
+        });
+    }
+
+    $scope.shareViaFacebook = function(message, image, link) {
+        $ionicPlatform.ready(function() {
+            $cordovaSocialSharing.canShareVia("facebook", message, image, link).then(function(result) {
+                $cordovaSocialSharing.shareViaFacebook(message, image, link);
+            }, function(error) {
+                alert("Cannot share on Facebook");
+            });
+        });
+    }
+
+    $scope.shareViaWhatsApp = function(message, image, link) {
+        $ionicPlatform.ready(function() {
+            $cordovaSocialSharing.canShareVia("whatsapp", message, image, link).then(function(result) {
+                $cordovaSocialSharing.shareViaWhatsApp(message, image, link);
+            }, function(error) {
+                alert("Cannot share on WhatsApp");
+            });
+        });
+    }
+
 })
