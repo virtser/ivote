@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
-  # GET /results
+  # GET /results/1.json
   def results
     @myuser_id = params[:user_id]
 
