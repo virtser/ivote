@@ -1,7 +1,17 @@
 require 'pushwoosh'
 require 'mandrill'
+require 'stream'
+require 'mixpanel-ruby'
 
 class Generic
+
+  def self.get_mixpanel_tracker
+    return Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+  end
+
+  def self.get_streams_client
+    return Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
+  end
 
 	def self.send_notificatioin(user_id, message)
 	  friends = Relation.where(user_id: user_id).pluck(:friend_user_id)

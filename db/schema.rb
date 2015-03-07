@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301212043) do
+ActiveRecord::Schema.define(version: 20150307124224) do
 
   create_table "parties", force: true do |t|
     t.string   "name"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20150301212043) do
     t.integer  "user_id"
     t.integer  "friend_user_id"
   end
+
+  add_index "relations", ["friend_user_id"], name: "index_relations_on_friend_user_id"
+  add_index "relations", ["user_id"], name: "index_relations_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"

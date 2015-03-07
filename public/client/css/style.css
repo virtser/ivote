@@ -232,7 +232,7 @@ a.friends-link {
   position: relative;
   top: -10px;
   color: hsl(210, 100%, 50%);
-  margin-right: 10px;
+  /*margin-right: 10px;*/
   text-decoration: underline;
 }
 

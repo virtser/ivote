@@ -160,6 +160,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   sqlite3
-  stream-ruby (= 2.2.2)
+  stream-ruby
   turbolinks
   uglifier (>= 1.3.0)

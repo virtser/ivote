@@ -1,15 +1,10 @@
-require 'mixpanel-ruby'
-
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
-
-  # GET /votes/1
-  # GET /votes/1.json
+  # GET /results
   def results
     @myuser_id = params[:user_id]
 
-    #TODO: Return voting results of my friends aggregated by parties.
     @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
 
     if @friends.length > 0
@@ -49,7 +44,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
 
-        tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+      tracker = Generic.get_mixpanel_tracker
         tracker.track(vote_params[:user_id], 'Vote')
 
         Generic.send_notificatioin(params[:vote][:user_id], 'חבר/ה שלך הצביע/ה באפליקציית iVote.')
@@ -69,7 +64,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.update(vote_params)
 
-        tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+      tracker = Generic.get_mixpanel_tracker
         tracker.track(vote_params[:user_id], 'Vote Update')
 
         Generic.send_notificatioin(params[:vote][:user_id], 'חבר/ה שלך הצביע/ה באפליקציית iVote.')

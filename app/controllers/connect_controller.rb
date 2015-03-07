@@ -1,6 +1,3 @@
-require 'stream'
-require 'mixpanel-ruby'
-
 class ConnectController < ApplicationController
 
   # GET /user/1.json
@@ -15,14 +12,14 @@ class ConnectController < ApplicationController
   # POST /connect.json
   def create
     unless params[:token].nil?
-      tracker = Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+      tracker = Generic.get_mixpanel_tracker
 
       # Get more data on user from Facebook
       fb_user = FbGraph2::User.me(params[:token]).fetch
       # logger.info "FB my user details: " + fb_user.to_yaml
 
       # Initialize Syream client with your api key and secret
-      client = Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
+      client = Generic.get_streams_client
 
       # Get user details
       @user = User.find_by(fb_id: fb_user.id)
@@ -50,12 +47,20 @@ class ConnectController < ApplicationController
 
           # Get user friends IDs
           friends_ids = User.where("fb_id IN (?)", fb_friends_ids).pluck(:id)
+          # logger.info "User friends: " + friends_ids.to_yaml
+
+          # Get friends of friends IDs
+          if friends_ids.length > 0
+            friends_of_friends = Relation.where(user_id: friends_ids).pluck(:friend_user_id)
+            # logger.info "User friends of friends: " + friends_of_friends.to_yaml
+            # friends_of_friends.push(@user.id) # add myself
+          end
 
           follow_user = []                    
 
           # Save user friends 
-          # TODO: Change to BULK INSERT
           friends_ids.each do |f_id|
+            # TODO: Change to BULK INSERT
             @relation = Relation.new(user_id: @user.id, friend_user_id: f_id)
             @relation.save
 
@@ -65,9 +70,14 @@ class ConnectController < ApplicationController
             follow_user.push({:source => 'flat:' + @user.id.to_s, :target => 'user:' + f_id.to_s})
             follow_user.push({:source => 'flat:' + f_id.to_s, :target => 'user:' + @user.id.to_s})
 
+            # Add friends of friends
+            friends_of_friends.each do |ff_id|
+              follow_user.push({:source => 'flat:' + @user.id.to_s, :target => 'user:' + ff_id.to_s})
+              follow_user.push({:source => 'flat:' + ff_id.to_s, :target => 'user:' + @user.id.to_s})
+            end
             logger.info 'SAVING RELATIONS!'
           end
-
+          
           # Follow Stream of friend
           if follow_user.length > 0
             client.follow_many(follow_user)
