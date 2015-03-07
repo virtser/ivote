@@ -3,13 +3,10 @@ require 'mixpanel-ruby'
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
-
-  # GET /votes/1
-  # GET /votes/1.json
+  # GET /results
   def results
     @myuser_id = params[:user_id]
 
-    #TODO: Return voting results of my friends aggregated by parties.
     @friends = Relation.where(user_id: @myuser_id).pluck(:friend_user_id)
 
     if @friends.length > 0

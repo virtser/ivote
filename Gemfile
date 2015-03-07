@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'fb_graph2'
 
 # Stream feed
-gem 'stream-ruby', '2.2.2'
+gem 'stream-ruby'
 
 # Mandrill email
 gem 'mandrill-api'

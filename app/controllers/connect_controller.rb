@@ -50,6 +50,11 @@ class ConnectController < ApplicationController
 
           # Get user friends IDs
           friends_ids = User.where("fb_id IN (?)", fb_friends_ids).pluck(:id)
+          
+          # Get friends of friends IDs
+          if friends_ids.length > 0
+            friends_of_friends = Relation.where(user_id: friends_ids).pluck(:friend_user_id)
+          end
 
           follow_user = []                    
 
@@ -65,9 +70,14 @@ class ConnectController < ApplicationController
             follow_user.push({:source => 'flat:' + @user.id.to_s, :target => 'user:' + f_id.to_s})
             follow_user.push({:source => 'flat:' + f_id.to_s, :target => 'user:' + @user.id.to_s})
 
+            # Add friends of friends
+            friends_of_friends.each do |ff_id|
+              follow_user.push({:source => 'flat:' + f_id.to_s, :target => 'user:' + ff_id.id.to_s})
+              follow_user.push({:source => 'flat:' + @ff_id.id.to_s, :target => 'user:' + f_id.to_s})
+            end
             logger.info 'SAVING RELATIONS!'
           end
-
+          
           # Follow Stream of friend
           if follow_user.length > 0
             client.follow_many(follow_user)
