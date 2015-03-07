@@ -4,7 +4,15 @@ class PartiesController < ApplicationController
   # GET /parties
   # GET /parties.json
   def index
-    @parties = Party.all
+    # Cache response
+    if Rails.cache.read("parties").nil?
+      @parties = Party.all
+      Rails.cache.write("parties", @parties)
+      logger.info "Parties Not Cached"
+    else
+      @parties = Rails.cache.read("parties")
+      logger.info "Parties Cached"
+    end
   end
 
   # GET /parties/1

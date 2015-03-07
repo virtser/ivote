@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -24,7 +25,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'fb_graph2'
 
 # Stream feed
-gem 'stream-ruby'
+gem 'stream-ruby', '2.2.2'
 
 # Mandrill email
 gem 'mandrill-api'
