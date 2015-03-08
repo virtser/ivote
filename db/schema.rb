@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307124224) do
+ActiveRecord::Schema.define(version: 20150308071252) do
 
   create_table "parties", force: true do |t|
     t.string   "name"
@@ -46,5 +46,8 @@ ActiveRecord::Schema.define(version: 20150307124224) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "votes", ["party_id"], name: "index_votes_on_party_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end
