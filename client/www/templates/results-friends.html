@@ -19,10 +19,8 @@
   <div class="friends-invite row">
     <div class="col"><span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span></div>
-    <div class="col">
-      <a class="small-invite-btn" ng-if="is_native && results.length" href="#/tabs/results/native-share">הזמנת חברים</a>
-      <a class="small-invite-btn" ng-if="!is_native && results.length" href="#/tabs/results/share">הזמנת חברים</a>
-    </div>
+    <div ng-if="is_native && results.length" class="col"><a class="small-invite-btn" href="#/tabs/results/native-share">הזמנת חברים</a></div>
+    <div ng-if="(! is_native) && results.length" class="col"><a class="small-invite-btn" href="#/tabs/results/share">הזמנת חברים</a></div>
   </div>
   <ion-list>
       <ion-item class="margin-fix" ng-repeat="result in results | orderBy: 'number_of_votes': 'reverse'" type="item-text-wrap" >
