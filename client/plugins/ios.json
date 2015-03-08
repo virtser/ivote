@@ -19,6 +19,20 @@
                         {
                             "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "framework": {
+                "parents": {
+                    "QuartzCore.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
                         }
                     ]
                 }
@@ -33,6 +47,9 @@
             "PACKAGE_NAME": "com.ionicframework.ivote250486"
         },
         "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.ionicframework.ivote250486"
+        },
+        "nl.x-services.plugins.toast": {
             "PACKAGE_NAME": "com.ionicframework.ivote250486"
         }
     },

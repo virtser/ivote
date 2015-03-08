@@ -37,7 +37,7 @@ angular.module('starter.services', ['ngResource'])
     return dcons;
 })
 
-.factory('PushWoosh', function($q, $state) {
+.factory('PushWoosh', function($q, $state, $cordovaToast) {
 
     var PW_APP_ID = "50DBB-3F2B6";
     var pushNotification;
@@ -78,7 +78,7 @@ angular.module('starter.services', ['ngResource'])
                 console.warn('user data: ' + JSON.stringify(userData));
             }
 
-            alert(title);
+            $cordovaToast.showLongCenter(title);
         });
 
         // Initialize the plugin
