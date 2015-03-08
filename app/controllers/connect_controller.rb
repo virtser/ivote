@@ -68,7 +68,7 @@ class ConnectController < ApplicationController
           # Follow Stream of friend
           if follow_user.length > 0
             client.follow_many(follow_user)
-            logger.info "Follow users: " + follow_user.to_yaml
+            # logger.info "Follow users: " + follow_user.to_yaml
           end
 
           render json: @user, status: :created
@@ -81,7 +81,7 @@ class ConnectController < ApplicationController
         # Update user device token on login
         unless params[:device_token].nil?
           @user.update(device_token: params[:device_token])
-          logger.info  "Device token updated: " + params[:device_token]  
+          # logger.info  "Device token updated: " + params[:device_token]  
         end
 
         tracker.track(@user.id, 'Login')
