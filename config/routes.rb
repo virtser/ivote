@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 root 'home#index'
+get '/share/:id' => 'home#share'
 
 scope '/api' do
   resources :relations
