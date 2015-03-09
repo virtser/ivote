@@ -5,8 +5,8 @@ class HomeController < ApplicationController
   	root :to => "static#index"
   end
 
-  # GET /share/1
-  def share
+  # GET /results/1
+  def results
   end
 
 end
