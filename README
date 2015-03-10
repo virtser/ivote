@@ -50,3 +50,7 @@ For testing locally with Genymotion you need to reference the local server like 
 
 (note the 192.168.56.1 is my IP on the virtual box net Genymotion is using, yours may be different.
  to find yours, type: "ifconfig vboxnet0" in terminal)
+
+Viewing mobile device log in realtime:
+Android: adb logcat
+iOS: idevicesyslog (to install, follow: https://github.com/benvium/libimobiledevice-macosx/blob/master/README.md)
