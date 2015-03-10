@@ -173,8 +173,16 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
 .controller('ResultsFriendsCtrl', function($scope, Results, Parties, $sessionStorage) {
   
-  $scope.renderImgSrc = function (id) {
-    return 'img/parties/' + id + '-1.png?2';
+
+
+
+
+  $scope.renderImgSrc = function (result) {
+    console.log('renderImgSrc',result.party_id);
+    if(!result.isSelected)
+      return 'img/parties/' + result.party_id + '-1.png';
+    else
+      return 'img/parties/' + result.party_id + '-2.png';
   };
 
   $scope.parties = Parties.query(function(){
@@ -188,9 +196,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       var total_number_of_votes = 0;
       $scope.totalSelected = 0;
       angular.forEach($scope.results, function(value, key) {
+           value.isSelected = false;
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
-
+       
           if (value.party_id == party.id)
             value.name = party.name;
         })
@@ -206,11 +215,32 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.totalSelected += seats * (result.selected ? 1 : -1);
         $scope.selectedPercents = $scope.totalSelected * 100 / 120;
       };
+
       $scope.results.total_number_of_votes = total_number_of_votes;
       $sessionStorage.total_number_of_votes = total_number_of_votes;
-
     });
   });
+
+   $scope.toggleParty = function (result) {
+     result.isSelected = !result.isSelected
+
+     $scope.sumOfVotes = 0;
+
+     angular.forEach($scope.results, function(value) {   
+       if(value.isSelected) {
+         var seats = value.number_of_votes / $scope.results.total_number_of_votes * 120;
+         $scope.sumOfVotes += seats;
+        }
+     });
+     console.log("sumOfVotes", $scope.sumOfVotes);
+     $scope.selectedPercents = $scope.sumOfVotes* 100 / 120;
+   
+  };
+
+
+  var sumSelections = function() {
+
+  };
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint, DLog) {
@@ -277,6 +307,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   $scope.$on('modal.removed', function() {
     // Execute action
   });
+})
+
+.controller('FeedPartyCtrl', function($scope, FeedParty) {
+  $scope.feedData = FeedParty.query();
 })
 
 .controller('FeedFlatCtrl', function($scope, FeedFlat) {
