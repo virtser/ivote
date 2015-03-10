@@ -71,6 +71,7 @@ body {
 
 .post .text {
   font-size: 20px;
+  line-height: 25px;
   padding: 10px;
   display: table-cell;
   text-align: center;
@@ -86,6 +87,23 @@ body {
 
 .loader {
   padding: 50px;
+}
+
+.create-campaign .post {
+  margin: -4px 0 10px;
+}
+
+.create-campaign .campaign-tags .tags-select {
+  height: 50px;
+}
+
+.create-campaign .list {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.create-campaign .btn-row {
+  margin-top: 15px;
 }
 
 .tab-title {
@@ -473,11 +491,13 @@ a.friends-link {
 }
 
 
-.campaign-color-options {
+.campaign-color-options, .campaign-color-options .color-opt-col {
+  margin: 0;
+  padding: 0;
 }
 
 .campaign-color-options .color-option {
-  height: 50px;
+  height: 58px;
   width: 100%;
   border: 0 none;
 }
