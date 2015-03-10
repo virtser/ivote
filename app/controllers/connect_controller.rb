@@ -55,6 +55,7 @@ class ConnectController < ApplicationController
           end
 
           follow_user = []                    
+          follow_friendsof_user = []                    
 
           # Save user friends 
           # TODO: Change to BULK INSERT
@@ -70,8 +71,8 @@ class ConnectController < ApplicationController
 
             # Add friends of friends
             friends_of_friends.each do |ff_id|
-              follow_user.push({:source => 'flat:' + @user.id.to_s, :target => 'user:' + ff_id.to_s})
-              follow_user.push({:source => 'flat:' + ff_id.to_s, :target => 'user:' + @user.id.to_s})
+              follow_friendsof_user.push({:source => 'flat:' + @user.id.to_s, :target => 'user:' + ff_id.to_s})
+              follow_friendsof_user.push({:source => 'flat:' + ff_id.to_s, :target => 'user:' + @user.id.to_s})
             end
 
             logger.info 'SAVING RELATIONS!'
@@ -82,6 +83,18 @@ class ConnectController < ApplicationController
             begin 
               logger.info "Follow users: " + follow_user.to_yaml
               client.follow_many(follow_user)
+              logger.info "Follow users success!"
+            rescue Stream::StreamApiResponseException => e
+              Rails.logger.error "A Stream error occurred: #{e.class} - #{e.message}"  
+            end
+          end
+
+          # Follow Stream of friend of friends
+          if follow_friendsof_user.length > 0
+            begin 
+              logger.info "Follow friends of users: " + follow_friendsof_user.to_yaml
+              client.follow_many(follow_friendsof_user)
+              logger.info "Follow friends of users success!"
             rescue Stream::StreamApiResponseException => e
               Rails.logger.error "A Stream error occurred: #{e.class} - #{e.message}"  
             end
