@@ -279,6 +279,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   });
 })
 
+.controller('FeedPartyCtrl', function($scope, FeedParty) {
+  $scope.feedData = FeedParty.query();
+})
+
 .controller('FeedFlatCtrl', function($scope, FeedFlat) {
   $scope.feedData = FeedFlat.query();
 })

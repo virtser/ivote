@@ -16,6 +16,10 @@ angular.module('starter.services', ['ngResource'])
     return $resource(ApiEndpoint + '/votes/' + $sessionStorage.uid + '.json');
 })
 
+.factory('FeedParty', function ($resource, $sessionStorage, ApiEndpoint) {
+    return $resource(ApiEndpoint + '/stream/party/' + $sessionStorage.my_vote_party + '.json');
+})
+
 .factory('FeedFlat', function ($resource, $sessionStorage, ApiEndpoint) {
     return $resource(ApiEndpoint + '/stream/flat/' + $sessionStorage.uid + '.json');
 })
