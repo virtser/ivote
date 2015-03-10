@@ -330,30 +330,29 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
     $scope.url = "https%3A%2F%2Fivote.org.il%2Fresults%2F" + $sessionStorage.uid;
 
-    message = "עד עכשיו הצביעו " + $sessionStorage.total_number_of_votes + " חברים." + "\n";
-    message = message + "https://ivote.org.il\n";
+    message = "תוצאות הבחירות המבוססות על הצבעות החברים והחברים של החברים שלי באפליקציית iVote\n";
+    link = "https://ivote.org.il/results/" + $sessionStorage.uid + "\n";
 
     image = null;
-    link = null;
-
-    $scope.shareViaTwitter = function() {
-        $ionicPlatform.ready(function() {
-            console.log("twitter: " + message);
-            $cordovaSocialSharing.canShareVia("twitter", message, image, link).then(function(result) {
-                $cordovaSocialSharing.shareViaTwitter(message, image, link);
-            }, function(error) {
-                alert("Cannot share on Twitter");
-            });
-        });
-    }
 
     $scope.shareViaFacebook = function() {
         $ionicPlatform.ready(function() {
             console.log("facebook: " + message);
-            $cordovaSocialSharing.canShareVia("facebook", message, image, link).then(function(result) {
-                $cordovaSocialSharing.shareViaFacebook(message, image, link);
+            $cordovaSocialSharing.canShareVia("facebook", message, image, null).then(function(result) {
+                $cordovaSocialSharing.shareViaFacebook(message, null, link);
             }, function(error) {
-                alert("Cannot share on Facebook");
+                alert("Cannot share on Facebook: " + error.toString());
+            });
+        });
+    }
+
+    $scope.shareViaTwitter = function() {
+        $ionicPlatform.ready(function() {
+            console.log("twitter: " + message);
+            $cordovaSocialSharing.canShareVia("twitter", message, image, null).then(function(result) {
+                $cordovaSocialSharing.shareViaTwitter(message, image, link);
+            }, function(error) {
+                alert("Cannot share on Twitter " + error.toString());
             });
         });
     }
@@ -361,10 +360,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.shareViaWhatsApp = function() {
         $ionicPlatform.ready(function() {
             console.log("whatsapp: " + message);
-            $cordovaSocialSharing.canShareVia("whatsapp", message, image, link).then(function(result) {
+            $cordovaSocialSharing.canShareVia("whatsapp", message, image, null).then(function(result) {
                 $cordovaSocialSharing.shareViaWhatsApp(message, image, link);
             }, function(error) {
-                alert("Cannot share on WhatsApp");
+                alert("Cannot share on WhatsApp " + error.toString());
             });
         });
     }
@@ -372,10 +371,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     $scope.shareViaEmail = function() {
         $ionicPlatform.ready(function() {
             console.log("email: " + message);
-            $cordovaSocialSharing.canShareVia("email", message, image, link).then(function(result) {
-                $cordovaSocialSharing.shareViaEmail(message, "message from an iVote user", [], [], null);
+            $cordovaSocialSharing.canShareVia("email", message, image, null).then(function(result) {
+                $cordovaSocialSharing.shareViaEmail(message+link, "message from an iVote user", [], [], null);
             }, function(error) {
-                alert("Cannot share on E-Mail");
+                alert("Cannot share on E-Mail " + error.toString());
             });
         });
     }
