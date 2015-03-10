@@ -25,7 +25,9 @@ class Generic
 	    unless fd.device_token.nil?
 	      device_tokensList.push(fd.device_token)          
 	    else
-	      emailList.push({"email"=>fd.email, "type"=>"to"})
+        unless fd.email.nil?
+	       emailList.push({"email"=>fd.email, "type"=>"to"})
+        end
 	    end
 	  end
 
