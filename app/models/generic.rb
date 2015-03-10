@@ -10,7 +10,7 @@ class Generic
   end
 
   def self.get_streams_client
-    return Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw')
+    return Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw', '2148', :location => 'eu-central')
   end
 
 	def self.send_notificatioin(user_id, message)
