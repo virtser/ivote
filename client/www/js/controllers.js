@@ -174,7 +174,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 .controller('ResultsFriendsCtrl', function($scope, Results, Parties, $sessionStorage) {
   
   $scope.renderImgSrc = function (result) {
-    console.log('renderImgSrc',result.party_id);
     if(!result.isSelected)
       return 'img/parties/' + result.party_id + '-1.png';
     else
@@ -199,8 +198,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
           if (value.party_id == party.id)
             value.name = party.name;
         })
-        
-        // console.log(value);
        
      });
 
@@ -227,10 +224,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
          var seats = value.number_of_votes / $scope.results.total_number_of_votes * 120;
          $scope.sumOfVotes += seats;
         }
-     });
-     console.log("sumOfVotes", $scope.sumOfVotes);
-     $scope.selectedPercents = $scope.sumOfVotes* 100 / 120;
-   
+     });   
   };
 
 

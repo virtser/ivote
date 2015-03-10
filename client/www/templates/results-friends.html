@@ -47,6 +47,6 @@
     </div>
   </ion-content>
  <div class="bar bar-footer total-bar-ph" style="margin-bottom: 49px">
-    <div class="total-bar" ng-class="{valid: selectedPercents >= 61}" style="width: {{selectedPercents}}%">{{selectedPercents}}</div>
+    <div class="total-bar" ng-class="{valid: sumOfVotes >= 61}" style="width: {{sumOfVotes}}%">{{sumOfVotes | number:0}}</div>
 </div>
 </ion-view>
