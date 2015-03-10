@@ -9,16 +9,60 @@
     </div>
   </div>
 	<form ng-submit="postToFeed()" ng-controller="FeedPostCtrl">
-	  <div class="item item-body text-center">
-	    <p>
-	    	<textarea name="text" ng-model="text" placeholder="תוכן ההודעה" class="post-text"></textarea>
-	    </p>
-	    <p>
-			<button class="button button-balanced">
-			  שלח קמפיין
-			</button>		    
-	    </p>
-	  </div>
+		<div class="row campaign-color-options">
+			<div class="col" ng-repeat="color in colorOptions">
+				<button class="color-option" ng-class="{selected: chosenColor == color}" ng-click="chooseColor(color)" style="background-color: {{color}};"></button>
+			</div>
+		</div>
+
+
+		<div class="post" style="background-color: {{chosenColor}};">
+			<div class="row">
+				<div class="col">מצביע\ה {{myParty.name}}</div>
+				<div class="col text-left">אני</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="textwrapper">
+						<p>
+							<textarea name="text" ng-model="text" style="background-color: transparent;" placeholder="הקמפיין שלך כאן" class="text post-text"></textarea>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="campaign-tags">
+			<div class="row">
+				<div class="col">
+					<p>
+						באפשרותך לתייג עד שלוש מפלגות על מנת למקד את הקמפיין למצביעי מפלגות אלה. מעגל החברים שלך תמיד יראה את מה שפרסמת בצורה אנונימית.
+					</p>
+				</div>
+			</div>
+
+			<label class="row">
+				<select class="col" ng-model="currentTag" ng-change="addPartyTag(currentTag)" ng-disabled="tags.length > 2">
+					<option value="" selected disabled>@תיוג מפלגה</option>
+					<option ng-repeat="party in parties | filter: { tagged: undefined }" value="{{party.id}}">{{party.name}}</option>
+				</select>
+			</label>
+
+			<div class="list list-inset" ng-show="tags.length > 0">
+				<div class="item item-button-left" ng-repeat="tag in tags track by tag.id">
+						{{tag.name}}
+						<button class="button button-clear" ng-click="removePartyTag(tag)">
+							X
+						</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+		<button class="col button button-balanced">שלח קמפיין</button>
+		</div>
+
 	</form>
     </ion-content>
 </ion-view>
