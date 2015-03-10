@@ -149,10 +149,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
 })
 
-.controller('HomeTabCtrl', function($scope) {
-  console.log('HomeTabCtrl');
-})
-
 .controller('ResultsMeCtrl', ['$scope', '$state', 'Parties', '$sessionStorage', 'DLog', function($scope, $state, Parties, $sessionStorage, DLog) {
     $scope.indexCtrl= 16;
     
@@ -179,8 +175,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   
   $scope.renderImgSrc = function (id) {
     return 'img/parties/' + id + '-1.png?2';
-    
-   
   };
 
   $scope.parties = Parties.query(function(){
@@ -333,6 +327,8 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 })
 
 .controller('ShareCtrl', function($scope, $state, $http, $sessionStorage, DLog, $cordovaSocialSharing, $ionicPlatform) {
+
+    $scope.url = "https%3A%2F%2Fivote.org.il%2Fresults%2F" + $sessionStorage.uid;
 
     message = "עד עכשיו הצביעו " + $sessionStorage.total_number_of_votes + " חברים." + "\n";
     message = message + "https://ivote.org.il\n";

@@ -16,7 +16,7 @@ class Generic
 	def self.send_notificatioin(user_id, message)
 	  friends = Relation.where(user_id: user_id).pluck(:friend_user_id)
 	  friends_details = User.where("id IN (?)", friends).select('email', 'device_token')
-	  Rails.logger.info "Friends details: " + friends_details.to_yaml
+	  # Rails.logger.info "Friends details: " + friends_details.to_yaml
 
 	  emailList = []
 	  device_tokensList = []
@@ -41,7 +41,7 @@ class Generic
 private  
   def self.push_notification(device_tokensList, message) 
     begin
-      Rails.logger.info "Pushing notification: " + device_tokensList.to_yaml
+      # Rails.logger.info "Pushing notification: " + device_tokensList.to_yaml
 
       auth_hash = { auth: 'CMm40TvbuDC5wvpAkbAlk77Jefbx1lXFj9YjKqNbUpj6I3Dnuc0Lh7NEueKjYAsrV3TDwS65wQa9WJA5aA4A', application: '50DBB-3F2B6' }
       client = Pushwoosh::PushNotification.new(auth_hash)
@@ -81,7 +81,7 @@ private
 
         result = mandrill.messages.send_template template_name, template_content, message, async
 
-        Rails.logger.info "Email sending result: " + result.to_yaml
+        # Rails.logger.info "Email sending result: " + result.to_yaml
         
     rescue Mandrill::Error => e
         Rails.logger.error "A mandrill error occurred: #{e.class} - #{e.message}"

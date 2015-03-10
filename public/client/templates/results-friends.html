@@ -8,8 +8,8 @@
   <ion-content>
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title">תוצאות</div>
-    <div class="col-50"> <!--      לחץ על העמודות כדי,<br/>
-      להוסיף לקואליציה -->
+    <div class="col-50">      מבוססות על חברים<br/>
+      וחברים של חברים
     </div>
   </div>
   <div class="result-tabs">
@@ -19,10 +19,8 @@
   <div class="friends-invite row">
     <div class="col"><span class="friends-number">{{results.total_number_of_votes}}</span>
     <span class="friends-voted">חברים הצביעו</span></div>
-    <div class="col">
-      <a class="small-invite-btn" ng-if="is_native && results.length" href="#/tabs/results/native-share">הזמנת חברים</a>
-      <a class="small-invite-btn" ng-if="!is_native && results.length" href="#/tabs/results/share">הזמנת חברים</a>
-    </div>
+    <div ng-if="is_native && results.length" class="col"><a class="small-invite-btn" href="#/tabs/results/native-share">שיתוף תוצאות</a></div>
+    <div ng-if="(! is_native) && results.length" class="col"><a class="small-invite-btn" href="#/tabs/results/share">שיתוף תוצאות</a></div>
   </div>
   <ion-list>
       <ion-item class="margin-fix" ng-repeat="result in results | orderBy: 'number_of_votes': 'reverse'" type="item-text-wrap" >

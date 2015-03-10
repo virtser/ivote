@@ -6,7 +6,7 @@ class PartiesController < ApplicationController
     # Cache response
       @parties = Party.all
       expires_in(1.days, public: true)
-      logger.info "Parties Cached"
+      # logger.info "Parties Cached"
   end
 
   # GET /parties/1

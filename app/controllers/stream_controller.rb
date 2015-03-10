@@ -8,7 +8,7 @@ class StreamController < ApplicationController
   	  @user_id = params[:user_id]
   	  text = params[:text]
 
-      logger.info "Post text: " + text.to_yaml
+      # logger.info "Post text: " + text.to_yaml
 
   	  # Initialize Stream client with your api key and secret
   	  @stream_client = Generic.get_streams_client
