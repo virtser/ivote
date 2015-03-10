@@ -169,6 +169,11 @@ a.col-note {
   height: 30px;
 }
 
+.result-bar-selected {
+  background-color: #8AC92D;
+  height:30px;
+}
+
 .total-bar-ph {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(70, 70, 70, 1)), color-stop(5%, rgba(78, 78, 78, 1)), color-stop(19%, rgba(88, 88, 88, 1)), color-stop(35%, rgba(95, 95, 95, 1)), color-stop(46%, rgba(97, 97, 97, 1)), color-stop(62%, rgba(95, 95, 95, 1)), color-stop(76%, rgba(90, 90, 90, 1)), color-stop(100%, rgba(73, 73, 73, 1))); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, rgba(70, 70, 70, 1) 0%, rgba(78, 78, 78, 1) 5%, rgba(88, 88, 88, 1) 19%, rgba(95, 95, 95, 1) 35%, rgba(97, 97, 97, 1) 46%, rgba(95, 95, 95, 1) 62%, rgba(90, 90, 90, 1) 76%, rgba(73, 73, 73, 1) 100%); /* Chrome10+,Safari5.1+ */

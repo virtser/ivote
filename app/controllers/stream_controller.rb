@@ -93,4 +93,28 @@ class StreamController < ApplicationController
       render json: result["results"], status: :ok
   end
 
+  # GET /stream/party/1
+  # GET /stream/party/1.json
+  def party
+      @party_id = params[:party_id]
+
+      # Initialize Stream client with your api key and secret
+      @stream_client = Generic.get_streams_client
+
+      # Instantiate Stream user feed object
+      @user_feed = @stream_client.feed('party', @party_id)
+
+      # Get Flat activities 
+      result = @user_feed.get(:limit=>10)
+
+      result["results"].each_with_index do |item, index|
+        @user_party_id = @party_id
+
+        # Get user party
+        @party_name = Party.where(id: @user_party_id).pluck(:name).first
+        result["results"][index]["party"] = @party_name
+      end
+
+      render json: result["results"], status: :ok
+  end
 end
