@@ -79,8 +79,12 @@ class ConnectController < ApplicationController
 
           # Follow Stream of friend
           if follow_user.length > 0
-            client.follow_many(follow_user)
-            # logger.info "Follow users: " + follow_user.to_yaml
+            begin 
+              logger.info "Follow users: " + follow_user.to_yaml
+              client.follow_many(follow_user)
+            rescue Stream::StreamApiResponseException => e
+              Rails.logger.error "A Stream error occurred: #{e.class} - #{e.message}"  
+            end
           end
 
           render json: @user, status: :created
