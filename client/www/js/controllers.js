@@ -222,6 +222,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   });
 
    $scope.toggleParty = function (result) {
+     
      result.isSelected = !result.isSelected
 
      $scope.sumOfVotes = 0;
@@ -234,8 +235,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
      });
      console.log("sumOfVotes", $scope.sumOfVotes);
      $scope.selectedPercents = $scope.sumOfVotes* 100 / 120;
-   
-  };
+   };
 
 
   var sumSelections = function() {
