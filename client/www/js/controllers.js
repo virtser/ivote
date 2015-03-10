@@ -173,10 +173,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
 .controller('ResultsFriendsCtrl', function($scope, Results, Parties, $sessionStorage) {
   
-
-
-
-
   $scope.renderImgSrc = function (result) {
     console.log('renderImgSrc',result.party_id);
     if(!result.isSelected)
@@ -363,6 +359,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 .controller('ShareCtrl', function($scope, $state, $http, $sessionStorage, DLog, $cordovaSocialSharing, $ionicPlatform) {
 
     $scope.url = "https%3A%2F%2Fivote.org.il%2Fresults%2F" + $sessionStorage.uid;
+    $scope.turl = "https//ivote.org.il/results/" + $sessionStorage.uid;
 
     message = "עד עכשיו הצביעו " + $sessionStorage.total_number_of_votes + " חברים." + "\n";
     message = message + "https://ivote.org.il\n";
