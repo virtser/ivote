@@ -173,12 +173,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
 .controller('ResultsFriendsCtrl', function($scope, Results, Parties, $sessionStorage) {
   
-
-
-
+  if (window.ionic.Platform.isAndroid())
+    document.getElementById('footer_bar').style['margin-bottom'] = '0px';
 
   $scope.renderImgSrc = function (result) {
-    console.log('renderImgSrc',result.party_id);
     if(!result.isSelected)
       return 'img/parties/' + result.party_id + '-1.png';
     else
@@ -203,8 +201,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
           if (value.party_id == party.id)
             value.name = party.name;
         })
-        
-        // console.log(value);
        
      });
 
@@ -231,10 +227,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
          var seats = value.number_of_votes / $scope.results.total_number_of_votes * 120;
          $scope.sumOfVotes += seats;
         }
-     });
-     console.log("sumOfVotes", $scope.sumOfVotes);
-     $scope.selectedPercents = $scope.sumOfVotes* 100 / 120;
-   
+     });   
   };
 
 
@@ -321,37 +314,77 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   $scope.feedData = FeedUser.query();
 })
 
-.controller('FeedPostCtrl', function($scope, $state, $http, $sessionStorage, DLog) {
+  .controller('FeedPostCtrl', function ($scope, $state, $http, $sessionStorage, DLog, Parties) {
+    //console.log(parties);
 
-  $scope.postToFeed = function() {
-    DLog.log('Post to Feed of '+ $sessionStorage.uid +', text: ' + $scope.text);
+    var getPartyInfo = function (partyId) {
+      return $scope.parties.filter(function (p) {
+        return p.id == partyId;
+      })[0];
+    };
 
-    if (!angular.isUndefined($scope.text) && ($scope.text !== '')) {
 
-      var post_data = { "text" : $scope.text };
+    $scope.myParty = {};
+    $scope.parties = Parties.query(function () {
+      $scope.myParty = getPartyInfo($sessionStorage.my_vote_id);
+    });
 
-      meth = 'POST';
-      url = '/api/stream/post/'+ $sessionStorage.uid +'.json'
+    $scope.colorOptions = ['#003663', '#790000', '#662d91', '#362f2d', '#ec008c', '#0072bc', '#f26522', '#353535'];
+    $scope.chosenColor = $scope.colorOptions[0];
+    $scope.chooseColor = function (color) {
+      $scope.chosenColor = color;
+    };
 
-      $http({
+    $scope.tags = [];
+    $scope.addPartyTag = function (currentTag) {
+      var party = getPartyInfo(currentTag);
+      party.tagged = true;
+      $scope.tags.push(getPartyInfo(currentTag));
+      $scope.currentTag = '';
+    };
+    $scope.removePartyTag = function (party) {
+      party.tagged = undefined;
+      $scope.tags = $scope.tags.filter(function (p) {
+        return p.id !== party.id;
+      });
+      //$scope.tags.push(getPartyInfo(currentTag));
+    };
+
+    $scope.postToFeed = function () {
+      DLog.log('Post to Feed of ' + $sessionStorage.uid + ', text: ' + $scope.text);
+
+      if (!angular.isUndefined($scope.text) && ($scope.text !== '')) {
+
+        var post_data = {
+          "text": $scope.text,
+          "color": $scope.chosenColor,
+          "tags": $scope.tags.map(function (party) {
+            return "party:" + party.id;
+          })
+        };
+
+        meth = 'POST';
+        url = '/api/stream/post/' + $sessionStorage.uid + '.json';
+
+        $http({
           method: meth,
           url: url,
           headers: {
-             'Content-Type': "application/json"
+            'Content-Type': "application/json"
           },
           data: post_data
-      })
-      .success(function(data, status, headers, config) {
-          DLog.log("post success: " + data);
-          $state.go('tabs.feed-friends');
-      })
-      .error(function(data, status, headers, config) {
-          DLog.log('post failed!');
-      })
+        })
+          .success(function (data, status, headers, config) {
+            DLog.log("post success: " + data);
+            $state.go('tabs.feed-friends');
+          })
+          .error(function (data, status, headers, config) {
+            DLog.log('post failed!');
+          })
+      }
     }
-  }
 
-})
+  })
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies, $localstorage, DLog) {
     if ($localstorage.get('fb_token', null) == null || ($sessionStorage.uid == null)) {
