@@ -21,6 +21,10 @@
 	    <div class="col">מצביע\ה {{ item.party }}</div>
 	    <div class="col text-left">חבר</div>
 	  </div>
+		<div class="row tags-row" ng-if="item.taggedParties && item.taggedParties.length">
+			<i class="icon ion-pricetags"></i>
+			<span class="post-tag" ng-repeat="tag in item.taggedParties">@{{ tag.name }}</span>
+		</div>
 	  <div class="row">
 	    <div class="col">
 	    	<div class="textwrapper">
