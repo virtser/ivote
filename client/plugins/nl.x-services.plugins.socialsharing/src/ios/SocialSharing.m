@@ -8,6 +8,7 @@
 
 @implementation SocialSharing {
   UIPopoverController *_popover;
+  NSString *_popupCoordinates;
 }
 
 - (void)pluginInitialize {
@@ -26,7 +27,14 @@
 }
 
 - (NSString*)getIPadPopupCoordinates {
+  if (_popupCoordinates != nil) {
+    return _popupCoordinates;
+  }
   return [self.webView stringByEvaluatingJavaScriptFromString:@"window.plugins.socialsharing.iPadPopupCoordinates();"];
+}
+
+- (void)setIPadPopupCoordinates:(CDVInvokedUrlCommand*)command {
+  _popupCoordinates  = [command.arguments objectAtIndex:0];
 }
 
 - (CGRect)getPopupRectFromIPadPopupCoordinates:(NSArray*)comps {
@@ -92,7 +100,7 @@
   // iPad on iOS >= 8 needs a different approach
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
     NSString* iPadCoords = [self getIPadPopupCoordinates];
-    if (![iPadCoords isEqual:@"-1,-1,-1,-1"]) {
+    if (iPadCoords != nil && ![iPadCoords isEqual:@"-1,-1,-1,-1"]) {
       NSArray *comps = [iPadCoords componentsSeparatedByString:@","];
       CGRect rect = [self getPopupRectFromIPadPopupCoordinates:comps];
       if ([activityVC respondsToSelector:@selector(popoverPresentationController)]) {
