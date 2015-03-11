@@ -124,4 +124,46 @@ class ConnectController < ApplicationController
     end
   end
 
+  def resubs
+    all_users = User.all
+    Delayed::Job.enqueue ResubscribeJob.new(all_users)
+  end
+
+end
+
+class ResubscribeJob < Struct.new(:users)
+  def perform
+    users.each do |user|
+
+        logger.info "process " + user.to_yaml
+
+        @friends = Relation.where(user_id: user.id).pluck(:friend_user_id)
+
+        if @friends.length > 0
+          friends_of_friends = Relation.where(user_id: @friends).pluck(:friend_user_id)
+
+          if friends_of_friends.length > 0
+            follow_friendsof_user = []
+            friends_of_friends.each do |ff_id|
+                follow_friendsof_user.push({:source => 'flat:' + user.id.to_s, :target => 'user:' + ff_id.to_s})
+                follow_friendsof_user.push({:source => 'flat:' + ff_id.to_s, :target => 'user:' + user.id.to_s})
+            end
+
+            begin
+              client = Generic.get_streams_client
+              logger.info "Follow friends of users: " + follow_friendsof_user.to_yaml
+              client.follow_many(follow_friendsof_user)
+              logger.info "Follow friends of users success!"
+            rescue Stream::StreamApiResponseException => e
+              Rails.logger.error "A Stream error occurred: #{e.class} - #{e.message}"
+            end
+          else
+            logger.info "no friends of friends"
+          end
+        else
+          logger.info "USER has no friends :-("
+        end
+
+    end
+  end
 end

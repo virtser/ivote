@@ -25,6 +25,9 @@ scope '/api' do
     get  '/flat/:user_id' => 'stream#flat'
   end
 
+  scope '/admin' do
+    get '/resubs' => 'connect#resubs'
+  end
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
