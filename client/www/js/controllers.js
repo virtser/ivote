@@ -448,7 +448,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
                 alert("Cannot share on Facebook: " + error.toString());
             });
         });
-      });
     }
 
     $scope.shareViaTwitter = function() {
@@ -460,7 +459,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
                 alert("Cannot share on Twitter " + error.toString());
             });
         });
-      });
     }
 
     $scope.shareViaWhatsApp = function() {
@@ -472,7 +470,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
                 alert("Cannot share on WhatsApp " + error.toString());
             });
         });
-      });
     }
 
     $scope.shareViaEmail = function() {
@@ -484,7 +481,6 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
                 alert("Cannot share on E-Mail " + error.toString());
             });
         });
-      });
     }
 
   })
