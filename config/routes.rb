@@ -23,6 +23,7 @@ scope '/api' do
     post '/post/:user_id' => 'stream#post'
     get  '/user/:user_id' => 'stream#user'
     get  '/flat/:user_id' => 'stream#flat'
+    get  '/party/:party_id' => 'stream#party'
   end
 
 end

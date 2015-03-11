@@ -2,7 +2,6 @@
  <ion-nav-buttons side="primary">
   <a class="button ion-compose" href="#/tabs/feed/post" style="border:0px"></a>
  </ion-nav-buttons>
-
     <ion-content>	  
   <div class="row header" ng-controller="IntegrityCtrl">
     <div class="col title">קמפיינים</div>
@@ -12,11 +11,12 @@
 	<div class="result-tabs">
 	  <a class="button button-dark" href="#/tabs/feed/me">אני</a>
 	  <a class="button" href="#/tabs/feed/friends">חברים</a>
+	  <a class="button" href="#/tabs/feed/party">מפלגה</a>
 	</div>    
 	<div class="row loader" ng-hide="feedData.length > 0">
 	  	<div class="col text-center"><i class="icon ion-loading-c"></i> טוען...</div>
 	</div>	
-	<div class="post" ng-repeat="item in feedData"> 
+	<div class="post" ng-repeat="item in feedData" ng-style="{backgroundColor: item.color}">
 	  <div class="row">
 	    <div class="col">מצביע\ה {{ item.party }}</div>
 	    <div class="col text-left">אני</div>

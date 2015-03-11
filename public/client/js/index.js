@@ -86,6 +86,15 @@ app.run(function($ionicPlatform, $rootScope, $state, ApiEndpoint, PushWoosh, DLo
           }
         }
     })
+    .state('tabs.feed-party', {
+        url: '/feed/party',
+        views: {
+          'tabs-feed': {
+            templateUrl: 'templates/tabs-feed-party.html',
+            controller: 'FeedPartyCtrl'
+          }
+        }
+    })
     .state('tabs.feed-post', {
         url: '/feed/post',
         views: {

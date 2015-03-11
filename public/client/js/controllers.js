@@ -173,8 +173,12 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
 .controller('ResultsFriendsCtrl', function($scope, Results, Parties, $sessionStorage) {
   
-  $scope.renderImgSrc = function (id) {
-    return 'img/parties/' + id + '-1.png?2';
+  $scope.renderImgSrc = function (result) {
+    console.log('renderImgSrc',result.party_id);
+    if(!result.isSelected)
+      return 'img/parties/' + result.party_id + '-1.png';
+    else
+      return 'img/parties/' + result.party_id + '-2.png';
   };
 
   $scope.parties = Parties.query(function(){
@@ -188,9 +192,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
       var total_number_of_votes = 0;
       $scope.totalSelected = 0;
       angular.forEach($scope.results, function(value, key) {
+           value.isSelected = false;
         total_number_of_votes += value.number_of_votes;
         angular.forEach($scope.parties, function(party, index) {
-
+       
           if (value.party_id == party.id)
             value.name = party.name;
         })
@@ -206,11 +211,32 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         $scope.totalSelected += seats * (result.selected ? 1 : -1);
         $scope.selectedPercents = $scope.totalSelected * 100 / 120;
       };
+
       $scope.results.total_number_of_votes = total_number_of_votes;
       $sessionStorage.total_number_of_votes = total_number_of_votes;
-
     });
   });
+
+   $scope.toggleParty = function (result) {
+     result.isSelected = !result.isSelected
+
+     $scope.sumOfVotes = 0;
+
+     angular.forEach($scope.results, function(value) {   
+       if(value.isSelected) {
+         var seats = value.number_of_votes / $scope.results.total_number_of_votes * 120;
+         $scope.sumOfVotes += seats;
+        }
+     });
+     console.log("sumOfVotes", $scope.sumOfVotes);
+     $scope.selectedPercents = $scope.sumOfVotes* 100 / 120;
+   
+  };
+
+
+  var sumSelections = function() {
+
+  };
 })
 
 .controller('ConfirmVoteCtrl', function($scope, $rootScope, $ionicModal, $http, $sessionStorage, Parties, ApiEndpoint, DLog) {
@@ -279,6 +305,10 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   });
 })
 
+.controller('FeedPartyCtrl', function($scope, FeedParty) {
+  $scope.feedData = FeedParty.query();
+})
+
 .controller('FeedFlatCtrl', function($scope, FeedFlat) {
   $scope.feedData = FeedFlat.query();
 })
@@ -287,37 +317,77 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
   $scope.feedData = FeedUser.query();
 })
 
-.controller('FeedPostCtrl', function($scope, $state, $http, $sessionStorage, DLog) {
+  .controller('FeedPostCtrl', function ($scope, $state, $http, $sessionStorage, DLog, Parties) {
+    //console.log(parties);
 
-  $scope.postToFeed = function() {
-    DLog.log('Post to Feed of '+ $sessionStorage.uid +', text: ' + $scope.text);
+    var getPartyInfo = function (partyId) {
+      return $scope.parties.filter(function (p) {
+        return p.id == partyId;
+      })[0];
+    };
 
-    if (!angular.isUndefined($scope.text) && ($scope.text !== '')) {
 
-      var post_data = { "text" : $scope.text };
+    $scope.myParty = {};
+    $scope.parties = Parties.query(function () {
+      $scope.myParty = getPartyInfo($sessionStorage.my_vote_id);
+    });
 
-      meth = 'POST';
-      url = '/api/stream/post/'+ $sessionStorage.uid +'.json'
+    $scope.colorOptions = ['#003663', '#790000', '#662d91', '#362f2d', '#ec008c', '#0072bc', '#f26522', '#353535'];
+    $scope.chosenColor = $scope.colorOptions[0];
+    $scope.chooseColor = function (color) {
+      $scope.chosenColor = color;
+    };
 
-      $http({
+    $scope.tags = [];
+    $scope.addPartyTag = function (currentTag) {
+      var party = getPartyInfo(currentTag);
+      party.tagged = true;
+      $scope.tags.push(getPartyInfo(currentTag));
+      $scope.currentTag = '';
+    };
+    $scope.removePartyTag = function (party) {
+      party.tagged = undefined;
+      $scope.tags = $scope.tags.filter(function (p) {
+        return p.id !== party.id;
+      });
+      //$scope.tags.push(getPartyInfo(currentTag));
+    };
+
+    $scope.postToFeed = function () {
+      DLog.log('Post to Feed of ' + $sessionStorage.uid + ', text: ' + $scope.text);
+
+      if (!angular.isUndefined($scope.text) && ($scope.text !== '')) {
+
+        var post_data = {
+          "text": $scope.text,
+          "color": $scope.chosenColor,
+          "tags": $scope.tags.map(function (party) {
+            return "party:" + party.id;
+          })
+        };
+
+        meth = 'POST';
+        url = '/api/stream/post/' + $sessionStorage.uid + '.json';
+
+        $http({
           method: meth,
           url: url,
           headers: {
-             'Content-Type': "application/json"
+            'Content-Type': "application/json"
           },
           data: post_data
-      })
-      .success(function(data, status, headers, config) {
-          DLog.log("post success: " + data);
-          $state.go('tabs.feed-friends');
-      })
-      .error(function(data, status, headers, config) {
-          DLog.log('post failed!');
-      })
+        })
+          .success(function (data, status, headers, config) {
+            DLog.log("post success: " + data);
+            $state.go('tabs.feed-friends');
+          })
+          .error(function (data, status, headers, config) {
+            DLog.log('post failed!');
+          })
+      }
     }
-  }
 
-})
+  })
 
 .controller('IntegrityCtrl', function($scope, $state, $http, $sessionStorage, $cookies, $localstorage, DLog) {
     if ($localstorage.get('fb_token', null) == null || ($sessionStorage.uid == null)) {
@@ -329,6 +399,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 .controller('ShareCtrl', function($scope, $state, $http, $sessionStorage, DLog, $cordovaSocialSharing, $ionicPlatform) {
 
     $scope.url = "https%3A%2F%2Fivote.org.il%2Fresults%2F" + $sessionStorage.uid;
+    $scope.turl = "https//ivote.org.il/results/" + $sessionStorage.uid;
 
     message = "עד עכשיו הצביעו " + $sessionStorage.total_number_of_votes + " חברים." + "\n";
     message = message + "https://ivote.org.il\n";
