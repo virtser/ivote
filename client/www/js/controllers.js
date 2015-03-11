@@ -363,7 +363,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
 
     $scope.myParty = {};
     $scope.parties = Parties.query(function () {
-      $scope.myParty = getPartyInfo($sessionStorage.my_vote_id);
+      $scope.myParty = getPartyInfo($sessionStorage.my_vote_party);
     });
 
     $scope.colorOptions = ['#003663', '#790000', '#662d91', '#362f2d', '#ec008c', '#0072bc', '#f26522', '#353535'];
