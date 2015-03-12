@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 root 'home#index'
+get '/fb' => 'home#fb'
 post '/fb' => 'home#fb'
 get '/results/:id' => 'home#results'
 
