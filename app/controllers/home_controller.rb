@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
   # POST /fb
   def fb
-  	redirect_to  '/client/'
+  	redirect_to  'https://ivote.org.il/client/'
   end
 
   # GET /results/1
