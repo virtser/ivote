@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
 
-  # GET /home
+  # GET /
   def index
   	root :to => "static#index"
+  end
+
+  # POST /fb
+  def fb
+  	redirect_to  '/client/'
   end
 
   # GET /results/1

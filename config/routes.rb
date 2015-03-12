@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 root 'home#index'
+post '/fb' => 'home#fb'
 get '/results/:id' => 'home#results'
 
 scope '/api' do
