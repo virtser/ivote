@@ -351,7 +351,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
     });
   })
 
-  .controller('FeedPostCtrl', function ($scope, $state, $http, $sessionStorage, DLog, Parties) {
+  .controller('FeedPostCtrl', function ($scope, $state, $http, $sessionStorage, DLog, Parties, ApiEndpoint) {
     //console.log(parties);
 
     var getPartyInfo = function (partyId) {
@@ -401,11 +401,13 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
         };
 
         meth = 'POST';
-        url = '/api/stream/post/' + $sessionStorage.uid + '.json';
+        url = '/stream/post/' + $sessionStorage.uid + '.json';
+
+        DLog.log("about to post using: " + url);
 
         $http({
           method: meth,
-          url: url,
+          url: ApiEndpoint + url,
           headers: {
             'Content-Type': "application/json"
           },
@@ -416,7 +418,7 @@ angular.module('starter.controllers', ['ngStorage', 'ngCookies', 'ngCordova', 's
             $state.go('tabs.feed-friends');
           })
           .error(function (data, status, headers, config) {
-            DLog.log('post failed!');
+            DLog.log('post failed!' + status);
           })
       }
     }
