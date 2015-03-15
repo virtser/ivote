@@ -118,7 +118,7 @@ body {
 }
 
 .create-campaign .post {
-  margin: -4px 0 10px;
+  margin: -5px 0 10px;
 }
 
 .create-campaign .campaign-tags .tags-select {
@@ -132,6 +132,10 @@ body {
 
 .create-campaign .btn-row {
   margin-top: 15px;
+}
+
+.create-campaign .post textarea {
+  background-color: transparent;
 }
 
 .tab-title {
@@ -536,7 +540,6 @@ a.friends-link {
 
 .campaign-color-options .color-option.activated {
   box-shadow: inset 0 1px 10px 100px rgba(0, 0, 0, 0.2);
-  transform: scale(.9);
 }
 
 .campaign-color-options .color-option.selected:after {
