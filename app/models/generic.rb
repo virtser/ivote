@@ -6,17 +6,16 @@ require 'mixpanel-ruby'
 class Generic
 
   def self.get_mixpanel_tracker
-    return Mixpanel::Tracker.new('5169a311c1cad013734458bb88005dcd')
+    return Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
   end
 
   def self.get_streams_client
-    return Stream::Client.new('4xmc2pqg5hhm', 'p9x6e4jqvk2bft7trs85rzgms4dngsuw3e4tpqxpg9gksn6p49yx5p8r28c6s9tw', '2148', :location => 'eu-central')
+    return Stream::Client.new(ENV['STREAM_SECRET'], ENV['STREAM_TOKEN'], '2148', :location => 'eu-central')
   end
 
 	def self.send_notificatioin(user_id, message)
 	  friends = Relation.where(user_id: user_id).pluck(:friend_user_id)
 	  friends_details = User.where("id IN (?)", friends).select('email', 'device_token')
-	  # Rails.logger.info "Friends details: " + friends_details.to_yaml
 
 	  emailList = []
 	  device_tokensList = []
@@ -43,9 +42,7 @@ class Generic
 private  
   def self.push_notification(device_tokensList, message) 
     begin
-      # Rails.logger.info "Pushing notification: " + device_tokensList.to_yaml
-
-      auth_hash = { auth: 'CMm40TvbuDC5wvpAkbAlk77Jefbx1lXFj9YjKqNbUpj6I3Dnuc0Lh7NEueKjYAsrV3TDwS65wQa9WJA5aA4A', application: '50DBB-3F2B6' }
+      auth_hash = { auth: ENV['PUSHWOOSH_TOKEN'], application: ENV['PUSHWOOSJ_APPID'] }
       client = Pushwoosh::PushNotification.new(auth_hash)
       client.notify_devices(message, device_tokensList, { :send_date  => "now" })
     rescue Pushwoosh::Error => e
@@ -55,7 +52,7 @@ private
 
   def self.send_email(emailList, message)
     begin
-        mandrill = Mandrill::API.new '_jNnzxqtlL9rUB8Y7Kbhog'
+        mandrill = Mandrill::API.new ENV['MANDRILL_TOKEN']
         template_name = "vote"
         template_content = [{"content"=>"example content", "name"=>"example name"}]
         message = {"subject"=> message,
@@ -82,9 +79,6 @@ private
         async = true
 
         result = mandrill.messages.send_template template_name, template_content, message, async
-
-        # Rails.logger.info "Email sending result: " + result.to_yaml
-        
     rescue Mandrill::Error => e
         Rails.logger.error "A mandrill error occurred: #{e.class} - #{e.message}"
     end   
