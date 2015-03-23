@@ -1,6 +1,6 @@
 # Description
 
-iVote gives you the opportunity to check how your friends are voting in upcoming ellections. It doesn't matter which political views do you have. The application is completely anonymouse and it is not biased by any political movement.
+iVote gives you the opportunity to check how your friends are voting in upcoming ellections. It doesn't matter which political views you have. The application is completely anonymouse and it is not biased by any political movement.
 
 The goal of the application is to help you decide which party to give your vote. By seeing how your friends (and friends of friends), after connecting with your Facebook accoount, has voted in total. Your friends can influence you to change your mind by posting in social feeds.
 
@@ -23,6 +23,9 @@ The following services were used:
 
 
 # Installation
+
+To install environment run *first_time_install.sh* script from root for the first time.
+
 To setup build for native, do these steps:
 
 first remove the facebook connect plugin to prevent errors when adding platforms:
