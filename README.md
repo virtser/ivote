@@ -6,6 +6,22 @@ The goal of the application is to help you decide which party to give your vote.
 
 More info (in Hebrew) here: https://ivote.org.il
 
+# General info
+
+The application was built using:
+- [Ruby on Rails](http://rubyonrails.org) for server side API and ORM management.
+- [Ionic framework](http://ionicframework.com) + [AngularJS](https://angularjs.org) for client side development.
+- [Cordova](https://cordova.apache.org) for native mobile support and packaging web app for Android and iOS.
+
+The following services were used:
+- [Facebook API](https://developers.facebook.com/docs/graph-api/) to signup/signing.
+- [Mixpanel](https://mixpanel.com) for events tracking.
+- [Mandrill](https://mandrill.com) for email notifications.
+- [Pushwoosh](https://www.pushwoosh.com) for mobile push notifications.
+- [Stream](http://getstream.io) for social feeds.
+- [Heroku](https://www.heroku.com) as cloud application platform.
+
+
 # Installation
 To setup build for native, do these steps:
 
