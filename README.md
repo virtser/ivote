@@ -1,8 +1,10 @@
 # Description
 
-לא משנה אם אתם ימין, מרכז או שמאל. כאן תוכלו לראות לאיזו מפלגה החברים שלכם מתכוונים להצביע ולנסות להשפיע עליהם באווירה מכבדת ומקבלת.
+iVote gives you the opportunity to check how your friends are voting in upcoming ellections. It doesn't matter which political views do you have. The application is completely anonymouse and it is not biased by any political movement.
 
-https://ivote.org.il
+The goal of the application is to help you decide which party to give your vote. By seeing how your friends (and friends of friends), after connecting with your Facebook accoount, has voted in total. Your friends can influence you to change your mind by posting in social feeds.
+
+More info (in Hebrew) here: https://ivote.org.il
 
 # Installation
 To setup build for native, do these steps:
