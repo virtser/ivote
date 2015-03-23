@@ -9,21 +9,24 @@ To setup build for native, do these steps:
 
 first remove the facebook connect plugin to prevent errors when adding platforms:
 
-$ ionic plugin remove com.phonegap.plugins.facebookconnect
+``` ionic plugin remove com.phonegap.plugins.facebookconnect ```
 
 Now add pltforms
 
-$ ionic platform add android
-$ ionic platform add ios
+```
+ionic platform add android
+ionic platform add ios
+```
 
 Add the facebook connect plugin back
-$ cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote"
+``` cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote" ```
 
 Now you should be able to build:
 
-$ ionic build ios
-$ ionic build android
-
+```
+ionic build ios
+ionic build android
+```
 
 Note: why is the facebook plugin part of the repo in the first place if we remove and add?
 The reason is for web facebook login we want it in, but when moving to mobile, if its in and you do a platform add,
