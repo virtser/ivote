@@ -18,8 +18,10 @@ ionic platform add android
 ionic platform add ios
 ```
 
-Add the facebook connect plugin back
-``` cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote" ```
+Add the facebook connect plugin back:
+``` 
+cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote" 
+```
 
 Now you should be able to build:
 
