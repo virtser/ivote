@@ -1,4 +1,8 @@
+# Description
 
+לא משנה אם אתם ימין, מרכז או שמאל. כאן תוכלו לראות לאיזו מפלגה החברים שלכם מתכוונים להצביע ולנסות להשפיע עליהם באווירה מכבדת ומקבלת.
+
+# Installation
 To setup build for native, do these steps:
 
 first remove the facebook connect plugin to prevent errors when adding platforms:
