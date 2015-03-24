@@ -32,7 +32,7 @@ I will explain the workflow here, but please feel free to contact me if you have
 
 2. Clone this repository 'master' branch. We were working in [feature branch methodology](http://nvie.com/posts/a-successful-git-branching-model/) aka git flow.
 
-3.  Run *first_time_install.sh* script from the root directory to install ionic and all its dependencies (cordova, bower, gulp). I assume that you have Node.js and Ruby installed. 
+3.  Run *[first_time_install.sh](https://github.com/virtser/ivote/blob/master/first_time_install.sh)* script from the root directory to install rails, database, ionic and all its dependencies (cordova, bower, gulp). I assume that you have Node.js and Ruby installed. 
 
 ionic/angular client is now incorporated into rails app.
 It is sitting in the *client/* directory including environment for client development.
@@ -41,7 +41,7 @@ It is sitting in the *client/* directory including environment for client develo
 
 5. All APIs are under */api/* scope in rails app.
 
-6. *deploy.sh* script in the root to compile ionic app and copy it to Rails *pubic/* directory for later deployment.
+6. *[build_app.sh](https://github.com/virtser/ivote/blob/master/build_cient.sh)* script in the root to compile ionic app and copy it to Rails *pubic/* directory for later deployment.
 
 7. Deploy to heroku as usual *git push heroku name_of_branch:master*.
 
@@ -96,7 +96,7 @@ finally use zipalign:
 The resulting aligned APK can be uploaded to Google Play.
 
 Shortcut: 
-We made a *build_android.sh* script for the above 3 steps for building an apk for release to Google Play
+We made a *[build_android.sh](https://github.com/virtser/ivote/blob/master/client/build_android.sh)* script for the above 3 steps for building an apk for release to Google Play
 you can use that. Make sure to increment android-versionCode in *config.xml* before uploading to Google Play. You may also update the version name.
 
 For testing locally with Genymotion you need to reference the local server like that:
