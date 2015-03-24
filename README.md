@@ -41,7 +41,7 @@ It is sitting in the *client/* directory including environment for client develo
 
 5. All APIs are under */api/* scope in rails app.
 
-6. *[build_app.sh](https://github.com/virtser/ivote/blob/master/build_cient.sh)* script in the root to compile ionic app and copy it to Rails *pubic/* directory for later deployment.
+6. *[build_client.sh](https://github.com/virtser/ivote/blob/master/build_client.sh)* script in the root to compile ionic app and copy it to Rails *pubic/* directory for later deployment.
 
 7. Deploy to heroku as usual *git push heroku name_of_branch:master*.
 
