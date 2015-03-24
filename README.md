@@ -4,7 +4,7 @@ iVote gives you the opportunity to check how your friends are voting in upcoming
 
 The goal of the application is to help you decide which party to give your vote. By seeing how your friends (and friends of friends), after connecting with your Facebook account, has voted in total. Your friends can influence you to change your mind by posting in social feeds.
 
-Blog post about the project and how we did it is [here](https://medium.com/@virtser/ivote-b2d28461ac34).
+Blog post about the project and how we did it can be found here: https://medium.com/@virtser/ivote-b2d28461ac34
 
 # General info
 
