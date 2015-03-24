@@ -50,18 +50,25 @@ It is sitting in the *client/* directory including environment for client develo
 
 To setup build for native, do these steps:
 
-1. Remove the facebook connect plugin to prevent errors when adding platforms:
+* Remove the facebook connect plugin to prevent errors when adding platforms:
+
 ``` ionic plugin remove com.phonegap.plugins.facebookconnect ```
-2. Now add pltforms:
+
+* Now add pltforms:
+
 ```
 ionic platform add android
 ionic platform add ios
 ```
-3. Add the facebook connect plugin back:
+
+* Add the facebook connect plugin back:
+
 ``` 
 cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="1557020157879112" --variable APP_NAME="iVote" 
 ```
-4. Now you should be able to build:
+
+* Now you should be able to build:
+
 ```
 ionic build ios
 ionic build android
