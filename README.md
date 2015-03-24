@@ -24,7 +24,29 @@ The following services were used:
 
 # Installation
 
-To install environment run *first_time_install.sh* script from root for the first time.
+## Web client
+
+I will explain the workflow here, but please feel free to contact me if you have questions!
+
+1. You need Ruby '2.1.2', Rails '4.1.6' and Node '0.10.25' to be installed on your machine.
+
+2. Clone this repository 'master' branch. We were working in [feature branch methodology](http://nvie.com/posts/a-successful-git-branching-model/) aka git flow.
+
+3.  Run *first_time_install.sh* script from the root directory to install ionic and all its dependencies (cordova, bower, gulp). I assume that you have Node.js and Ruby installed. 
+
+ionic/angular client is now incorporated into rails app.
+It is sitting in the *client/* directory including environment for client development.
+
+4. Once installed, you can use from *client/* directory *ionic serve* command to work locally on client including livereload. You need to execute *rails s* command also to run the server and have it proxied to ionic client development using [Gulp](http://gulpjs.com/).
+
+5. All APIs are under */api/* scope in rails app.
+
+6. *deploy.sh* script in the root to compile ionic app and copy it to Rails *pubic/* directory for later deployment.
+
+7. Deploy to heroku as usual *git push heroku name_of_branch:master*.
+
+
+## Native mobile
 
 To setup build for native, do these steps:
 
